@@ -1,0 +1,28 @@
+{
+  "name": "porta-finance-site",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc -b && vite build && cp dist/index.html dist/404.html",
+    "preview": "vite preview",
+    "deploy:pages": "npm run build && echo www.porta.finance > dist/CNAME"
+  },
+  "dependencies": {
+    "framer-motion": "^12.23.12",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
+    "react-router-dom": "^7.8.2"
+  },
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.1.12",
+    "@types/node": "^24.13.3",
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.1.0",
+    "tailwindcss": "^4.1.12",
+    "typescript": "~5.9.2",
+    "vite": "^8.2.2"
+  }
+}

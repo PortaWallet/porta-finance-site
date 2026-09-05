@@ -1,0 +1,8 @@
+node_modules
+dist
+.chrome-data
+brand-from-live
+preview-shots
+*.log
+.DS_Store
+.vercel
