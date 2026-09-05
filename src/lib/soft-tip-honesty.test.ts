@@ -13,6 +13,7 @@ const COPY_SOURCES = [
   'src/lib/site.ts',
   'src/components/LiveNow.tsx',
   'src/components/Hero.tsx',
+  'src/components/Footer.tsx',
   'PLAN.md',
 ] as const
 
@@ -25,6 +26,13 @@ describe('soft tip honesty', () => {
     for (const rel of COPY_SOURCES) {
       const text = readFileSync(resolve(ROOT, rel), 'utf8')
       expect(text, rel).not.toContain(STALE_TIP)
+    }
+  })
+
+  it('marketing sources do not contain X / Twitter hrefs', () => {
+    for (const rel of COPY_SOURCES) {
+      const text = readFileSync(resolve(ROOT, rel), 'utf8')
+      expect(text, rel).not.toMatch(/x\.com|twitter\.com/i)
     }
   })
 })

@@ -1,5 +1,12 @@
 import { MotionSection, MotionStagger, MotionItem } from './MotionSection'
-import { SOFT_TIP, TG_BOT_HANDLE, TG_BOT_URL, MINI_APP_URL } from '../lib/site'
+import {
+  SITE_HOST,
+  SITE_URL,
+  SOFT_TIP,
+  TG_BOT_HANDLE,
+  TG_BOT_URL,
+  MINI_APP_URL,
+} from '../lib/site'
 
 type LiveCard = {
   title: string
@@ -98,6 +105,26 @@ export default function LiveNow() {
             </code>
             . Primary entry is {TG_BOT_HANDLE}. Expect polish, not perfection. No
             seed phrases or keys are ever published here.
+          </p>
+          <p className="mt-4 text-xs leading-relaxed text-porta-muted/80">
+            Official links only — Porta&apos;s official surfaces are{' '}
+            <a
+              href={SITE_URL}
+              className="text-porta-text transition hover:text-porta-accent"
+            >
+              {SITE_HOST}
+            </a>
+            , Telegram{' '}
+            <a
+              href={TG_BOT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-porta-text transition hover:text-porta-accent"
+            >
+              {TG_BOT_HANDLE}
+            </a>
+            , and our Telegram channel. Ignore lookalike accounts elsewhere
+            (including on X) claiming to be Porta.
           </p>
         </div>
 
