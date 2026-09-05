@@ -25,7 +25,7 @@ const cards: LiveCard[] = [
   {
     title: 'Mini App',
     description:
-      'Full Telegram Mini App — balances, send, and swap review. Tip 00026-wrp until DevOps cutover URL change.',
+      'Full Telegram Mini App — balances, send, and swap review. Tip 00027-5zg until DevOps cutover URL change.',
     status: 'live',
     href: MINI_APP,
     cta: 'Open Mini App',
@@ -98,7 +98,7 @@ export default function LiveNow() {
           <p className="mt-3 text-sm leading-relaxed text-porta-muted sm:text-base">
             What you can use today. Porta is in active dogfood — tip context{' '}
             <code className="rounded bg-white/5 px-1.5 py-0.5 text-xs text-porta-accent">
-              00026-wrp
+              00027-5zg
             </code>
             . Expect polish, not perfection. No seed phrases or keys are ever
             published here.

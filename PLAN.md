@@ -1,6 +1,6 @@
 # porta.finance refresh — kick plan (Senior FE)
 
-**Date:** 2026-09-05 · **Soft tip context:** `00026-wrp` · **Path:** `/workspace/porta-finance-site/`
+**Date:** 2026-09-05 · **Soft tip context:** `00027-5zg` · **Path:** `/workspace/porta-finance-site/`
 
 ## Stack (locked)
 
@@ -32,7 +32,7 @@ Deferred: Next.js App Router — revisit if SEO/blog needs SSR; Vite static is e
 | Surface | Link / status |
 |---------|----------------|
 | Telegram bot | https://t.me/PortaWallet_bot |
-| Mini App | https://production-wallet-telegram-omytp43vwa-ew.a.run.app (tip `00026-wrp`) |
+| Mini App | https://production-wallet-telegram-omytp43vwa-ew.a.run.app (tip `00027-5zg`) |
 | Chrome extension | CWS Unlisted path — button present, label “Dogfood soon” until store URL exists |
 | Android APK | `/downloads/porta-wallet.apk` (staged from dogfood build when present) |
 
