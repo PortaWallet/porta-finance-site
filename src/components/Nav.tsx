@@ -1,7 +1,9 @@
+import { TG_BOT_URL } from '../lib/site'
+
 const links = [
   { href: '#live', label: 'Live' },
   { href: '#roadmap', label: 'Roadmap' },
-  { href: 'https://t.me/PortaWallet_bot', label: 'Follow', external: true },
+  { href: TG_BOT_URL, label: 'Follow', external: true },
 ]
 
 export default function Nav() {
@@ -10,8 +12,11 @@ export default function Nav() {
       <nav className="mx-auto flex max-w-5xl items-center justify-between gap-3 px-4 py-3.5 sm:gap-4 sm:px-6">
         <a href="/" className="group flex shrink-0 items-center">
           <img
-            src="/logo.svg"
+            src="/logo.png"
             alt="Porta"
+            width={167}
+            height={64}
+            decoding="async"
             className="h-7 w-auto object-contain sm:h-8"
           />
         </a>

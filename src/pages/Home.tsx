@@ -1,8 +1,10 @@
+import { lazy, Suspense } from 'react'
 import Nav from '../components/Nav'
 import Hero from '../components/Hero'
-import LiveNow from '../components/LiveNow'
-import Roadmap from '../components/Roadmap'
 import Footer from '../components/Footer'
+
+const LiveNow = lazy(() => import('../components/LiveNow'))
+const Roadmap = lazy(() => import('../components/Roadmap'))
 
 export default function Home() {
   return (
@@ -10,8 +12,10 @@ export default function Home() {
       <Nav />
       <main>
         <Hero />
-        <LiveNow />
-        <Roadmap />
+        <Suspense fallback={<div className="min-h-[70vh]" aria-hidden />}>
+          <LiveNow />
+          <Roadmap />
+        </Suspense>
       </main>
       <Footer />
     </div>
