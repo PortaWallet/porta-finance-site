@@ -1,87 +1,59 @@
-# porta.finance DNS cutover (Webflow → GitHub Pages)
+# GoDaddy DNS — porta.finance cutover
 
-**Updated:** 2026-09-05 · **Soft tip:** `00026-wrp`  
-**Mini App (unchanged):** https://production-wallet-telegram-omytp43vwa-ew.a.run.app
+Soft tip `00026-wrp`. Remove old **Webflow** records for `@` / `www` first (CNAME/A to `proxy-ssl.webflow.com` or Webflow targets).
 
-## Live preview (already public HTTPS)
+Pick **one** path (Vercel preferred if you claim the temp deploy).
 
-**https://portawallet.github.io/porta-finance-site/**
+---
 
-- Source: `PortaWallet/porta-finance-site` → `gh-pages` branch (`dist/`)
-- SPA fallback: `404.html` (= `index.html`)
-- Custom domain **not** attached yet (so this URL stays usable before DNS flip)
+## Option A — Vercel (preferred)
 
-## Current www / apex DNS (still Webflow)
+**Before DNS:** Claim + add domains in Vercel project → Domains: `www.porta.finance` and `porta.finance`  
+Claim: https://vercel.com/claim-deployment?code=6dfd4479-49ff-4cd0-8566-2ecc6c9a0330  
+Temp site: https://temporary-rushing-antimony-ip35dsa.vercel.app
 
-| Host | Resolves to today |
-|------|-------------------|
-| `www.porta.finance` | `proxy-ssl.webflow.com` (Webflow / Cloudflare) |
-| `porta.finance` | `75.2.70.75` / `99.83.190.102` (likely Webflow/AWS-style apex) |
+| Type | Name (GoDaddy) | Value | TTL |
+|------|----------------|-------|-----|
+| **A** | `@` | `76.76.21.21` | 600 / 1 Hour |
+| **CNAME** | `www` | **value from Vercel Domains UI** (often `cname.vercel-dns.com`) | 600 / 1 Hour |
 
-`https://www.porta.finance` still returns Webflow (`x-wf-region`).
+Notes:
+- After claim, open Project → Settings → Domains — copy the **exact** CNAME target shown for `www` if it differs from `cname.vercel-dns.com`.
+- Optional: add both apex + www in Vercel so redirects work both ways.
+- Do **not** leave a Webflow CNAME on `www` alongside the Vercel CNAME.
 
-## Exact DNS records Joshua must set
+---
 
-Point DNS at **GitHub Pages** (replace Webflow records):
+## Option B — GitHub Pages (backup already LIVE)
 
-### 1) www → GitHub Pages
-```
-Type:  CNAME
-Name:  www
-Value: portawallet.github.io
-TTL:   300 (or Auto)
-```
+Site: https://portawallet.github.io/porta-finance-site/  
+Repo: https://github.com/PortaWallet/porta-finance-site  
+Custom domain configured as `www.porta.finance` on Pages when ready.
 
-### 2) Apex `porta.finance` → GitHub Pages A records
-```
-Type: A     Name: @ (or porta.finance)    Value: 185.199.108.153
-Type: A     Name: @                       Value: 185.199.109.153
-Type: A     Name: @                       Value: 185.199.110.153
-Type: A     Name: @                       Value: 185.199.111.153
-```
+| Type | Name (GoDaddy) | Value | TTL |
+|------|----------------|-------|-----|
+| **A** | `@` | `185.199.108.153` | 600 |
+| **A** | `@` | `185.199.109.153` | 600 |
+| **A** | `@` | `185.199.110.153` | 600 |
+| **A** | `@` | `185.199.111.153` | 600 |
+| **CNAME** | `www` | `portawallet.github.io` | 600 |
 
-### 3) Optional apex IPv6 (AAAA)
-```
-Type: AAAA  Name: @    Value: 2606:50c0:8000::153
-Type: AAAA  Name: @    Value: 2606:50c0:8001::153
-Type: AAAA  Name: @    Value: 2606:50c0:8002::153
-Type: AAAA  Name: @    Value: 2606:50c0:8003::153
-```
+Optional IPv6 (AAAA) apex:
 
-### Remove / disable
-- Any existing Webflow CNAME/`proxy-ssl.webflow.com` for `www`
-- Old Webflow A/AAAA/ALIAS/ANAME on apex if they conflict
+| Type | Name | Value |
+|------|------|-------|
+| AAAA | `@` | `2606:50c0:8000::153` |
+| AAAA | `@` | `2606:50c0:8001::153` |
+| AAAA | `@` | `2606:50c0:8002::153` |
+| AAAA | `@` | `2606:50c0:8003::153` |
 
-## After DNS propagates — attach domain on GitHub
+Notes:
+- `www` CNAME target is **`portawallet.github.io`** (org pages host) — **not** `portawallet.github.io/porta-finance-site`.
+- Propagation: minutes → up to 24h. Then Enforce HTTPS on Pages / Vercel.
 
-```bash
-# From a machine with gh auth:
-gh api repos/PortaWallet/porta-finance-site/pages -X PUT \
-  -H "Accept: application/vnd.github+json" \
-  --input - <<'JSON'
-{
-  "cname": "www.porta.finance",
-  "source": { "branch": "gh-pages", "path": "/" }
-}
-JSON
-```
+---
 
-Also add a `CNAME` file containing `www.porta.finance` on the `gh-pages` branch (GitHub may auto-create it).
-
-Then in **Settings → Pages**:
-1. Custom domain: `www.porta.finance`
-2. Wait for DNS check to go green
-3. Enable **Enforce HTTPS**
-4. Optionally add apex `porta.finance` in the UI if offered
-
-## Cutover checklist
-1. Confirm preview: https://portawallet.github.io/porta-finance-site/ (tip `00026-wrp` in LiveNow)
-2. Update DNS as above
-3. Attach `www.porta.finance` via API/UI; enforce HTTPS
-4. Verify https://www.porta.finance serves Vite site (no `x-wf-region`)
-5. Verify https://porta.finance redirects or serves same
-6. Retire Webflow hosting for this domain
-
-## Repo
-- https://github.com/PortaWallet/porta-finance-site (public — free org needs public for Pages)
-- Brand assets unchanged from Webflow purple/mint/logo in `public/`
+## Also delete / avoid
+- Old Webflow A/CNAME/NS leftovers for `@` and `www`
+- Wildcard `*.porta.finance` (takeover risk)
+- GoDaddy “Domain Forwarding” on apex if using A records (conflicts)
