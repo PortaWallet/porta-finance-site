@@ -1,8 +1,5 @@
 import { MotionSection, MotionStagger, MotionItem } from './MotionSection'
-
-const TG_BOT = 'https://t.me/PortaWallet_bot'
-const MINI_APP =
-  'https://production-wallet-telegram-omytp43vwa-ew.a.run.app'
+import { SOFT_TIP, TG_BOT_HANDLE, TG_BOT_URL, MINI_APP_URL } from '../lib/site'
 
 type LiveCard = {
   title: string
@@ -17,17 +14,16 @@ type LiveCard = {
 const cards: LiveCard[] = [
   {
     title: 'Telegram bot',
-    description: 'Talk to Porta in chat — wallet create/import and core flows.',
+    description: `Primary dogfood entry. Talk to Porta in chat — wallet create/import and core flows.`,
     status: 'live',
-    href: TG_BOT,
-    cta: 'Open @PortaWallet_bot',
+    href: TG_BOT_URL,
+    cta: `Open ${TG_BOT_HANDLE}`,
   },
   {
     title: 'Mini App',
-    description:
-      'Full Telegram Mini App — balances, send, and swap review. Tip 00027-5zg until DevOps cutover URL change.',
+    description: `Balances, send, and swap review in Telegram. Soft dogfood tip ${SOFT_TIP}. Primary dogfood entry is ${TG_BOT_HANDLE}.`,
     status: 'live',
-    href: MINI_APP,
+    href: MINI_APP_URL,
     cta: 'Open Mini App',
   },
   {
@@ -96,12 +92,12 @@ export default function LiveNow() {
             Get Porta
           </h2>
           <p className="mt-3 text-sm leading-relaxed text-porta-muted sm:text-base">
-            What you can use today. Porta is in active dogfood — tip context{' '}
+            What you can use today. Porta is in active dogfood — soft tip{' '}
             <code className="rounded bg-white/5 px-1.5 py-0.5 text-xs text-porta-accent">
-              00027-5zg
+              {SOFT_TIP}
             </code>
-            . Expect polish, not perfection. No seed phrases or keys are ever
-            published here.
+            . Primary entry is {TG_BOT_HANDLE}. Expect polish, not perfection. No
+            seed phrases or keys are ever published here.
           </p>
         </div>
 

@@ -1,6 +1,6 @@
 # porta.finance refresh — kick plan (Senior FE)
 
-**Date:** 2026-09-05 · **Soft tip context:** `00027-5zg` · **Path:** `/workspace/porta-finance-site/`
+**Date:** 2026-09-05 · **Soft tip context:** `00034-6vs` · **Path:** `/workspace/porta-finance-site/`
 
 ## Stack (locked)
 
@@ -16,8 +16,8 @@ Deferred: Next.js App Router — revisit if SEO/blog needs SSR; Vite static is e
 ## Brand
 
 - **Cyan primary:** `#22E0D0` (Porta cyan) on near-black `#0A0F14`
-- Typography: system / Inter via Google fonts
-- Motion: subtle fade+rise, respect `prefers-reduced-motion`
+- Typography: IBM Plex Sans, self-hosted latin 400/600/700 (no Google Fonts)
+- Motion: below-fold fade+rise only; Hero H1 is static for LCP; respect `prefers-reduced-motion`
 
 ## IA
 
@@ -32,7 +32,7 @@ Deferred: Next.js App Router — revisit if SEO/blog needs SSR; Vite static is e
 | Surface | Link / status |
 |---------|----------------|
 | Telegram bot | https://t.me/PortaWallet_bot |
-| Mini App | https://production-wallet-telegram-omytp43vwa-ew.a.run.app (tip `00027-5zg`) |
+| Mini App | https://production-wallet-telegram-omytp43vwa-ew.a.run.app (soft dogfood tip `00034-6vs`; primary entry `@PortaWallet_bot`) |
 | Chrome extension | CWS Unlisted path — button present, label “Dogfood soon” until store URL exists |
 | Android APK | `/downloads/porta-wallet.apk` (staged from dogfood build when present) |
 

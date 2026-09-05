@@ -1,3 +1,5 @@
+import { TG_BOT_HANDLE, TG_BOT_URL } from '../lib/site'
+
 export default function Footer() {
   return (
     <footer className="border-t border-porta-border/60 px-4 py-10 sm:px-6">
@@ -17,12 +19,12 @@ export default function Footer() {
           </p>
         </div>
         <a
-          href="https://t.me/PortaWallet_bot"
+          href={TG_BOT_URL}
           target="_blank"
           rel="noopener noreferrer"
           className="text-sm font-medium text-porta-accent transition hover:underline"
         >
-          @PortaWallet_bot
+          {TG_BOT_HANDLE}
         </a>
       </div>
     </footer>

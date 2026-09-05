@@ -10,6 +10,7 @@
   --color-porta-border: rgba(118, 101, 245, 0.22);
   --color-porta-text: #e8eef2;
   --color-porta-muted: #9497a9;
+  /* Faces are declared in index.html (self-hosted latin 400/600/700, font-display: swap). */
   --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
 }
 
