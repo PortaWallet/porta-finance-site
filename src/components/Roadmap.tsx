@@ -10,7 +10,7 @@ const items = [
   {
     n: '02',
     title: 'Smart Actions alerts → Review in Porta',
-    body: 'Telegram-native alerts that open straight into a review flow inside Porta — the GTM wedge.',
+    body: 'Alerts in Telegram that open straight into a review flow inside Porta — the GTM wedge.',
   },
   {
     n: '03',
@@ -33,9 +33,9 @@ export default function Roadmap() {
   return (
     <MotionSection
       id="roadmap"
-      className="scroll-mt-20 px-4 py-12 sm:px-6 sm:py-16"
+      className="scroll-mt-20 px-4 py-14 sm:px-6 sm:py-20"
     >
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl">
         <div className="mb-7 flex flex-wrap items-end justify-between gap-3">
           <div className="max-w-2xl">
             <p className="eyebrow mb-3">Coming · not live</p>

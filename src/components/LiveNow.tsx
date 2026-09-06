@@ -98,8 +98,8 @@ function CardInner({ card }: { card: LiveCard }) {
 
 export default function LiveNow() {
   return (
-    <MotionSection id="live" className="scroll-mt-20 px-4 py-12 sm:px-6 sm:py-16">
-      <div className="mx-auto max-w-5xl">
+    <MotionSection id="live" className="relative scroll-mt-20 px-4 py-14 sm:px-6 sm:py-20">
+      <div className="mx-auto max-w-6xl">
         <div className="mb-10 max-w-2xl">
           <p className="eyebrow mb-3">Live &amp; dogfood entry points</p>
           <h2 className="text-2xl font-bold tracking-tight text-porta-text sm:text-3xl">

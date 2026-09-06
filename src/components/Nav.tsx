@@ -8,8 +8,8 @@ const links = [
 
 export default function Nav() {
   return (
-    <header className="sticky top-0 z-50 border-b border-porta-border/60 bg-porta-bg/80 backdrop-blur-md">
-      <nav className="mx-auto flex max-w-5xl items-center justify-between gap-2 px-4 py-3 sm:gap-4 sm:px-6">
+    <header className="sticky top-0 z-50 border-b border-porta-border/60 bg-porta-bg/75 backdrop-blur-md">
+      <nav className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3.5 sm:gap-4 sm:px-6">
         <a href="/" className="flex min-h-11 shrink-0 items-center">
           <img
             src="/logo.png"

@@ -4,7 +4,7 @@ import OfficialLinks from './OfficialLinks'
 export default function Footer() {
   return (
     <footer className="border-t border-porta-border px-4 py-10 sm:px-6">
-      <div className="mx-auto flex max-w-5xl flex-col gap-6">
+      <div className="mx-auto flex max-w-6xl flex-col gap-6">
         <div>
           <p className="text-sm text-porta-text/90">
             © 2026 DracoLabs Ltd ·{' '}

@@ -24,6 +24,7 @@ const COPY_SOURCES = [
   'src/components/Footer.tsx',
   'src/components/OfficialLinks.tsx',
   'src/components/Roadmap.tsx',
+  'index.html',
   'PLAN.md',
 ] as const
 
@@ -71,14 +72,20 @@ describe('soft tip honesty', () => {
     expect(nav).not.toMatch(/x\.com|twitter\.com/i)
   })
 
-  it('hero headline stays Telegram-native non-custodial, not Ultimate DeFi', () => {
+  it('hero headline is independent non-custodial wallet in Telegram, not Telegram-native / Ultimate DeFi', () => {
     const hero = readFileSync(resolve(ROOT, 'src/components/Hero.tsx'), 'utf8')
-    expect(hero).toContain('Telegram-native')
-    expect(hero).toContain('non-custodial')
+    expect(hero).toContain('Non-custodial')
+    expect(hero).toContain('wallet in')
+    expect(hero).toContain('Telegram')
+    expect(hero).not.toContain('Telegram-native')
+    expect(hero).toContain('not a Telegram')
     expect(hero).toContain(`tip {SOFT_TIP}`)
     expect(hero).not.toMatch(/ultimate de[fF]i trading wallet/i)
     expect(hero).toContain("Open {TG_BOT_HANDLE}")
     expect(hero).toContain('Open Mini App')
+    const html = readFileSync(resolve(ROOT, 'index.html'), 'utf8')
+    expect(html).toContain('Porta — Non-custodial wallet in Telegram')
+    expect(html).not.toContain('Telegram-native')
   })
 
   it('hero CTAs show Live · dogfood and distinguish bot vs Mini App run.app', () => {
