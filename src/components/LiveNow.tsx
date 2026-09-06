@@ -1,4 +1,5 @@
 import { MotionSection, MotionStagger, MotionItem } from './MotionSection'
+import OfficialLinks from './OfficialLinks'
 import {
   SITE_HOST,
   SITE_URL,
@@ -9,6 +10,10 @@ import {
   TG_CHANNEL_URL,
   TG_NEWS_HANDLE,
   TG_NEWS_URL,
+  LINKEDIN_LABEL,
+  LINKEDIN_URL,
+  YOUTUBE_HANDLE,
+  YOUTUBE_URL,
   MINI_APP_URL,
 } from '../lib/site'
 
@@ -93,12 +98,10 @@ function CardInner({ card }: { card: LiveCard }) {
 
 export default function LiveNow() {
   return (
-    <MotionSection id="live" className="scroll-mt-20 px-4 py-16 sm:px-6 sm:py-20">
+    <MotionSection id="live" className="scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto max-w-5xl">
         <div className="mb-10 max-w-2xl">
-          <p className="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-porta-accent">
-            Live &amp; dogfood entry points
-          </p>
+          <p className="eyebrow mb-3">Live &amp; dogfood entry points</p>
           <h2 className="text-2xl font-bold tracking-tight text-porta-text sm:text-3xl">
             Get Porta
           </h2>
@@ -111,14 +114,14 @@ export default function LiveNow() {
             seed phrases or keys are ever published here.
           </p>
           <p className="mt-4 text-xs leading-relaxed text-porta-muted/80">
-            Official links only — Porta&apos;s official surfaces are{' '}
+            Official links only —{' '}
             <a
               href={SITE_URL}
               className="text-porta-text transition hover:text-porta-accent"
             >
               {SITE_HOST}
             </a>
-            , Telegram{' '}
+            ,{' '}
             <a
               href={TG_BOT_URL}
               target="_blank"
@@ -127,7 +130,7 @@ export default function LiveNow() {
             >
               {TG_BOT_HANDLE}
             </a>
-            , and our Telegram channels{' '}
+            ,{' '}
             <a
               href={TG_CHANNEL_URL}
               target="_blank"
@@ -136,7 +139,7 @@ export default function LiveNow() {
             >
               {TG_CHANNEL_HANDLE}
             </a>
-            {' and '}
+            ,{' '}
             <a
               href={TG_NEWS_URL}
               target="_blank"
@@ -145,9 +148,27 @@ export default function LiveNow() {
             >
               {TG_NEWS_HANDLE}
             </a>
-            . Ignore lookalike accounts elsewhere (including on X) claiming to
-            be Porta.
+            ,{' '}
+            <a
+              href={LINKEDIN_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-porta-text transition hover:text-porta-accent"
+            >
+              {LINKEDIN_LABEL}
+            </a>
+            , and{' '}
+            <a
+              href={YOUTUBE_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-porta-text transition hover:text-porta-accent"
+            >
+              YouTube {YOUTUBE_HANDLE}
+            </a>
+            . Ignore lookalike accounts (including on X).
           </p>
+          <OfficialLinks className="mt-4" />
         </div>
 
         <MotionStagger className="grid auto-rows-fr gap-4 sm:grid-cols-2">
