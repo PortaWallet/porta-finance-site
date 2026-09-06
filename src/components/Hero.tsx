@@ -39,8 +39,7 @@ export default function Hero() {
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-pretty text-base leading-relaxed text-porta-muted sm:text-lg lg:mx-0">
             Create or import, check balances, send, and review swaps. Use Porta
-            via Telegram bot and Mini App. Soft tip dogfood — polish in
-            progress.
+            via Telegram bot and Mini App. Soft tip dogfood — polish in progress.
           </p>
 
           <div className="cta-panel mx-auto mt-8 max-w-xl text-left lg:mx-0">
