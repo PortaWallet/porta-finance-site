@@ -33,50 +33,35 @@ export default function Hero() {
             </p>
           </div>
 
-          <h1 className="text-balance text-[2.15rem] font-bold leading-[1.12] tracking-tight text-porta-text sm:text-5xl sm:leading-[1.08] lg:text-[3.65rem] lg:leading-[1.05]">
+          <h1 className="text-balance text-[2.05rem] font-bold leading-[1.14] tracking-tight text-porta-text sm:text-5xl sm:leading-[1.1] lg:text-[3.35rem] lg:leading-[1.08]">
             <span className="hero-keyword">Non-custodial</span> wallet — create,
             send, and swap with clear review
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-pretty text-base leading-relaxed text-porta-muted sm:text-lg lg:mx-0">
             Create or import, check balances, send, and review swaps. Use Porta
-            via Telegram bot and Mini App. Soft tip dogfood — polish in progress.
+            via Telegram bot and Mini App. Soft tip dogfood — polish in
+            progress.
           </p>
 
           <div className="cta-panel mx-auto mt-8 max-w-xl text-left lg:mx-0">
-            <div className="mb-4">
+            <div className="flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
+              <a
+                href={TG_BOT_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary w-full px-7 text-base sm:w-auto"
+              >
+                Open {TG_BOT_HANDLE}
+              </a>
+              <a
+                href={MINI_APP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex min-h-11 w-full items-center justify-center text-sm font-medium text-porta-muted transition hover:text-porta-lavender sm:w-auto"
+              >
+                Open Mini App
+              </a>
               <span className="status-live">Live · dogfood</span>
-            </div>
-            <div className="flex flex-col gap-4">
-              <div>
-                <a
-                  href={TG_BOT_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary w-full px-7 text-base sm:w-auto"
-                >
-                  Open {TG_BOT_HANDLE}
-                </a>
-                <p className="mt-2 text-xs leading-relaxed text-porta-text/75">
-                  Primary entry — start here.
-                </p>
-              </div>
-
-              <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
-              <div>
-                <a
-                  href={MINI_APP_URL}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-secondary w-full px-6 text-sm sm:w-auto"
-                >
-                  Open Mini App
-                </a>
-                <p className="mt-2 text-xs leading-relaxed text-porta-text/75">
-                  Same wallet in Telegram’s Mini App. Start at the bot if you’re
-                  new.
-                </p>
-              </div>
             </div>
           </div>
 

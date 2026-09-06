@@ -15,12 +15,14 @@ import {
   YOUTUBE_HANDLE,
   YOUTUBE_URL,
   MINI_APP_URL,
+  APK_AVAILABLE,
+  APK_HREF,
 } from '../lib/site'
 
 type LiveCard = {
   title: string
   description: string
-  status: 'live' | 'soon' | 'dogfood'
+  status: 'live' | 'soon'
   href?: string
   cta: string
   disabled?: boolean
@@ -49,15 +51,19 @@ const cards: LiveCard[] = [
     cta: 'Chrome Web Store Unlisted — dogfood soon',
     disabled: true,
   },
-  {
-    title: 'Android APK',
-    description:
-      'Dogfood placeholder build for sideload testing — not a Play Store release.',
-    status: 'dogfood',
-    href: '/downloads/porta-wallet.apk',
-    cta: 'Download dogfood APK',
-    download: true,
-  },
+  ...(APK_AVAILABLE
+    ? [
+        {
+          title: 'Android APK',
+          description:
+            'Dogfood placeholder build for sideload testing — not a Play Store release. Not live.',
+          status: 'soon' as const,
+          href: APK_HREF,
+          cta: 'Download dogfood APK',
+          download: true,
+        } satisfies LiveCard,
+      ]
+    : []),
 ]
 
 function CardInner({ card }: { card: LiveCard }) {
@@ -69,14 +75,12 @@ function CardInner({ card }: { card: LiveCard }) {
           className={`shrink-0 rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide ${
             card.status === 'live'
               ? 'bg-porta-accent/15 text-porta-accent ring-1 ring-porta-accent/25'
-              : card.status === 'dogfood'
-                ? 'bg-porta-lavender/15 text-porta-lavender ring-1 ring-porta-lavender/25'
-                : 'bg-white/5 text-porta-muted ring-1 ring-white/10'
+              : 'bg-white/5 text-porta-muted ring-1 ring-white/10'
           }`}
         >
           {card.status === 'live'
             ? 'Live'
-            : card.status === 'dogfood'
+            : card.title === 'Android APK'
               ? 'Dogfood'
               : 'Soon'}
         </span>
@@ -119,10 +123,7 @@ export default function LiveNow() {
             . Primary entry is {TG_BOT_HANDLE}. Expect polish, not perfection. No
             seed phrases or keys are ever published here.
           </p>
-          <p
-            id="official"
-            className="mt-4 scroll-mt-20 text-xs leading-relaxed text-porta-muted/80"
-          >
+          <p className="mt-4 text-xs leading-relaxed text-porta-muted/80">
             Official links only —{' '}
             <a
               href={SITE_URL}
