@@ -20,7 +20,7 @@ import {
 type LiveCard = {
   title: string
   description: string
-  status: 'live' | 'soon'
+  status: 'live' | 'soon' | 'dogfood'
   href?: string
   cta: string
   disabled?: boolean
@@ -53,7 +53,7 @@ const cards: LiveCard[] = [
     title: 'Android APK',
     description:
       'Dogfood placeholder build for sideload testing — not a Play Store release.',
-    status: 'live',
+    status: 'dogfood',
     href: '/downloads/porta-wallet.apk',
     cta: 'Download dogfood APK',
     download: true,
@@ -69,10 +69,16 @@ function CardInner({ card }: { card: LiveCard }) {
           className={`shrink-0 rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide ${
             card.status === 'live'
               ? 'bg-porta-accent/15 text-porta-accent ring-1 ring-porta-accent/25'
-              : 'bg-white/5 text-porta-muted ring-1 ring-white/10'
+              : card.status === 'dogfood'
+                ? 'bg-porta-lavender/15 text-porta-lavender ring-1 ring-porta-lavender/25'
+                : 'bg-white/5 text-porta-muted ring-1 ring-white/10'
           }`}
         >
-          {card.status === 'live' ? 'Live' : 'Soon'}
+          {card.status === 'live'
+            ? 'Live'
+            : card.status === 'dogfood'
+              ? 'Dogfood'
+              : 'Soon'}
         </span>
       </div>
       <p className="mb-5 flex-1 text-sm leading-relaxed text-porta-muted">
@@ -113,7 +119,10 @@ export default function LiveNow() {
             . Primary entry is {TG_BOT_HANDLE}. Expect polish, not perfection. No
             seed phrases or keys are ever published here.
           </p>
-          <p className="mt-4 text-xs leading-relaxed text-porta-muted/80">
+          <p
+            id="official"
+            className="mt-4 scroll-mt-20 text-xs leading-relaxed text-porta-muted/80"
+          >
             Official links only —{' '}
             <a
               href={SITE_URL}

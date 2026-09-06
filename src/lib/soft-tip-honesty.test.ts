@@ -64,48 +64,72 @@ describe('soft tip honesty', () => {
     }
   })
 
-  it('nav bot link is Open bot (not Follow) and still TG_BOT_URL', () => {
+  it('nav Official goes to #official; Get Porta stays #live; no Open bot / Follow', () => {
     const nav = readFileSync(resolve(ROOT, 'src/components/Nav.tsx'), 'utf8')
-    expect(nav).toContain('href: TG_BOT_URL')
-    expect(nav).toContain("label: 'Open bot'")
+    expect(nav).toContain("href: '#official'")
+    expect(nav).toContain("label: 'Official'")
+    expect(nav).toContain('href="#live"')
+    expect(nav).toContain('Get Porta')
+    expect(nav).not.toContain('Open bot')
     expect(nav).not.toContain("label: 'Follow'")
+    expect(nav).not.toContain('TG_BOT_URL')
     expect(nav).not.toMatch(/x\.com|twitter\.com/i)
   })
 
-  it('hero headline is independent non-custodial wallet in Telegram, not Telegram-native / Ultimate DeFi', () => {
+  it('hero headline is non-custodial wallet with clear review, not Telegram-native / Ultimate DeFi', () => {
     const hero = readFileSync(resolve(ROOT, 'src/components/Hero.tsx'), 'utf8')
     expect(hero).toContain('Non-custodial')
-    expect(hero).toContain('wallet in')
-    expect(hero).toContain('Telegram')
+    expect(hero).toContain('wallet — create,')
+    expect(hero).toContain('send, and swap with clear review')
+    expect(hero).not.toMatch(/hero-keyword">Non-custodial<\/span> wallet in/)
     expect(hero).not.toContain('Telegram-native')
-    expect(hero).toContain('not a Telegram')
+    expect(hero).toContain(
+      'Independent non-custodial wallet · not a Telegram product',
+    )
+    expect(hero).toContain('Create or import, check balances, send, and review swaps.')
+    expect(hero).toContain('Soft tip dogfood — polish in progress.')
     expect(hero).toContain(`tip {SOFT_TIP}`)
     expect(hero).not.toMatch(/ultimate de[fF]i trading wallet/i)
     expect(hero).toContain("Open {TG_BOT_HANDLE}")
     expect(hero).toContain('Open Mini App')
     const html = readFileSync(resolve(ROOT, 'index.html'), 'utf8')
-    expect(html).toContain('Porta — Non-custodial wallet in Telegram')
+    expect(html).toContain('Porta — non-custodial wallet')
     expect(html).not.toContain('Telegram-native')
+    expect(html).not.toMatch(/Telegram-native/i)
   })
 
-  it('hero CTAs show Live · dogfood and distinguish bot vs Mini App run.app', () => {
+  it('hero CTAs share one Live · dogfood chip; Mini App help has no run.app', () => {
     const hero = readFileSync(resolve(ROOT, 'src/components/Hero.tsx'), 'utf8')
-    expect(hero).toContain('Live · dogfood')
-    expect(hero).toContain('Primary entry')
-    expect(hero).toContain('run.app')
-    expect(hero).toContain('start at the bot')
+    expect(hero.match(/Live · dogfood/g)?.length).toBe(1)
+    expect(hero).toContain('Primary entry — start here.')
+    expect(hero).not.toContain('run.app')
+    expect(hero).toContain(
+      'Same wallet in Telegram’s Mini App. Start at the bot if you’re',
+    )
     expect(hero).toContain('<HeroGraphic')
   })
 
-  it('hero graphic uses portal logo + multichain ring and labels Coming', () => {
+  it('hero graphic uses portal logo + multichain ring and one-line Coming caption', () => {
     const graphic = readFileSync(
       resolve(ROOT, 'src/components/HeroGraphic.tsx'),
       'utf8',
     )
     expect(graphic).toContain('/brand/portal-hero.webp')
     expect(graphic).toContain('/brand/multichain-ring.svg')
-    expect(graphic).toContain('Coming')
-    expect(graphic).toContain('not a live availability list')
+    expect(graphic).toContain('Brand art · Coming — not a live network list')
+    expect(graphic).not.toContain('Ethereum')
+    expect(graphic).not.toContain('CHAINS')
+    expect(graphic).not.toMatch(/12-chain|EVM networks/i)
+  })
+
+  it('APK card is Dogfood or Soon, never Live', () => {
+    const live = readFileSync(resolve(ROOT, 'src/components/LiveNow.tsx'), 'utf8')
+    expect(live).toContain("title: 'Android APK'")
+    expect(live).toContain('id="official"')
+    const apkStart = live.indexOf("title: 'Android APK'")
+    const apkBlock = live.slice(apkStart, apkStart + 280)
+    expect(apkBlock).toMatch(/status: '(dogfood|soon)'/)
+    expect(apkBlock).not.toMatch(/status: 'live'/)
   })
 
   it('official surfaces are locked and include LinkedIn + YouTube (no X)', () => {

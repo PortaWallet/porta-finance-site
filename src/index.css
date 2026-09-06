@@ -92,6 +92,7 @@
   .independence-chip {
     display: inline-flex;
     align-items: center;
+    max-width: 100%;
     border-radius: 9999px;
     border: 1px solid rgba(168, 158, 255, 0.28);
     background: rgba(20, 16, 34, 0.62);
@@ -99,7 +100,9 @@
     font-size: 0.6875rem;
     font-weight: 600;
     letter-spacing: 0.04em;
+    line-height: 1.35;
     text-transform: uppercase;
+    text-wrap: balance;
     color: #c8c4ef;
   }
 

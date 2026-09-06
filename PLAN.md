@@ -25,7 +25,7 @@ Deferred: Next.js App Router — revisit if SEO/blog needs SSR; Vite static is e
 
 ## IA
 
-1. **Nav** — Live now · Roadmap · Open bot (TG)
+1. **Nav** — Live · Roadmap · Official (`#official`) · Get Porta → `#live`
 2. **Hero** — Honest category line (not “ultimate DeFi trading”)
 3. **Live now** — what’s actually dogfoodable today
 4. **Roadmap** — ambitions clearly labeled *Coming / not live*
@@ -52,7 +52,7 @@ Deferred: Next.js App Router — revisit if SEO/blog needs SSR; Vite static is e
 
 Never: MEV-proof · fake gasless · auto-trading live · AA social recovery live · “ultimate DeFi” as a primary/live claim · pretend roadmap features are live.
 
-**Hero line:** *Porta — independent non-custodial wallet in Telegram (Mini App + @PortaWallet_bot). Not a Telegram product. Create or import, check balances, send, and swap with clear review. Alerts and smarter trading are on the roadmap.* Heritage “Ultimate DeFi Trading Wallet” art may appear as visual texture only — not the H1.
+**Hero line:** *Non-custodial wallet — create, send, and swap with clear review.* Chip: independent non-custodial wallet · not a Telegram product. Sub: create or import, check balances, send, and review swaps via Telegram bot and Mini App. Soft tip dogfood — polish in progress. Heritage “Ultimate DeFi Trading Wallet” art may appear as visual texture only — not the H1.
 
 ## Deliverable this kick
 

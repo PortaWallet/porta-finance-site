@@ -29,60 +29,53 @@ export default function Hero() {
           <div className="mb-5 flex flex-col items-center gap-3 lg:items-start">
             <p className="eyebrow">Porta Wallet</p>
             <p className="independence-chip">
-              Independent wallet · Mini App + {TG_BOT_HANDLE} · not a Telegram
-              product
+              Independent non-custodial wallet · not a Telegram product
             </p>
           </div>
 
           <h1 className="text-balance text-[2.15rem] font-bold leading-[1.12] tracking-tight text-porta-text sm:text-5xl sm:leading-[1.08] lg:text-[3.65rem] lg:leading-[1.05]">
-            <span className="hero-keyword">Non-custodial</span> wallet in
-            Telegram
+            <span className="hero-keyword">Non-custodial</span> wallet — create,
+            send, and swap with clear review
           </h1>
           <p className="mx-auto mt-5 max-w-xl text-pretty text-base leading-relaxed text-porta-muted sm:text-lg lg:mx-0">
-            Create or import a wallet, check balances, send, and swap with a
-            clear review step — right inside Telegram. Smarter alerts and
-            trading are on the roadmap.
+            Create or import, check balances, send, and review swaps. Use Porta
+            via Telegram bot and Mini App. Soft tip dogfood — polish in
+            progress.
           </p>
 
           <div className="cta-panel mx-auto mt-8 max-w-xl text-left lg:mx-0">
+            <div className="mb-4">
+              <span className="status-live">Live · dogfood</span>
+            </div>
             <div className="flex flex-col gap-4">
               <div>
-                <div className="flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
-                  <a
-                    href={TG_BOT_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary w-full px-7 text-base sm:w-auto"
-                  >
-                    Open {TG_BOT_HANDLE}
-                  </a>
-                  <span className="status-live">Live · dogfood</span>
-                </div>
+                <a
+                  href={TG_BOT_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary w-full px-7 text-base sm:w-auto"
+                >
+                  Open {TG_BOT_HANDLE}
+                </a>
                 <p className="mt-2 text-xs leading-relaxed text-porta-text/75">
-                  Primary entry — start here. Talk to Porta in Telegram chat.
+                  Primary entry — start here.
                 </p>
               </div>
 
               <div className="h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
 
               <div>
-                <div className="flex flex-col items-stretch gap-2 sm:flex-row sm:items-center">
-                  <a
-                    href={MINI_APP_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-secondary w-full px-7 text-sm sm:w-auto"
-                  >
-                    Open Mini App
-                  </a>
-                  <span className="status-live">Live · dogfood</span>
-                </div>
+                <a
+                  href={MINI_APP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary w-full px-6 text-sm sm:w-auto"
+                >
+                  Open Mini App
+                </a>
                 <p className="mt-2 text-xs leading-relaxed text-porta-text/75">
-                  Same dogfood wallet in Telegram WebView (Google Cloud Run host{' '}
-                  <code className="rounded bg-white/5 px-1 py-0.5 text-[11px] text-porta-lavender">
-                    run.app
-                  </code>
-                  ). Not a separate product — new users should start at the bot.
+                  Same wallet in Telegram’s Mini App. Start at the bot if you’re
+                  new.
                 </p>
               </div>
             </div>
