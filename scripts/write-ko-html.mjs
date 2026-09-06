@@ -8,10 +8,14 @@ const INDEX = resolve(DIST, 'index.html')
 
 const EN_TITLE = 'Porta Wallet — Non-custodial Crypto Wallet | Soft Dogfood'
 const EN_DESC =
-  'Non-custodial crypto wallet via Telegram bot & Mini App. Create/import, balances, send, review swaps. Soft dogfood tip 00044-47z. Not a Telegram product.'
+  'Non-custodial crypto wallet via Telegram bot & Mini App. Create/import, balances, send, review swaps. Ethereum smart contract wallet with account abstraction (ERC-4337 / EIP-4337). Soft dogfood tip 00044-47z. Not a Telegram product.'
 const KO_TITLE = 'Porta Wallet — 비수탁 암호화폐 지갑 | 소프트 도그푸드'
 const KO_DESC =
-  '텔레그램 봇·미니앱으로 쓰는 비수탁 크립토 지갑. 생성·가져오기, 잔액, 전송, 스왑 리뷰. 소프트 도그푸드 tip 00044-47z. 텔레그램 제품 아님.'
+  '텔레그램 봇·미니앱으로 쓰는 비수탁 크립토 지갑. 생성·가져오기, 잔액, 전송, 스왑 리뷰. 이더리움 스마트 컨트랙트 지갑, 계정 추상화(ERC-4337 / EIP-4337). 소프트 도그푸드 tip 00044-47z. 텔레그램 제품 아님.'
+const EN_KEYWORDS =
+  'non-custodial crypto wallet, Ethereum, Ethereum wallet, ETH wallet, smart contract wallet, Account Abstraction, ERC-4337, EIP-4337, create wallet, import wallet, balances, send, review swaps, Telegram bot, Mini App'
+const KO_KEYWORDS =
+  '비수탁 크립토 지갑, 이더리움, Ethereum, 스마트 컨트랙트 지갑, 계정 추상화, Account Abstraction, ERC-4337, EIP-4337, 생성, 가져오기, 잔액, 전송, 스왑 리뷰, 텔레그램 봇, 미니앱'
 
 for (const rel of ['robots.txt', 'sitemap.xml', 'content/social-board.json']) {
   if (!existsSync(resolve(DIST, rel))) {
@@ -34,6 +38,7 @@ if (!html.includes('00044-47z')) {
 html = html.replaceAll('<html lang="en">', '<html lang="ko">')
 html = html.replaceAll(EN_TITLE, KO_TITLE)
 html = html.replaceAll(EN_DESC, KO_DESC)
+html = html.replaceAll(EN_KEYWORDS, KO_KEYWORDS)
 html = html.replaceAll('og:locale" content="en_US"', 'og:locale" content="ko_KR"')
 html = html.replace(
   '<link rel="canonical" href="https://www.porta.finance/" />',

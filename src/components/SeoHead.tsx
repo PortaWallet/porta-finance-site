@@ -44,7 +44,7 @@ export default function SeoHead() {
     document.documentElement.lang = locale
     document.title = seo.title
     upsertMeta('name', 'description', seo.description)
-    upsertMeta('name', 'keywords', KEYWORDS_CONTENT)
+    upsertMeta('name', 'keywords', KEYWORDS_CONTENT[locale])
     upsertMeta('property', 'og:title', seo.title)
     upsertMeta('property', 'og:description', seo.description)
     upsertMeta('property', 'og:url', url)

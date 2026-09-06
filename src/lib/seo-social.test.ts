@@ -21,13 +21,13 @@ describe('SEO foundation', () => {
       'Porta Wallet — Non-custodial Crypto Wallet | Soft Dogfood',
     )
     expect(SEO.en.description).toBe(
-      'Non-custodial crypto wallet via Telegram bot & Mini App. Create/import, balances, send, review swaps. Soft dogfood tip 00044-47z. Not a Telegram product.',
+      'Non-custodial crypto wallet via Telegram bot & Mini App. Create/import, balances, send, review swaps. Ethereum smart contract wallet with account abstraction (ERC-4337 / EIP-4337). Soft dogfood tip 00044-47z. Not a Telegram product.',
     )
     expect(SEO.ko.title).toBe(
       'Porta Wallet — 비수탁 암호화폐 지갑 | 소프트 도그푸드',
     )
     expect(SEO.ko.description).toBe(
-      '텔레그램 봇·미니앱으로 쓰는 비수탁 크립토 지갑. 생성·가져오기, 잔액, 전송, 스왑 리뷰. 소프트 도그푸드 tip 00044-47z. 텔레그램 제품 아님.',
+      '텔레그램 봇·미니앱으로 쓰는 비수탁 크립토 지갑. 생성·가져오기, 잔액, 전송, 스왑 리뷰. 이더리움 스마트 컨트랙트 지갑, 계정 추상화(ERC-4337 / EIP-4337). 소프트 도그푸드 tip 00044-47z. 텔레그램 제품 아님.',
     )
     expect(SEO.en.description).toContain('00044-47z')
     expect(SEO.ko.description).toContain('00044-47z')
@@ -50,6 +50,13 @@ describe('SEO foundation', () => {
     expect(html).toContain('"@type": "Organization"')
     expect(html).toContain('"@type": "SoftwareApplication"')
     expect(html).toContain('featureList')
+    expect(html).toContain('"keywords"')
+    expect(html).toContain('"about"')
+    expect(html).toContain('Ethereum')
+    expect(html).toContain('smart contract wallet')
+    expect(html).toContain('Account Abstraction')
+    expect(html).toContain('ERC-4337')
+    expect(html).toContain('EIP-4337')
     expect(html).toContain('00044-47z')
     expect(html).not.toMatch(/Bitcoin|\bBTC\b|bit trading/i)
     expect(html).not.toContain('Send LIVE')
@@ -81,20 +88,34 @@ describe('SEO foundation', () => {
   })
 
   it('Crypto CLEAR keywords + featureList include ETH/SCW/AA, not Bitcoin', () => {
-    const joined = `${KEYWORDS.join(' ')} ${FEATURE_LIST.join(' ')}`
+    const joined = `${KEYWORDS.en.join(' ')} ${KEYWORDS.ko.join(' ')} ${FEATURE_LIST.join(' ')}`
     expect(joined).toMatch(/Ethereum/)
     expect(joined).toMatch(/ETH wallet/)
     expect(joined).toMatch(/smart contract wallet/i)
     expect(joined).toMatch(/Account Abstraction/i)
     expect(joined).toContain('ERC-4337')
     expect(joined).toContain('EIP-4337')
+    expect(joined).toContain('이더리움')
+    expect(joined).toContain('스마트 컨트랙트 지갑')
+    expect(joined).toContain('계정 추상화')
     expect(joined).toMatch(/review swaps/i)
-    expect(joined).not.toMatch(/Bitcoin|\bBTC\b|bit trading|gasless|F6\.4/i)
+    expect(joined).not.toMatch(/Bitcoin|\bBTC\b|bit trading|gasless|F6\.4|CEX/i)
     const ld = JSON.stringify(jsonLdGraph('en'))
     expect(ld).toContain('featureList')
+    expect(ld).toContain('"keywords"')
+    expect(ld).toContain('"about"')
     expect(ld).toContain('ERC-4337')
     expect(ld).not.toMatch(/Bitcoin|\bBTC\b/)
-    expect(KEYWORDS_CONTENT).toContain('Ethereum wallet')
+    expect(KEYWORDS_CONTENT.en).toContain('Ethereum')
+    expect(KEYWORDS_CONTENT.ko).toContain('이더리움')
+    const how = readFileSync(resolve(ROOT, 'src/components/How.tsx'), 'utf8')
+    const trust = readFileSync(resolve(ROOT, 'src/components/Trust.tsx'), 'utf8')
+    expect(how).toContain(
+      'Ethereum smart contract wallet with account abstraction (ERC-4337 / EIP-4337).',
+    )
+    expect(trust).toContain(
+      'Ethereum smart contract wallet with account abstraction (ERC-4337 / EIP-4337).',
+    )
   })
 })
 

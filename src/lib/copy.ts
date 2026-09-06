@@ -32,6 +32,7 @@ export const copy = {
     how: {
       eyebrow: '이용 방법',
       title: '생성 → 입금 → 리뷰',
+      lede: '이더리움 스마트 컨트랙트 지갑 · 계정 추상화(ERC-4337 / EIP-4337).',
       steps: [
         {
           title: '생성',

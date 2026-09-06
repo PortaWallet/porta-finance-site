@@ -36,6 +36,10 @@ export default function How() {
         <h2 className="section-title max-w-xl">
           {k?.how.title ?? 'Create → Fund → Review'}
         </h2>
+        <p className="mt-3 max-w-2xl text-sm leading-relaxed text-porta-muted">
+          {k?.how.lede ??
+            'Ethereum smart contract wallet with account abstraction (ERC-4337 / EIP-4337).'}
+        </p>
         <ol className="mt-10 grid gap-4 sm:grid-cols-3">
           {steps.map((step, index) => (
             <li key={step.n} className={`panel ${step.tone} rounded-3xl p-6`}>
