@@ -28,6 +28,8 @@ const COPY_SOURCES = [
   'src/components/Trust.tsx',
   'src/components/Contact.tsx',
   'src/components/Nav.tsx',
+  'src/components/BrandImg.tsx',
+  'src/lib/brand.ts',
   'index.html',
   'PLAN.md',
 ] as const
@@ -212,6 +214,7 @@ describe('soft tip honesty', () => {
     expect(live).toContain('TG_NEWS_URL')
     expect(live).toContain('LINKEDIN_URL')
     expect(live).toContain('YOUTUBE_URL')
-    expect(live).toContain('run.app')
+    expect(live).toContain('MINI_APP_URL')
+    expect(live).not.toMatch(/run\.app|Cloud Run/)
   })
 })

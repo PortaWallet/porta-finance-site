@@ -7,7 +7,7 @@ const links = [
 
 export default function Nav() {
   return (
-    <header className="sticky top-0 z-50 border-b border-porta-border/60 bg-porta-bg/75 backdrop-blur-md">
+    <header className="site-nav sticky top-0 z-50">
       <nav className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-3 sm:px-6">
         <a href="/" className="flex min-h-11 shrink-0 items-center">
           <img
@@ -17,7 +17,7 @@ export default function Nav() {
             height={72}
             fetchPriority="high"
             decoding="async"
-            className="h-7 w-auto object-contain sm:h-8"
+            className="h-8 w-auto object-contain sm:h-10"
           />
         </a>
         <div className="flex items-center gap-1 sm:gap-2">
@@ -26,7 +26,7 @@ export default function Nav() {
               <li key={link.label}>
                 <a
                   href={link.href}
-                  className="inline-flex min-h-11 items-center rounded-lg px-2 text-sm font-medium text-porta-muted transition hover:bg-white/5 hover:text-porta-lavender sm:px-3"
+                  className="inline-flex min-h-11 items-center rounded-lg px-1.5 text-xs font-medium text-porta-muted transition hover:bg-white/5 hover:text-porta-lavender sm:px-3 sm:text-sm"
                 >
                   {link.label}
                 </a>

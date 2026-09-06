@@ -1,4 +1,5 @@
 import { MotionSection } from './MotionSection'
+import BrandImg from './BrandImg'
 import { SOFT_TIP } from '../lib/site'
 
 const items = [
@@ -33,7 +34,7 @@ export default function Roadmap() {
   return (
     <MotionSection
       id="roadmap"
-      className="scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24"
+      className="section-void scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24"
     >
       <div className="mx-auto max-w-6xl">
         <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
@@ -45,20 +46,32 @@ export default function Roadmap() {
               {SOFT_TIP}.
             </p>
           </div>
-          <span className="rounded-full border border-porta-border bg-porta-surface px-3 py-1 text-xs font-semibold uppercase tracking-wide text-porta-muted">
+          <span className="rounded-full border border-porta-lavender/40 bg-porta-surface px-3 py-1 text-xs font-semibold uppercase tracking-wide text-porta-lavender">
             Not live yet
           </span>
         </div>
 
-        <ol className="relative space-y-0 border-l border-porta-primary/25 pl-6 sm:pl-10">
+        <ol className="relative space-y-0 pl-8 sm:pl-12">
+          <span
+            aria-hidden
+            className="timeline-rail absolute left-[0.55rem] top-3 bottom-3 w-px sm:left-[0.7rem]"
+          />
           {items.map((item) => (
             <li key={item.title} className="relative pb-8 last:pb-0">
               <span
                 aria-hidden
-                className="absolute -left-[1.95rem] top-7 h-3 w-3 rounded-full border-2 border-porta-primary bg-porta-bg shadow-[0_0_16px_rgba(0,234,255,0.45)] sm:-left-[2.7rem]"
+                className="energy-node absolute -left-[0.05rem] top-8 h-3.5 w-3.5 rounded-full sm:left-[0.1rem] sm:h-4 sm:w-4"
               />
-              <article className="glass-elevated rounded-3xl p-6 sm:p-7">
+              <article className="panel panel-magenta rounded-3xl p-6 sm:p-7">
                 <div className="mb-3 flex flex-wrap items-center gap-2">
+                  <BrandImg
+                    src="/portal-mark.png"
+                    alt=""
+                    width={18}
+                    height={18}
+                    decoding="async"
+                    className="h-[18px] w-[18px] rounded-full object-cover"
+                  />
                   <span className="text-[11px] font-semibold tabular-nums tracking-wider text-porta-lavender">
                     {item.n}
                   </span>
