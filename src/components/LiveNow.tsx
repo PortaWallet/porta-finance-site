@@ -5,6 +5,7 @@ import {
   SOFT_TIP,
   TG_BOT_HANDLE,
   TG_BOT_URL,
+  TG_CHANNEL_URL,
   MINI_APP_URL,
 } from '../lib/site'
 
@@ -123,8 +124,17 @@ export default function LiveNow() {
             >
               {TG_BOT_HANDLE}
             </a>
-            , and our Telegram channel. Ignore lookalike accounts elsewhere
-            (including on X) claiming to be Porta.
+            , and our{' '}
+            <a
+              href={TG_CHANNEL_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-porta-text transition hover:text-porta-accent"
+            >
+              Telegram channel
+            </a>
+            . Ignore lookalike accounts elsewhere (including on X) claiming to
+            be Porta.
           </p>
         </div>
 
