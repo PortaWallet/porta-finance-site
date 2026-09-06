@@ -19,6 +19,7 @@ import {
   APK_AVAILABLE,
   APK_HREF,
 } from '../lib/site'
+import { useKo } from '../lib/locale'
 
 type SideCard = {
   title: string
@@ -54,6 +55,8 @@ const sideCards: SideCard[] = [
 ]
 
 export default function LiveNow() {
+  const k = useKo()
+
   return (
     <MotionSection
       id="live"
@@ -64,12 +67,20 @@ export default function LiveNow() {
           <p className="eyebrow mb-3">Live &amp; dogfood</p>
           <h2 className="section-title">Get Porta</h2>
           <p className="mt-3 text-sm leading-relaxed text-porta-muted sm:text-base">
-            What you can use today. Porta is in active review — soft tip{' '}
-            <code className="rounded bg-white/5 px-1.5 py-0.5 text-xs text-porta-primary">
-              {SOFT_TIP}
-            </code>
-            . Primary entry is {TG_BOT_HANDLE}. Expect polish, not perfection. No
-            seed phrases or keys are ever published here.
+            {k ? (
+              k.live.lede
+                .replace('{tip}', SOFT_TIP)
+                .replace('{handle}', TG_BOT_HANDLE)
+            ) : (
+              <>
+                What you can use today. Porta is in active review — soft tip{' '}
+                <code className="rounded bg-white/5 px-1.5 py-0.5 text-xs text-porta-primary">
+                  {SOFT_TIP}
+                </code>
+                . Primary entry is {TG_BOT_HANDLE}. Expect polish, not
+                perfection. No seed phrases or keys are ever published here.
+              </>
+            )}
           </p>
           <p className="mt-4 text-xs leading-relaxed text-porta-muted">
             Official links only —{' '}
@@ -147,8 +158,8 @@ export default function LiveNow() {
             <span className="status-live">Live</span>
           </div>
           <p className="max-w-2xl text-sm leading-relaxed text-porta-muted">
-            Primary entry. Create or import, then send and review swaps in chat
-            — not auto-trade.
+            {k?.live.botBody ??
+              'Primary entry. Create or import, then send and review swaps in chat — not auto-trade.'}
           </p>
           <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
             <a
@@ -193,7 +204,11 @@ export default function LiveNow() {
                   </span>
                 </div>
                 <p className="mb-5 flex-1 text-sm leading-relaxed text-porta-muted">
-                  {card.description}
+                  {card.title === 'Chrome extension'
+                    ? (k?.live.chromeDesc ?? card.description)
+                    : card.title === 'Android APK'
+                      ? (k?.live.apkDesc ?? card.description)
+                      : card.description}
                 </p>
                 <span
                   className={`inline-flex text-sm font-medium ${

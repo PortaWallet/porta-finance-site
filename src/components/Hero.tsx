@@ -1,8 +1,11 @@
 import { SOFT_TIP, TG_BOT_HANDLE, TG_BOT_URL, MINI_APP_URL } from '../lib/site'
+import { useKo } from '../lib/locale'
 import BrandImg from './BrandImg'
 import HeroGraphic from './HeroGraphic'
 
 export default function Hero() {
+  const k = useKo()
+
   return (
     <section className="relative overflow-hidden px-4 pb-14 pt-10 sm:px-6 sm:pb-20 sm:pt-14 lg:pb-28 lg:pt-16">
       <div aria-hidden className="hero-cosmos pointer-events-none absolute inset-0 -z-10" />
@@ -32,18 +35,22 @@ export default function Hero() {
           <div className="mb-5 flex flex-col items-start gap-3">
             <p className="eyebrow">Porta Wallet</p>
             <p className="independence-chip">
-              Independent non-custodial wallet · not a Telegram product
+              {k?.hero.independence ??
+                'Independent non-custodial wallet · not a Telegram product'}
             </p>
           </div>
 
           <h1 className="hero-display text-porta-text">
-            <span className="hero-keyword">Non-custodial</span> wallet — create,
-            send, and swap with clear review
+            <span className="hero-keyword">
+              {k ? k.hero.keyword : 'Non-custodial'}
+            </span>
+            {k
+              ? k.hero.h1After
+              : ' wallet — create, send, and swap with clear review'}
           </h1>
           <p className="mt-5 max-w-xl text-pretty text-base leading-relaxed text-porta-muted sm:text-lg">
-            Create or import, check balances, send, and review swaps —
-            available in Telegram via bot and Mini App. Soft tip dogfood —
-            polish in progress. Alerts and smarter trading are on the roadmap.
+            {k?.hero.body ??
+              'Create or import, check balances, send, and review swaps — available in Telegram via bot and Mini App. Soft tip dogfood — polish in progress. Alerts and smarter trading are on the roadmap.'}
           </p>
 
           <div className="mt-8 flex flex-col items-stretch gap-3 sm:flex-row sm:flex-wrap sm:items-center">
@@ -72,7 +79,7 @@ export default function Hero() {
             Soft dogfood via {TG_BOT_HANDLE} · tip {SOFT_TIP}
           </p>
           <p className="mt-3 text-xs font-medium tracking-wide text-porta-text/80">
-            Non-custodial · keys stay on your device
+            {k?.hero.keysLine ?? 'Non-custodial · keys stay on your device'}
           </p>
         </div>
 

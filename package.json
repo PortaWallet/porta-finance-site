@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build && cp dist/index.html dist/404.html",
+    "build": "tsc -b && vite build && node scripts/write-ko-html.mjs && cp dist/index.html dist/404.html",
     "preview": "vite preview",
     "test": "vitest run",
     "deploy:pages": "npm run build && echo www.porta.finance > dist/CNAME"

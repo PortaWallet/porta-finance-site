@@ -7,6 +7,7 @@ const Trust = lazy(() => import('../components/Trust'))
 const How = lazy(() => import('../components/How'))
 const LiveNow = lazy(() => import('../components/LiveNow'))
 const Roadmap = lazy(() => import('../components/Roadmap'))
+const SocialBoard = lazy(() => import('../components/SocialBoard'))
 const Contact = lazy(() => import('../components/Contact'))
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
           <How />
           <LiveNow />
           <Roadmap />
+          <SocialBoard />
           <Contact />
         </Suspense>
       </main>

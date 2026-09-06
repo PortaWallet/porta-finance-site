@@ -30,6 +30,16 @@ const COPY_SOURCES = [
   'src/components/Nav.tsx',
   'src/components/BrandImg.tsx',
   'src/lib/brand.ts',
+  'src/lib/seo.ts',
+  'src/lib/copy.ts',
+  'src/lib/social-board.ts',
+  'src/lib/locale.tsx',
+  'src/components/SocialBoard.tsx',
+  'src/components/SeoHead.tsx',
+  'public/robots.txt',
+  'public/sitemap.xml',
+  'public/content/social-board.json',
+  'scripts/write-ko-html.mjs',
   'index.html',
   'PLAN.md',
   'DNS-CUTOVER.md',
@@ -54,6 +64,14 @@ describe('soft tip honesty', () => {
     for (const rel of COPY_SOURCES) {
       const text = readFileSync(resolve(ROOT, rel), 'utf8')
       expect(text, rel).not.toMatch(/x\.com|twitter\.com/i)
+    }
+  })
+
+  it('forbids Bitcoin/BTC/bit trading and Send LIVE claims', () => {
+    for (const rel of COPY_SOURCES) {
+      const text = readFileSync(resolve(ROOT, rel), 'utf8')
+      expect(text, rel).not.toMatch(/Bitcoin|\bBTC\b|bit trading|비트코인/i)
+      expect(text, rel).not.toMatch(/Send LIVE/)
     }
   })
 
@@ -125,16 +143,19 @@ describe('soft tip honesty', () => {
     expect(roadmap).toContain('Alerts that open a review — not a trade')
     expect(roadmap).toContain('Optional protected swaps')
     expect(roadmap).toContain('Recovery & session limits')
-    expect(roadmap).toContain('Advanced trading later')
+    expect(roadmap).toContain('Social trading later')
+    expect(roadmap).toContain('AI Bot trading')
+    expect(roadmap).not.toContain('Advanced trading later')
+    expect(roadmap).not.toMatch(/Bitcoin|BTC|bit trading/i)
     expect(roadmap).not.toMatch(/F6\.|G1–G8|Phase 1/)
   })
 
   it('R1/R2: locked H1 and title — no Telegram-native, no wallet in Telegram', () => {
     const hero = readFileSync(resolve(ROOT, 'src/components/Hero.tsx'), 'utf8')
     const h1 = hero.match(/<h1[\s\S]*?<\/h1>/)?.[0] ?? ''
-    const h1Text = h1.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim()
-    expect(h1Text).toBe(
-      'Non-custodial wallet — create, send, and swap with clear review',
+    expect(hero).toContain("'Non-custodial'")
+    expect(hero).toContain(
+      ' wallet — create, send, and swap with clear review',
     )
     expect(h1).not.toMatch(/in Telegram|Telegram-native/i)
     expect(hero).toContain('Independent non-custodial wallet · not a Telegram product')
@@ -148,7 +169,9 @@ describe('soft tip honesty', () => {
     expect(hero).toContain("Open {TG_BOT_HANDLE}")
     expect(hero).toContain('Open Mini App')
     const html = readFileSync(resolve(ROOT, 'index.html'), 'utf8')
-    expect(html).toContain('<title>Porta — non-custodial wallet</title>')
+    expect(html).toContain(
+      '<title>Porta Wallet — Non-custodial Crypto Wallet | Soft Dogfood</title>',
+    )
     expect(html).not.toContain('Telegram-native')
     expect(html).not.toContain('wallet in Telegram')
   })
