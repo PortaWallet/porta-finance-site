@@ -20,9 +20,9 @@ const COPY_SOURCES = [
   'src/lib/site.ts',
   'src/components/LiveNow.tsx',
   'src/components/Hero.tsx',
+  'src/components/HeroGraphic.tsx',
   'src/components/Footer.tsx',
   'src/components/OfficialLinks.tsx',
-  'src/components/Networks.tsx',
   'src/components/Roadmap.tsx',
   'PLAN.md',
 ] as const
@@ -51,9 +51,9 @@ describe('soft tip honesty', () => {
       'src/lib/site.ts',
       'src/components/LiveNow.tsx',
       'src/components/Hero.tsx',
+      'src/components/HeroGraphic.tsx',
       'src/components/Footer.tsx',
       'src/components/OfficialLinks.tsx',
-      'src/components/Networks.tsx',
     ] as const
     for (const rel of liveSources) {
       const text = readFileSync(resolve(ROOT, rel), 'utf8')
@@ -71,6 +71,26 @@ describe('soft tip honesty', () => {
     expect(hero).not.toMatch(/ultimate de[fF]i trading wallet/i)
     expect(hero).toContain("Open {TG_BOT_HANDLE}")
     expect(hero).toContain('Open Mini App')
+  })
+
+  it('hero CTAs show Live · dogfood and distinguish bot vs Mini App run.app', () => {
+    const hero = readFileSync(resolve(ROOT, 'src/components/Hero.tsx'), 'utf8')
+    expect(hero).toContain('Live · dogfood')
+    expect(hero).toContain('Primary entry')
+    expect(hero).toContain('run.app')
+    expect(hero).toContain('start at the bot')
+    expect(hero).toContain('<HeroGraphic')
+  })
+
+  it('hero graphic uses portal logo + multichain ring and labels Coming', () => {
+    const graphic = readFileSync(
+      resolve(ROOT, 'src/components/HeroGraphic.tsx'),
+      'utf8',
+    )
+    expect(graphic).toContain('/brand/portal-hero.webp')
+    expect(graphic).toContain('/brand/multichain-ring.svg')
+    expect(graphic).toContain('Coming')
+    expect(graphic).toContain('not a live availability list')
   })
 
   it('official surfaces are locked and include LinkedIn + YouTube (no X)', () => {
@@ -108,14 +128,6 @@ describe('soft tip honesty', () => {
     expect(live).toContain('TG_NEWS_URL')
     expect(live).toContain('LINKEDIN_URL')
     expect(live).toContain('YOUTUBE_URL')
-  })
-
-  it('networks strip is labeled Coming, not a live chain list', () => {
-    const networks = readFileSync(
-      resolve(ROOT, 'src/components/Networks.tsx'),
-      'utf8',
-    )
-    expect(networks).toContain('Coming')
-    expect(networks).toContain('not a live availability list')
+    expect(live).toContain('run.app')
   })
 })

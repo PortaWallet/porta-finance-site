@@ -37,7 +37,7 @@ const cards: LiveCard[] = [
   },
   {
     title: 'Mini App',
-    description: `Balances, send, and swap review in Telegram. Soft dogfood tip ${SOFT_TIP}. Primary dogfood entry is ${TG_BOT_HANDLE}.`,
+    description: `Telegram WebView of the same dogfood wallet (Cloud Run host on run.app). Soft dogfood tip ${SOFT_TIP}. Primary entry is still ${TG_BOT_HANDLE} — not a separate launch.`,
     status: 'live',
     href: MINI_APP_URL,
     cta: 'Open Mini App',
@@ -98,7 +98,7 @@ function CardInner({ card }: { card: LiveCard }) {
 
 export default function LiveNow() {
   return (
-    <MotionSection id="live" className="scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24">
+    <MotionSection id="live" className="scroll-mt-20 px-4 py-12 sm:px-6 sm:py-16">
       <div className="mx-auto max-w-5xl">
         <div className="mb-10 max-w-2xl">
           <p className="eyebrow mb-3">Live &amp; dogfood entry points</p>

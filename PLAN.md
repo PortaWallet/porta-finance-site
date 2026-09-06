@@ -16,7 +16,8 @@ Deferred: Next.js App Router — revisit if SEO/blog needs SSR; Vite static is e
 ## Brand
 
 - **Cosmic navy/purple** backgrounds (`#07060f` → `#12081f`) with cyan wireframe mesh + glow particles
-- **Portal sphere** (cyan→magenta globe) as favicon + header mark (`/logo.png`, `/favicon.svg`)
+- **Portal sphere** (cyan→magenta globe) as favicon + header mark (`/logo.png`, `/favicon.svg`, `/brand/portal-hero.webp`)
+- Hero includes portal + multichain ring graphic (Coming — not a live chain list)
 - **Lavender** (`#a89eff`) on key words; **cyan** (`#00eaff`) CTAs; magenta only as atmospheric support
 - Typography: IBM Plex Sans, self-hosted latin 400/600/700 (no Google Fonts)
 - Motion: below-fold fade+rise only; Hero H1 is static for LCP; respect `prefers-reduced-motion`
