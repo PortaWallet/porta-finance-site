@@ -3,7 +3,7 @@ import HeroGraphic from './HeroGraphic'
 
 export default function Hero() {
   return (
-    <section className="relative overflow-hidden px-4 pb-16 pt-12 sm:px-6 sm:pb-24 sm:pt-16 lg:pb-28 lg:pt-20">
+    <section className="relative overflow-hidden px-4 pb-14 pt-10 sm:px-6 sm:pb-20 sm:pt-14 lg:pb-24 lg:pt-16">
       <div aria-hidden className="hero-cosmos pointer-events-none absolute inset-0 -z-10" />
       <div aria-hidden className="glow-particles pointer-events-none absolute inset-0 -z-10" />
       <div aria-hidden className="hero-vignette pointer-events-none absolute inset-0 -z-10" />
@@ -33,7 +33,7 @@ export default function Hero() {
             </p>
           </div>
 
-          <h1 className="text-balance text-[2.05rem] font-bold leading-[1.14] tracking-tight text-porta-text sm:text-5xl sm:leading-[1.1] lg:text-[3.35rem] lg:leading-[1.08]">
+          <h1 className="text-balance text-[2.25rem] font-bold leading-[1.14] tracking-tight text-porta-text sm:text-5xl sm:leading-[1.1] lg:text-[3.35rem] lg:leading-[1.08]">
             <span className="hero-keyword">Non-custodial</span> wallet — create,
             send, and swap with clear review
           </h1>
