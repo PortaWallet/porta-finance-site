@@ -41,10 +41,10 @@ export default function How() {
                 <BrandImg
                   src="/portal-mark.png"
                   alt=""
-                  width={22}
-                  height={22}
+                  width={32}
+                  height={32}
                   decoding="async"
-                  className="h-[22px] w-[22px] rounded-full object-cover"
+                  className="h-8 w-8 rounded-full object-cover ring-1 ring-porta-lavender/30"
                 />
               </div>
               <h3 className="text-xl font-semibold text-porta-text">

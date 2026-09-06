@@ -16,7 +16,7 @@ export default function Hero() {
         className="hero-mesh pointer-events-none absolute -left-10 top-[-4%] -z-10 hidden h-[118%] w-[58%] max-w-none sm:block lg:w-[46%]"
       />
 
-      <div className="relative mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[minmax(0,0.92fr)_minmax(26rem,1.08fr)] lg:gap-8">
+      <div className="relative mx-auto grid max-w-6xl items-center gap-10 lg:grid-cols-[minmax(0,0.82fr)_minmax(28rem,1.2fr)] lg:gap-6">
         <div className="relative z-10 text-left">
           <div className="portal-peek lg:hidden" aria-hidden>
             <BrandImg

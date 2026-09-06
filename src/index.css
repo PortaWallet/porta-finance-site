@@ -80,9 +80,9 @@
   }
 
   .hero-mesh {
-    opacity: 0.38;
+    opacity: 0.5;
     mix-blend-mode: screen;
-    filter: saturate(0.72) hue-rotate(-8deg);
+    filter: saturate(0.78) hue-rotate(-4deg);
   }
 
   .hero-keyword {
@@ -114,14 +114,14 @@
 
   .section-cyan {
     background:
-      radial-gradient(ellipse 70% 80% at 0% 40%, rgba(0, 234, 255, 0.06), transparent 58%),
-      linear-gradient(180deg, transparent, rgba(0, 234, 255, 0.025), transparent);
+      radial-gradient(ellipse 74% 88% at 0% 40%, rgba(0, 234, 255, 0.1), transparent 58%),
+      linear-gradient(180deg, transparent, rgba(0, 234, 255, 0.04), transparent);
   }
 
   .section-magenta {
     background:
-      radial-gradient(ellipse 64% 78% at 100% 30%, rgba(188, 41, 255, 0.1), transparent 60%),
-      linear-gradient(180deg, transparent, rgba(118, 101, 245, 0.04), transparent);
+      radial-gradient(ellipse 70% 86% at 100% 28%, rgba(188, 41, 255, 0.16), transparent 60%),
+      linear-gradient(180deg, transparent, rgba(118, 101, 245, 0.07), transparent);
   }
 
   .independence-chip {
@@ -159,9 +159,9 @@
   }
 
   .portal-stage {
-    width: min(46vw, 38rem);
-    height: min(46vw, 38rem);
-    min-height: 40vh;
+    width: min(54vw, 44rem);
+    height: min(54vw, 44rem);
+    min-height: 46vh;
   }
 
   @media (max-width: 1023px) {
@@ -245,14 +245,15 @@
   .panel {
     position: relative;
     background:
-      linear-gradient(180deg, rgba(28, 21, 48, 0.78), rgba(20, 16, 34, 0.9));
+      linear-gradient(165deg, rgba(36, 26, 62, 0.82), rgba(16, 12, 28, 0.94) 58%);
     border: 1px solid rgba(0, 234, 255, 0.16);
-    backdrop-filter: blur(18px);
+    border-left-color: rgba(188, 41, 255, 0.42);
+    backdrop-filter: blur(20px);
     box-shadow:
-      inset 0 1px 0 rgba(243, 246, 251, 0.07),
-      inset 1px 0 0 rgba(188, 41, 255, 0.12),
-      -12px 0 28px rgba(118, 101, 245, 0.1),
-      18px 28px 56px rgba(0, 0, 0, 0.42);
+      inset 0 1px 0 rgba(243, 246, 251, 0.1),
+      inset 1px 0 0 rgba(188, 41, 255, 0.22),
+      -18px 0 40px rgba(118, 101, 245, 0.2),
+      22px 32px 64px rgba(0, 0, 0, 0.5);
     transition:
       border-color 0.25s ease,
       box-shadow 0.25s ease,
@@ -260,27 +261,31 @@
   }
 
   .panel-cyan {
+    border-left-color: rgba(0, 234, 255, 0.45);
     box-shadow:
-      inset 0 1px 0 rgba(243, 246, 251, 0.07),
-      inset 1px 0 0 rgba(0, 234, 255, 0.16),
-      -14px 0 30px rgba(0, 234, 255, 0.08),
-      18px 28px 56px rgba(0, 0, 0, 0.42);
+      inset 0 1px 0 rgba(243, 246, 251, 0.1),
+      inset 1px 0 0 rgba(0, 234, 255, 0.22),
+      -20px 0 42px rgba(0, 234, 255, 0.14),
+      22px 32px 64px rgba(0, 0, 0, 0.5);
   }
 
   .panel-magenta {
+    border-right-color: rgba(188, 41, 255, 0.45);
+    border-left-color: rgba(118, 101, 245, 0.28);
     box-shadow:
-      inset 0 1px 0 rgba(243, 246, 251, 0.07),
-      inset -1px 0 0 rgba(188, 41, 255, 0.2),
-      14px 0 30px rgba(188, 41, 255, 0.1),
-      18px 28px 56px rgba(0, 0, 0, 0.42);
+      inset 0 1px 0 rgba(243, 246, 251, 0.1),
+      inset -1px 0 0 rgba(188, 41, 255, 0.28),
+      22px 0 44px rgba(188, 41, 255, 0.18),
+      22px 32px 64px rgba(0, 0, 0, 0.5);
   }
 
   .panel-violet {
+    border-left-color: rgba(118, 101, 245, 0.5);
     box-shadow:
-      inset 0 1px 0 rgba(243, 246, 251, 0.07),
-      inset 0 -1px 0 rgba(118, 101, 245, 0.18),
-      0 16px 32px rgba(118, 101, 245, 0.1),
-      18px 28px 56px rgba(0, 0, 0, 0.42);
+      inset 0 1px 0 rgba(243, 246, 251, 0.1),
+      inset 1px 0 0 rgba(118, 101, 245, 0.28),
+      -18px 18px 44px rgba(118, 101, 245, 0.2),
+      22px 32px 64px rgba(0, 0, 0, 0.5);
   }
 
   @media (prefers-reduced-motion: no-preference) {
@@ -380,7 +385,7 @@
     justify-content: center;
     min-height: 3rem;
     border-radius: 0.85rem;
-    background: linear-gradient(108deg, #00eaff 0%, #3defff 46%, #bc29ff 160%);
+    background: linear-gradient(108deg, #00eaff 0%, #4cefff 36%, #8d6bff 72%, #bc29ff 100%);
     color: #071018;
     font-weight: 600;
     isolation: isolate;
@@ -506,8 +511,10 @@
 
   .energy-node {
     border: 2px solid var(--color-porta-primary);
-    background: #0c0a16;
-    box-shadow: 0 0 14px rgba(0, 234, 255, 0.35);
+    background: radial-gradient(circle at 40% 35%, #00eaff, #7665f5 55%, #0c0a16 78%);
+    box-shadow:
+      0 0 0 4px rgba(118, 101, 245, 0.18),
+      0 0 18px rgba(0, 234, 255, 0.45);
   }
 
   .timeline-rail {

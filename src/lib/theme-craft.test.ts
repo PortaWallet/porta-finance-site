@@ -30,7 +30,7 @@ describe('theme-hard brand pack', () => {
     expect(css).toContain('prefers-reduced-motion')
     expect(css).toContain('portal-pulse')
     expect(css).toContain('portal-drift')
-    expect(css).toContain('min-height: 40vh')
+    expect(css).toContain('min-height: 46vh')
     expect(css).toContain('hero-display')
     expect(css).toContain('section-void')
     expect(css).toContain('section-cyan')
