@@ -2,7 +2,7 @@ import { readFileSync } from 'node:fs'
 import { dirname, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
-import { SOFT_TIP, TG_CHANNEL_URL } from './site'
+import { SOFT_TIP, TG_CHANNEL_URL, TG_NEWS_URL } from './site'
 
 const LIVE_TIP = '00034-6vs'
 const STALE_TIP = '00027-5zg'
@@ -36,16 +36,19 @@ describe('soft tip honesty', () => {
     }
   })
 
-  it('official Telegram channel URL is locked and linked from footer + Live now', () => {
+  it('both official Telegram channel URLs are locked and linked from footer + Live now', () => {
     expect(TG_CHANNEL_URL).toBe('https://t.me/PortaWallet')
+    expect(TG_NEWS_URL).toBe('https://t.me/PortaNews')
     const site = readFileSync(resolve(ROOT, 'src/lib/site.ts'), 'utf8')
     expect(site).toContain("export const TG_CHANNEL_URL = 'https://t.me/PortaWallet'")
+    expect(site).toContain("export const TG_NEWS_URL = 'https://t.me/PortaNews'")
     for (const rel of [
       'src/components/Footer.tsx',
       'src/components/LiveNow.tsx',
     ] as const) {
       const text = readFileSync(resolve(ROOT, rel), 'utf8')
       expect(text, rel).toContain('TG_CHANNEL_URL')
+      expect(text, rel).toContain('TG_NEWS_URL')
     }
   })
 })

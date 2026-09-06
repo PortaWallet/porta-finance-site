@@ -7,9 +7,13 @@ export const SITE_URL = 'https://www.porta.finance'
 export const TG_BOT_HANDLE = '@PortaWallet_bot'
 export const TG_BOT_URL = 'https://t.me/PortaWallet_bot'
 
+export const TG_CHANNEL_HANDLE = '@PortaWallet'
 export const TG_CHANNEL_URL = 'https://t.me/PortaWallet'
+
+export const TG_NEWS_HANDLE = '@PortaNews'
+export const TG_NEWS_URL = 'https://t.me/PortaNews'
 
 export const MINI_APP_URL =
   'https://production-wallet-telegram-omytp43vwa-ew.a.run.app'
 
-/** Official channel is https://t.me/PortaWallet. No X / Twitter hrefs. */
+/** Official channels: PortaWallet + PortaNews. No X / Twitter hrefs. */
