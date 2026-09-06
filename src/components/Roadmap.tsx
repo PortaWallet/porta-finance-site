@@ -1,6 +1,7 @@
 import { MotionSection } from './MotionSection'
 import BrandImg from './BrandImg'
 import { SOFT_TIP } from '../lib/site'
+import { useKo } from '../lib/locale'
 
 const items = [
   {
@@ -25,12 +26,19 @@ const items = [
   },
   {
     n: '05',
-    title: 'Advanced trading later',
-    body: 'Strategies and copy-style flows come later. Wallet trust is the brand lead — not a trading slogan.',
+    title: 'Social trading later',
+    body: `Copy-style and community trading flows come later. Wallet trust is the brand lead — not a live social-trading product on soft tip ${SOFT_TIP}.`,
+  },
+  {
+    n: '06',
+    title: 'AI Bot trading',
+    body: `AI-assisted trading bots are on the roadmap. Soft tip ${SOFT_TIP} is not a live AI trading product — wallet trust first.`,
   },
 ] as const
 
 export default function Roadmap() {
+  const k = useKo()
+
   return (
     <MotionSection
       id="roadmap"
@@ -42,8 +50,9 @@ export default function Roadmap() {
             <p className="eyebrow mb-3">Coming · not live</p>
             <h2 className="section-title">What’s next</h2>
             <p className="mt-4 text-base leading-relaxed text-porta-muted">
-              Ambitions with receipts. Nothing below is live on soft tip{' '}
-              {SOFT_TIP}.
+              {k
+                ? k.roadmap.lede.replace('{tip}', SOFT_TIP)
+                : `Ambitions with receipts. Nothing below is live on soft tip ${SOFT_TIP}.`}
             </p>
           </div>
           <span className="rounded-full border border-porta-lavender/40 bg-porta-surface px-3 py-1 text-xs font-semibold uppercase tracking-wide text-porta-lavender">
@@ -56,7 +65,7 @@ export default function Roadmap() {
             aria-hidden
             className="timeline-rail absolute left-[0.55rem] top-3 bottom-3 w-px sm:left-[0.7rem]"
           />
-          {items.map((item) => (
+          {items.map((item, index) => (
             <li key={item.title} className="relative pb-8 last:pb-0">
               <span
                 aria-hidden
@@ -80,10 +89,10 @@ export default function Roadmap() {
                   </span>
                 </div>
                 <h3 className="text-lg font-semibold tracking-tight text-porta-text sm:text-xl">
-                  {item.title}
+                  {k?.roadmap.items[index]?.title ?? item.title}
                 </h3>
                 <p className="mt-3 text-sm leading-relaxed text-porta-muted">
-                  {item.body}
+                  {k?.roadmap.items[index]?.body ?? item.body}
                 </p>
               </article>
             </li>

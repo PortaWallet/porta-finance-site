@@ -1,3 +1,6 @@
+import { Link } from 'react-router-dom'
+import { localeHome, useLocale } from '../lib/locale'
+
 const links = [
   { href: '#live', label: 'Live' },
   { href: '#roadmap', label: 'Roadmap' },
@@ -6,11 +9,13 @@ const links = [
 ]
 
 export default function Nav() {
+  const locale = useLocale()
+
   return (
     <header className="site-nav sticky top-0 z-50">
       <nav className="mx-auto flex max-w-6xl flex-col gap-1 px-4 py-2.5 sm:flex-row sm:items-center sm:justify-between sm:gap-2 sm:px-6 sm:py-3">
         <div className="flex items-center justify-between gap-3">
-          <a href="/" className="flex min-h-11 shrink-0 items-center">
+          <Link to={localeHome(locale)} className="flex min-h-11 shrink-0 items-center">
             <img
               src="/logo.png"
               alt="Porta"
@@ -20,7 +25,7 @@ export default function Nav() {
               decoding="async"
               className="h-8 w-auto object-contain sm:h-10"
             />
-          </a>
+          </Link>
           <span className="sm:hidden">
             <a href="#live" className="btn-primary px-3 text-sm">
               Get Porta

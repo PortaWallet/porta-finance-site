@@ -1,7 +1,10 @@
 import { SOFT_TIP, TG_BOT_HANDLE } from '../lib/site'
+import { useKo } from '../lib/locale'
 import BrandImg from './BrandImg'
 
 export default function HeroGraphic() {
+  const k = useKo()
+
   return (
     <figure className="relative mx-auto hidden min-h-[46vh] w-full lg:block">
       <div
@@ -46,28 +49,37 @@ export default function HeroGraphic() {
 
         <div className="space-y-2.5 px-4 py-4">
           <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-porta-lavender">
-            Review · not auto-trade
+            {k?.graphic.reviewLabel ?? 'Review · not auto-trade'}
           </p>
           <div className="review-row">
-            <span className="text-porta-muted">From</span>
-            <span className="font-semibold text-porta-text">— · your wallet</span>
+            <span className="text-porta-muted">{k?.graphic.from ?? 'From'}</span>
+            <span className="font-semibold text-porta-text">
+              {k?.graphic.fromValue ?? '— · your wallet'}
+            </span>
           </div>
           <div className="review-row">
-            <span className="text-porta-muted">To</span>
-            <span className="font-semibold text-porta-text">— · review first</span>
+            <span className="text-porta-muted">{k?.graphic.to ?? 'To'}</span>
+            <span className="font-semibold text-porta-text">
+              {k?.graphic.toValue ?? '— · review first'}
+            </span>
           </div>
           <div className="review-row">
-            <span className="text-porta-muted">Fees</span>
-            <span className="font-semibold text-porta-lavender">Shown before confirm</span>
+            <span className="text-porta-muted">{k?.graphic.fees ?? 'Fees'}</span>
+            <span className="font-semibold text-porta-lavender">
+              {k?.graphic.feesValue ?? 'Shown before confirm'}
+            </span>
           </div>
 
           <p className="bot-bubble-in">
-            Create or import a wallet. Keys stay on your device.
+            {k?.graphic.bubbleIn1 ??
+              'Create or import a wallet. Keys stay on your device.'}
           </p>
-          <p className="bot-bubble-out">Review this swap before I confirm.</p>
+          <p className="bot-bubble-out">
+            {k?.graphic.bubbleOut ?? 'Review this swap before I confirm.'}
+          </p>
           <p className="bot-bubble-in">
-            Clear review — quotes and fees first. Soft dogfood, polish in
-            progress.
+            {k?.graphic.bubbleIn2 ??
+              'Clear review — quotes and fees first. Soft dogfood, polish in progress.'}
           </p>
         </div>
 
@@ -76,12 +88,16 @@ export default function HeroGraphic() {
         </p>
       </div>
       <figcaption className="relative z-10 mt-5 text-left text-xs leading-relaxed text-porta-text/80">
-        Brand art ·{' '}
-        <span className="font-semibold uppercase tracking-wide text-porta-lavender">
-          Coming
-        </span>
-        {' — '}
-        not a live network list
+        {k?.graphic.caption ?? (
+          <>
+            Brand art ·{' '}
+            <span className="font-semibold uppercase tracking-wide text-porta-lavender">
+              Coming
+            </span>
+            {' — '}
+            not a live network list
+          </>
+        )}
       </figcaption>
     </figure>
   )
