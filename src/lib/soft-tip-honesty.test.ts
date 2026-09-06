@@ -11,8 +11,8 @@ import {
   YOUTUBE_URL,
 } from './site'
 
-const LIVE_TIP = '00034-6vs'
-const STALE_TIP = '00027-5zg'
+const LIVE_TIP = '00044-47z'
+const STALE_TIPS = ['00027-5zg', '00034-6vs', '00036-8zr', '00037-d46', '00038-lzb', '00039-42b', '00041-rt9', '00042-n4v', '00043-2qj'] as const
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 
 /** Marketing copy we own — not a DOM suite. */
@@ -28,8 +28,12 @@ const COPY_SOURCES = [
   'src/components/Trust.tsx',
   'src/components/Contact.tsx',
   'src/components/Nav.tsx',
+  'src/components/BrandImg.tsx',
+  'src/lib/brand.ts',
   'index.html',
   'PLAN.md',
+  'DNS-CUTOVER.md',
+  'qa/2026-09-06-grok-fe-porta-finance-live-rebrand-baseline.md',
 ] as const
 
 describe('soft tip honesty', () => {
@@ -37,10 +41,12 @@ describe('soft tip honesty', () => {
     expect(SOFT_TIP).toBe(LIVE_TIP)
   })
 
-  it(`owned copy sources do not mention stale tip ${STALE_TIP}`, () => {
+  it('owned copy sources do not mention stale tips', () => {
     for (const rel of COPY_SOURCES) {
       const text = readFileSync(resolve(ROOT, rel), 'utf8')
-      expect(text, rel).not.toContain(STALE_TIP)
+      for (const stale of STALE_TIPS) {
+        expect(text, `${rel} · ${stale}`).not.toContain(stale)
+      }
     }
   })
 
@@ -212,6 +218,7 @@ describe('soft tip honesty', () => {
     expect(live).toContain('TG_NEWS_URL')
     expect(live).toContain('LINKEDIN_URL')
     expect(live).toContain('YOUTUBE_URL')
-    expect(live).toContain('run.app')
+    expect(live).toContain('MINI_APP_URL')
+    expect(live).not.toMatch(/run\.app|Cloud Run/)
   })
 })

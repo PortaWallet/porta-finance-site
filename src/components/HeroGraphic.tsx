@@ -1,53 +1,81 @@
-import { TG_BOT_HANDLE } from '../lib/site'
+import { SOFT_TIP, TG_BOT_HANDLE } from '../lib/site'
+import BrandImg from './BrandImg'
 
 export default function HeroGraphic() {
   return (
-    <figure className="relative mx-auto w-full max-w-[22rem] sm:max-w-[28rem] lg:max-w-none">
-      <div className="relative min-h-[22rem] sm:min-h-[26rem]">
-        <div
-          aria-hidden
-          className="pointer-events-none absolute left-1/2 top-0 h-[18rem] w-[18rem] -translate-x-1/2 opacity-90 sm:h-[22rem] sm:w-[22rem] lg:left-auto lg:right-[-8%] lg:translate-x-0"
-        >
-          <div className="portal-halo absolute inset-[8%]" />
-          <img
-            src="/brand/multichain-ring.svg"
+    <figure className="relative mx-auto hidden min-h-[46vh] w-full lg:block">
+      <div
+        aria-hidden
+        className="portal-stage pointer-events-none absolute right-[-10%] top-1/2 -translate-y-1/2"
+      >
+        <div className="portal-halo absolute inset-[6%]" />
+        <BrandImg
+          src="/brand/multichain-ring.svg"
+          alt=""
+          width={520}
+          height={520}
+          decoding="async"
+          className="portal-ring absolute inset-0 h-full w-full"
+        />
+        <BrandImg
+          src="/brand/portal-hero.webp"
+          alt=""
+          width={168}
+          height={168}
+          fetchPriority="high"
+          decoding="async"
+          className="portal-sphere absolute left-1/2 top-1/2 h-[64%] w-[64%] -translate-x-1/2 -translate-y-1/2 object-contain"
+        />
+      </div>
+
+      <div className="product-surface relative z-10 mt-[28%] w-[min(100%,20.5rem)]">
+        <div className="flex min-h-11 items-center gap-2 border-b border-white/8 px-4 py-3">
+          <BrandImg
+            src="/portal-mark.png"
             alt=""
-            width={352}
-            height={352}
+            width={20}
+            height={20}
             decoding="async"
-            className="portal-ring absolute inset-0 h-full w-full"
+            className="h-5 w-5 rounded-full object-cover"
           />
-          <img
-            src="/brand/portal-hero.webp"
-            alt=""
-            width={168}
-            height={168}
-            fetchPriority="high"
-            decoding="async"
-            className="portal-sphere absolute left-1/2 top-1/2 h-[46%] w-[46%] -translate-x-1/2 -translate-y-1/2 object-contain"
-          />
+          <p className="flex-1 text-xs font-semibold text-porta-text">
+            Porta · {TG_BOT_HANDLE}
+          </p>
+          <span className="h-2 w-2 shrink-0 rounded-full bg-porta-primary shadow-[0_0_8px_rgba(0,234,255,0.7)]" />
         </div>
 
-        <div className="product-surface relative z-10 mx-auto mt-[7.5rem] w-[92%] sm:mt-[8.5rem] lg:mx-0 lg:mt-24 lg:w-[88%]">
-          <div className="flex min-h-11 items-center gap-2 border-b border-white/8 px-4 py-3">
-            <span className="h-2.5 w-2.5 shrink-0 rounded-full bg-porta-accent/80" />
-            <p className="text-xs font-semibold text-porta-text">
-              Porta · {TG_BOT_HANDLE}
-            </p>
+        <div className="space-y-2.5 px-4 py-4">
+          <p className="text-[10px] font-semibold uppercase tracking-[0.16em] text-porta-lavender">
+            Review · not auto-trade
+          </p>
+          <div className="review-row">
+            <span className="text-porta-muted">From</span>
+            <span className="font-semibold text-porta-text">— · your wallet</span>
           </div>
-          <div className="space-y-3 px-4 py-5">
-            <p className="bot-bubble-in">
-              Create or import a wallet. Keys stay on your device.
-            </p>
-            <p className="bot-bubble-out">Review this swap before I confirm.</p>
-            <p className="bot-bubble-in">
-              Clear review — quotes and fees first. Soft dogfood, polish in
-              progress.
-            </p>
+          <div className="review-row">
+            <span className="text-porta-muted">To</span>
+            <span className="font-semibold text-porta-text">— · review first</span>
           </div>
+          <div className="review-row">
+            <span className="text-porta-muted">Fees</span>
+            <span className="font-semibold text-porta-lavender">Shown before confirm</span>
+          </div>
+
+          <p className="bot-bubble-in">
+            Create or import a wallet. Keys stay on your device.
+          </p>
+          <p className="bot-bubble-out">Review this swap before I confirm.</p>
+          <p className="bot-bubble-in">
+            Clear review — quotes and fees first. Soft dogfood, polish in
+            progress.
+          </p>
         </div>
+
+        <p className="border-t border-white/8 px-4 py-3 text-[11px] font-medium text-porta-muted">
+          Soft tip {SOFT_TIP} · no balances invented
+        </p>
       </div>
-      <figcaption className="mt-4 text-center text-xs leading-relaxed text-porta-text/80 lg:text-left">
+      <figcaption className="relative z-10 mt-5 text-left text-xs leading-relaxed text-porta-text/80">
         Brand art ·{' '}
         <span className="font-semibold uppercase tracking-wide text-porta-lavender">
           Coming

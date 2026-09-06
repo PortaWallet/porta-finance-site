@@ -1,5 +1,6 @@
 import { MotionSection, MotionStagger, MotionItem } from './MotionSection'
 import OfficialLinks from './OfficialLinks'
+import BrandImg from './BrandImg'
 import {
   SITE_HOST,
   SITE_URL,
@@ -19,36 +20,22 @@ import {
   APK_HREF,
 } from '../lib/site'
 
-type LiveCard = {
+type SideCard = {
   title: string
   description: string
-  status: 'live' | 'soon'
+  status: 'soon'
   href?: string
   cta: string
   disabled?: boolean
   download?: boolean
 }
 
-const cards: LiveCard[] = [
-  {
-    title: 'Telegram bot',
-    description: `Primary dogfood entry. Create or import, then send and review swaps in chat — not auto-trade.`,
-    status: 'live',
-    href: TG_BOT_URL,
-    cta: `Open ${TG_BOT_HANDLE}`,
-  },
-  {
-    title: 'Mini App',
-    description: `Telegram WebView of the same dogfood wallet (Cloud Run host on run.app). Soft dogfood tip ${SOFT_TIP}. Primary entry is still ${TG_BOT_HANDLE} — not a separate launch.`,
-    status: 'live',
-    href: MINI_APP_URL,
-    cta: 'Open Mini App',
-  },
+const sideCards: SideCard[] = [
   {
     title: 'Chrome extension',
     description: 'Browser wallet for day-to-day use alongside Telegram.',
     status: 'soon',
-    cta: 'Chrome Web Store Unlisted — dogfood soon',
+    cta: 'Chrome Web Store Unlisted — soon',
     disabled: true,
   },
   ...(APK_AVAILABLE
@@ -56,76 +43,39 @@ const cards: LiveCard[] = [
         {
           title: 'Android APK',
           description:
-            'Dogfood placeholder build for sideload testing — not a Play Store release. Not live.',
+            'Placeholder build for sideload testing — not a Play Store release. Not live.',
           status: 'soon' as const,
           href: APK_HREF,
-          cta: 'Download dogfood APK',
+          cta: 'Download APK',
           download: true,
-        } satisfies LiveCard,
+        } satisfies SideCard,
       ]
     : []),
 ]
 
-function CardInner({ card }: { card: LiveCard }) {
-  return (
-    <>
-      <div className="mb-3 flex items-center justify-between gap-2">
-        <h3 className="text-base font-semibold text-porta-text">{card.title}</h3>
-        <span
-          className={`shrink-0 rounded-full px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide ${
-            card.status === 'live'
-              ? 'bg-porta-accent/15 text-porta-accent ring-1 ring-porta-accent/25'
-              : 'bg-white/5 text-porta-muted ring-1 ring-white/10'
-          }`}
-        >
-          {card.status === 'live'
-            ? 'Live'
-            : card.title === 'Android APK'
-              ? 'Dogfood'
-              : 'Soon'}
-        </span>
-      </div>
-      <p className="mb-5 flex-1 text-sm leading-relaxed text-porta-muted">
-        {card.description}
-      </p>
-      <span
-        className={`inline-flex text-sm font-medium ${
-          card.disabled
-            ? 'cursor-not-allowed text-porta-muted'
-            : 'text-porta-accent group-hover:underline'
-        }`}
-      >
-        {card.cta}
-        {!card.disabled && (
-          <span aria-hidden className="ml-1">
-            →
-          </span>
-        )}
-      </span>
-    </>
-  )
-}
-
 export default function LiveNow() {
   return (
-    <MotionSection id="live" className="relative scroll-mt-20 px-4 py-14 sm:px-6 sm:py-20">
+    <MotionSection
+      id="live"
+      className="section-magenta relative scroll-mt-20 px-4 py-14 sm:px-6 sm:py-20"
+    >
       <div className="mx-auto max-w-6xl">
         <div className="mb-10 max-w-2xl">
           <p className="eyebrow mb-3">Live &amp; dogfood</p>
           <h2 className="section-title">Get Porta</h2>
           <p className="mt-3 text-sm leading-relaxed text-porta-muted sm:text-base">
-            What you can use today. Porta is in active dogfood — soft tip{' '}
-            <code className="rounded bg-white/5 px-1.5 py-0.5 text-xs text-porta-accent">
+            What you can use today. Porta is in active review — soft tip{' '}
+            <code className="rounded bg-white/5 px-1.5 py-0.5 text-xs text-porta-primary">
               {SOFT_TIP}
             </code>
             . Primary entry is {TG_BOT_HANDLE}. Expect polish, not perfection. No
             seed phrases or keys are ever published here.
           </p>
-          <p className="mt-4 text-xs leading-relaxed text-porta-muted/80">
+          <p className="mt-4 text-xs leading-relaxed text-porta-muted">
             Official links only —{' '}
             <a
               href={SITE_URL}
-              className="text-porta-text transition hover:text-porta-accent"
+              className="text-porta-text transition hover:text-porta-primary"
             >
               {SITE_HOST}
             </a>
@@ -134,7 +84,7 @@ export default function LiveNow() {
               href={TG_BOT_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-porta-text transition hover:text-porta-accent"
+              className="text-porta-text transition hover:text-porta-primary"
             >
               {TG_BOT_HANDLE}
             </a>
@@ -143,7 +93,7 @@ export default function LiveNow() {
               href={TG_CHANNEL_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-porta-text transition hover:text-porta-accent"
+              className="text-porta-text transition hover:text-porta-primary"
             >
               {TG_CHANNEL_HANDLE}
             </a>
@@ -152,7 +102,7 @@ export default function LiveNow() {
               href={TG_NEWS_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-porta-text transition hover:text-porta-accent"
+              className="text-porta-text transition hover:text-porta-primary"
             >
               {TG_NEWS_HANDLE}
             </a>
@@ -161,7 +111,7 @@ export default function LiveNow() {
               href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-porta-text transition hover:text-porta-accent"
+              className="text-porta-text transition hover:text-porta-primary"
             >
               {LINKEDIN_LABEL}
             </a>
@@ -170,7 +120,7 @@ export default function LiveNow() {
               href={YOUTUBE_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-porta-text transition hover:text-porta-accent"
+              className="text-porta-text transition hover:text-porta-primary"
             >
               YouTube {YOUTUBE_HANDLE}
             </a>
@@ -179,33 +129,110 @@ export default function LiveNow() {
           <OfficialLinks className="mt-4" />
         </div>
 
+        <div className="panel panel-cyan mb-6 rounded-3xl p-6 sm:p-8">
+          <div className="mb-4 flex items-start justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <BrandImg
+                src="/portal-mark.png"
+                alt=""
+                width={28}
+                height={28}
+                decoding="async"
+                className="h-7 w-7 rounded-full object-cover"
+              />
+              <h3 className="text-lg font-semibold text-porta-text">
+                Telegram bot
+              </h3>
+            </div>
+            <span className="status-live">Live</span>
+          </div>
+          <p className="max-w-2xl text-sm leading-relaxed text-porta-muted">
+            Primary entry. Create or import, then send and review swaps in chat
+            — not auto-trade.
+          </p>
+          <div className="mt-6 flex flex-col items-stretch gap-3 sm:flex-row sm:items-center">
+            <a
+              href={TG_BOT_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-primary w-full px-7 text-base sm:w-auto"
+            >
+              Open {TG_BOT_HANDLE}
+            </a>
+            <a
+              href={MINI_APP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary min-h-11 w-full justify-center text-sm sm:w-auto"
+            >
+              Open Mini App
+            </a>
+          </div>
+        </div>
+
         <MotionStagger className="grid auto-rows-fr gap-4 sm:grid-cols-2">
-          {cards.map((card) => {
-            const shell =
-              'glass group flex h-full flex-col rounded-2xl p-5 transition duration-200 sm:p-6'
+          {sideCards.map((card) => {
+            const inner = (
+              <>
+                <div className="mb-3 flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-2">
+                    <BrandImg
+                      src="/portal-mark.png"
+                      alt=""
+                      width={20}
+                      height={20}
+                      decoding="async"
+                      className="h-5 w-5 rounded-full object-cover"
+                    />
+                    <h3 className="text-base font-semibold text-porta-text">
+                      {card.title}
+                    </h3>
+                  </div>
+                  <span className="shrink-0 rounded-full bg-white/5 px-2.5 py-0.5 text-[11px] font-semibold uppercase tracking-wide text-porta-lavender ring-1 ring-porta-lavender/35">
+                    {card.title === 'Android APK' ? 'Dogfood' : 'Soon'}
+                  </span>
+                </div>
+                <p className="mb-5 flex-1 text-sm leading-relaxed text-porta-muted">
+                  {card.description}
+                </p>
+                <span
+                  className={`inline-flex text-sm font-medium ${
+                    card.disabled
+                      ? 'cursor-not-allowed text-porta-muted'
+                      : 'text-porta-lavender'
+                  }`}
+                >
+                  {card.cta}
+                  {!card.disabled && (
+                    <span aria-hidden className="ml-1">
+                      →
+                    </span>
+                  )}
+                </span>
+              </>
+            )
 
             if (card.disabled || !card.href) {
               return (
                 <MotionItem key={card.title} className="h-full">
-                  <div className={`${shell} cursor-not-allowed opacity-75`}>
-                    <CardInner card={card} />
+                  <div className="panel flex h-full flex-col rounded-3xl p-5 opacity-80 sm:p-6">
+                    {inner}
                   </div>
                 </MotionItem>
               )
             }
 
-            const isExternal = card.href.startsWith('http')
             return (
               <MotionItem key={card.title} className="h-full">
                 <a
                   href={card.href}
-                  className={`${shell} hover:border-porta-primary/40 hover:primary-glow`}
-                  {...(isExternal
+                  className="panel group flex h-full flex-col rounded-3xl p-5 sm:p-6"
+                  {...(card.href.startsWith('http')
                     ? { target: '_blank', rel: 'noopener noreferrer' }
                     : {})}
                   {...(card.download ? { download: 'porta-wallet.apk' } : {})}
                 >
-                  <CardInner card={card} />
+                  {inner}
                 </a>
               </MotionItem>
             )

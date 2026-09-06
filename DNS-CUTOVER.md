@@ -1,6 +1,6 @@
 # GoDaddy DNS — porta.finance cutover
 
-Soft tip `00034-6vs`. Remove old **Webflow** records for `@` / `www` first (CNAME/A to `proxy-ssl.webflow.com` or Webflow targets).
+Soft tip `00044-47z`. Remove old **Webflow** records for `@` / `www` first (CNAME/A to `proxy-ssl.webflow.com` or Webflow targets).
 
 Pick **one** path (Vercel preferred if you claim the temp deploy).
 
