@@ -14,6 +14,17 @@
   --color-porta-border: rgba(0, 234, 255, 0.16);
   --color-porta-text: #f3f6fb;
   --color-porta-muted: #8e93ab;
+  --spacing-1: 0.25rem;
+  --spacing-2: 0.5rem;
+  --spacing-3: 0.75rem;
+  --spacing-4: 1rem;
+  --spacing-6: 1.5rem;
+  --spacing-8: 2rem;
+  --spacing-12: 3rem;
+  --spacing-16: 4rem;
+  --text-display: 3.35rem;
+  --text-title: 2.25rem;
+  --text-body: 1.0625rem;
   /* Faces are declared in index.html (self-hosted latin 400/600/700, font-display: swap). */
   --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
 }
@@ -34,8 +45,9 @@
     margin: 0;
     min-height: 100dvh;
     background-image:
-      radial-gradient(ellipse 90% 70% at 0% 0%, rgba(0, 234, 255, 0.08), transparent 52%),
-      radial-gradient(ellipse 70% 60% at 100% 10%, rgba(188, 41, 255, 0.12), transparent 58%),
+      radial-gradient(ellipse 90% 70% at 0% 0%, rgba(0, 234, 255, 0.11), transparent 52%),
+      radial-gradient(ellipse 70% 60% at 100% 8%, rgba(188, 41, 255, 0.16), transparent 58%),
+      radial-gradient(ellipse 50% 40% at 50% 100%, rgba(118, 101, 245, 0.1), transparent 70%),
       linear-gradient(180deg, #07060f 0%, #12081f 42%, #07060f 100%);
     background-attachment: fixed;
   }
@@ -54,9 +66,16 @@
 @layer utilities {
   .hero-cosmos {
     background:
-      radial-gradient(ellipse 70% 55% at 18% 30%, rgba(0, 234, 255, 0.16), transparent 58%),
-      radial-gradient(ellipse 55% 45% at 88% 20%, rgba(188, 41, 255, 0.16), transparent 62%),
-      radial-gradient(ellipse 50% 40% at 70% 90%, rgba(118, 101, 245, 0.12), transparent 70%);
+      radial-gradient(ellipse 80% 60% at 12% 28%, rgba(0, 234, 255, 0.22), transparent 58%),
+      radial-gradient(ellipse 55% 50% at 88% 12%, rgba(188, 41, 255, 0.2), transparent 60%),
+      radial-gradient(ellipse 45% 40% at 72% 78%, rgba(118, 101, 245, 0.18), transparent 68%),
+      radial-gradient(ellipse 30% 28% at 48% 42%, rgba(168, 158, 255, 0.1), transparent 70%);
+  }
+
+  .hero-vignette {
+    background:
+      radial-gradient(ellipse 80% 70% at 50% 40%, transparent 42%, rgba(7, 6, 15, 0.55) 100%),
+      linear-gradient(180deg, transparent 70%, #07060f 100%);
   }
 
   .glow-particles {
@@ -69,7 +88,95 @@
       radial-gradient(1px 1px at 67% 58%, rgba(255, 255, 255, 0.35), transparent),
       radial-gradient(1.5px 1.5px at 79% 16%, rgba(188, 41, 255, 0.45), transparent),
       radial-gradient(1px 1px at 88% 72%, rgba(0, 234, 255, 0.4), transparent),
-      radial-gradient(1.5px 1.5px at 93% 40%, rgba(255, 255, 255, 0.3), transparent);
+      radial-gradient(1.5px 1.5px at 93% 40%, rgba(255, 255, 255, 0.3), transparent),
+      radial-gradient(1px 1px at 22% 88%, rgba(255, 255, 255, 0.28), transparent),
+      radial-gradient(1.5px 1.5px at 36% 8%, rgba(168, 158, 255, 0.4), transparent),
+      radial-gradient(1px 1px at 61% 92%, rgba(0, 234, 255, 0.35), transparent),
+      radial-gradient(2px 2px at 74% 36%, rgba(255, 255, 255, 0.22), transparent);
+  }
+
+  .hero-keyword {
+    color: var(--color-porta-lavender);
+    text-shadow: 0 0 42px rgba(168, 158, 255, 0.38);
+  }
+
+  .section-title {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--color-porta-text);
+  }
+
+  .independence-chip {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    border: 1px solid rgba(168, 158, 255, 0.28);
+    background: rgba(20, 16, 34, 0.62);
+    padding: 0.35rem 0.8rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: #c8c4ef;
+  }
+
+  .cta-panel {
+    border-radius: 1.25rem;
+    border: 1px solid rgba(0, 234, 255, 0.14);
+    background: rgba(14, 11, 26, 0.62);
+    padding: 1.15rem 1.2rem;
+    box-shadow:
+      inset 0 1px 0 rgba(243, 246, 251, 0.05),
+      0 18px 50px rgba(0, 0, 0, 0.28);
+    backdrop-filter: blur(14px);
+  }
+
+  .portal-halo {
+    position: absolute;
+    inset: 8%;
+    border-radius: 9999px;
+    background:
+      radial-gradient(circle at 50% 50%, rgba(0, 234, 255, 0.28), transparent 58%),
+      radial-gradient(circle at 50% 50%, rgba(188, 41, 255, 0.16), transparent 72%);
+    filter: blur(18px);
+  }
+
+  .portal-sphere {
+    filter: drop-shadow(0 0 36px rgba(0, 234, 255, 0.38));
+  }
+
+  .portal-ring {
+    filter: drop-shadow(0 0 18px rgba(168, 158, 255, 0.18));
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .portal-sphere {
+      animation: portal-pulse 5.5s ease-in-out infinite;
+    }
+
+    .portal-ring {
+      animation: portal-spin 80s linear infinite;
+    }
+  }
+
+  @keyframes portal-pulse {
+    0%,
+    100% {
+      filter: drop-shadow(0 0 28px rgba(0, 234, 255, 0.3));
+      transform: translate(-50%, -50%) scale(1);
+    }
+    50% {
+      filter: drop-shadow(0 0 48px rgba(0, 234, 255, 0.48));
+      transform: translate(-50%, -50%) scale(1.035);
+    }
+  }
+
+  @keyframes portal-spin {
+    to {
+      transform: rotate(360deg);
+    }
   }
 
   .glass {
@@ -80,6 +187,47 @@
     transition:
       border-color 0.2s ease,
       box-shadow 0.2s ease;
+  }
+
+  .glass-elevated {
+    background: rgba(16, 12, 28, 0.72);
+    border: 1px solid rgba(0, 234, 255, 0.14);
+    backdrop-filter: blur(18px);
+    box-shadow:
+      inset 0 1px 0 rgba(243, 246, 251, 0.06),
+      0 18px 48px rgba(0, 0, 0, 0.32);
+  }
+
+  .product-surface {
+    border-radius: 1.5rem;
+    background: rgba(12, 9, 22, 0.82);
+    border: 1px solid rgba(168, 158, 255, 0.22);
+    backdrop-filter: blur(20px);
+    box-shadow:
+      inset 0 1px 0 rgba(243, 246, 251, 0.06),
+      0 24px 64px rgba(0, 0, 0, 0.4),
+      0 0 48px rgba(118, 101, 245, 0.12);
+  }
+
+  .bot-bubble-in {
+    max-width: 92%;
+    border-radius: 1rem 1rem 1rem 0.25rem;
+    background: rgba(118, 101, 245, 0.16);
+    padding: 0.7rem 0.85rem;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    color: #f3f6fb;
+  }
+
+  .bot-bubble-out {
+    margin-left: auto;
+    max-width: 88%;
+    border-radius: 1rem 1rem 0.25rem 1rem;
+    background: rgba(0, 234, 255, 0.1);
+    padding: 0.7rem 0.85rem;
+    font-size: 0.8125rem;
+    line-height: 1.45;
+    color: #d9fff8;
   }
 
   .glass:hover {
@@ -96,8 +244,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 2.75rem;
-    border-radius: 0.75rem;
+    min-height: 3rem;
+    border-radius: 0.8rem;
     background: var(--color-porta-primary);
     color: #071018;
     font-weight: 600;
@@ -125,8 +273,8 @@
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    min-height: 2.75rem;
-    border-radius: 0.75rem;
+    min-height: 3rem;
+    border-radius: 0.8rem;
     border: 1px solid var(--color-porta-border);
     background: rgba(20, 16, 34, 0.65);
     color: var(--color-porta-text);
@@ -172,5 +320,34 @@
     letter-spacing: 0.2em;
     text-transform: uppercase;
     color: var(--color-porta-lavender);
+  }
+
+  .status-live {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2rem;
+    border-radius: 9999px;
+    background: rgba(35, 247, 221, 0.14);
+    padding: 0 0.7rem;
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--color-porta-accent);
+    box-shadow: inset 0 0 0 1px rgba(35, 247, 221, 0.35);
+  }
+
+  .tip-chip {
+    display: inline-flex;
+    align-items: center;
+    border-radius: 9999px;
+    border: 1px solid rgba(168, 158, 255, 0.45);
+    background: rgba(20, 16, 34, 0.88);
+    padding: 0.4rem 0.85rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: #f3f6fb;
   }
 }

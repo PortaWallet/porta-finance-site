@@ -16,7 +16,8 @@ Deferred: Next.js App Router — revisit if SEO/blog needs SSR; Vite static is e
 ## Brand
 
 - **Cosmic navy/purple** backgrounds (`#07060f` → `#12081f`) with cyan wireframe mesh + glow particles
-- **Portal sphere** (cyan→magenta globe) as favicon + header mark (`/logo.png`, `/favicon.svg`)
+- **Portal sphere** (cyan→magenta globe) as favicon + header mark (`/logo.png`, `/favicon.svg`, `/brand/portal-hero.webp`)
+- Hero includes portal + multichain ring graphic (Coming — not a live chain list)
 - **Lavender** (`#a89eff`) on key words; **cyan** (`#00eaff`) CTAs; magenta only as atmospheric support
 - Typography: IBM Plex Sans, self-hosted latin 400/600/700 (no Google Fonts)
 - Motion: below-fold fade+rise only; Hero H1 is static for LCP; respect `prefers-reduced-motion`
@@ -24,11 +25,12 @@ Deferred: Next.js App Router — revisit if SEO/blog needs SSR; Vite static is e
 
 ## IA
 
-1. **Nav** — Live now · Roadmap · Follow (TG)
-2. **Hero** — Honest category line (not “ultimate DeFi trading”)
-3. **Live now** — what’s actually dogfoodable today
-4. **Roadmap** — ambitions clearly labeled *Coming / not live*
-5. **Footer** — © DracoLabs · official links only (no X)
+1. **Nav** — Live · How · Roadmap · Official (`#official`)
+2. **Hero** — Locked H1: *Non-custodial wallet — create, send, and swap with clear review* (not Telegram-native, not “in Telegram”)
+3. **How** — 3-step start
+4. **Live now** — what’s actually dogfoodable today (APK = Dogfood, not Live)
+5. **Roadmap** — ambitions clearly labeled *Coming / not live*
+6. **Footer / Official** — © DracoLabs · official links only (no X)
 
 ### Live now (honest)
 
@@ -42,7 +44,7 @@ Deferred: Next.js App Router — revisit if SEO/blog needs SSR; Vite static is e
 ### Roadmap (not live — F6→F3 style ambitions)
 
 - **Trust / swap honesty** (Phase 1 G1–G8) — when Joshua green-lights
-- **Smart Actions alerts → Review in Porta** (Telegram-native) — GTM wedge
+- **Smart Actions alerts → Review in Porta** (alerts in Telegram) — GTM wedge
 - **Protected swap** (opt-in, never “MEV-proof”)
 - **Account abstraction** — social recovery / session limits as *building*, not shipped gasless
 - **Trading strategies / copy** — later; not brand lead
@@ -51,7 +53,7 @@ Deferred: Next.js App Router — revisit if SEO/blog needs SSR; Vite static is e
 
 Never: MEV-proof · fake gasless · auto-trading live · AA social recovery live · “ultimate DeFi” as a primary/live claim · pretend roadmap features are live.
 
-**Hero line:** *Porta — Telegram-native non-custodial wallet. Create or import, check balances, send, and swap with clear review. Alerts and smarter trading are on the roadmap.* Heritage “Ultimate DeFi Trading Wallet” art may appear as visual texture only — not the H1.
+**Hero line:** *Non-custodial wallet — create, send, and swap with clear review.* Telegram is a surface (bot / Mini App) in the sub only — not the H1. Heritage “Ultimate DeFi Trading Wallet” art may appear as visual texture only — not the H1.
 
 ## Deliverable this kick
 

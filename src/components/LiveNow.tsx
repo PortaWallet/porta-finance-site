@@ -15,6 +15,8 @@ import {
   YOUTUBE_HANDLE,
   YOUTUBE_URL,
   MINI_APP_URL,
+  APK_AVAILABLE,
+  APK_HREF,
 } from '../lib/site'
 
 type LiveCard = {
@@ -30,14 +32,14 @@ type LiveCard = {
 const cards: LiveCard[] = [
   {
     title: 'Telegram bot',
-    description: `Primary dogfood entry. Talk to Porta in chat — wallet create/import and core flows.`,
+    description: `Primary dogfood entry. Create or import, then send and review swaps in chat — not auto-trade.`,
     status: 'live',
     href: TG_BOT_URL,
     cta: `Open ${TG_BOT_HANDLE}`,
   },
   {
     title: 'Mini App',
-    description: `Balances, send, and swap review in Telegram. Soft dogfood tip ${SOFT_TIP}. Primary dogfood entry is ${TG_BOT_HANDLE}.`,
+    description: `Telegram WebView of the same dogfood wallet (Cloud Run host on run.app). Soft dogfood tip ${SOFT_TIP}. Primary entry is still ${TG_BOT_HANDLE} — not a separate launch.`,
     status: 'live',
     href: MINI_APP_URL,
     cta: 'Open Mini App',
@@ -49,15 +51,19 @@ const cards: LiveCard[] = [
     cta: 'Chrome Web Store Unlisted — dogfood soon',
     disabled: true,
   },
-  {
-    title: 'Android APK',
-    description:
-      'Dogfood placeholder build for sideload testing — not a Play Store release.',
-    status: 'live',
-    href: '/downloads/porta-wallet.apk',
-    cta: 'Download dogfood APK',
-    download: true,
-  },
+  ...(APK_AVAILABLE
+    ? [
+        {
+          title: 'Android APK',
+          description:
+            'Dogfood placeholder build for sideload testing — not a Play Store release. Not live.',
+          status: 'soon' as const,
+          href: APK_HREF,
+          cta: 'Download dogfood APK',
+          download: true,
+        } satisfies LiveCard,
+      ]
+    : []),
 ]
 
 function CardInner({ card }: { card: LiveCard }) {
@@ -72,7 +78,11 @@ function CardInner({ card }: { card: LiveCard }) {
               : 'bg-white/5 text-porta-muted ring-1 ring-white/10'
           }`}
         >
-          {card.status === 'live' ? 'Live' : 'Soon'}
+          {card.status === 'live'
+            ? 'Live'
+            : card.title === 'Android APK'
+              ? 'Dogfood'
+              : 'Soon'}
         </span>
       </div>
       <p className="mb-5 flex-1 text-sm leading-relaxed text-porta-muted">
@@ -98,13 +108,11 @@ function CardInner({ card }: { card: LiveCard }) {
 
 export default function LiveNow() {
   return (
-    <MotionSection id="live" className="scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24">
-      <div className="mx-auto max-w-5xl">
+    <MotionSection id="live" className="relative scroll-mt-20 px-4 py-14 sm:px-6 sm:py-20">
+      <div className="mx-auto max-w-6xl">
         <div className="mb-10 max-w-2xl">
-          <p className="eyebrow mb-3">Live &amp; dogfood entry points</p>
-          <h2 className="text-2xl font-bold tracking-tight text-porta-text sm:text-3xl">
-            Get Porta
-          </h2>
+          <p className="eyebrow mb-3">Live &amp; dogfood</p>
+          <h2 className="section-title">Get Porta</h2>
           <p className="mt-3 text-sm leading-relaxed text-porta-muted sm:text-base">
             What you can use today. Porta is in active dogfood — soft tip{' '}
             <code className="rounded bg-white/5 px-1.5 py-0.5 text-xs text-porta-accent">
