@@ -1,4 +1,13 @@
-import { SITE_HOST, SITE_URL, TG_BOT_HANDLE, TG_BOT_URL } from '../lib/site'
+import {
+  SITE_HOST,
+  SITE_URL,
+  TG_BOT_HANDLE,
+  TG_BOT_URL,
+  TG_CHANNEL_HANDLE,
+  TG_CHANNEL_URL,
+  TG_NEWS_HANDLE,
+  TG_NEWS_URL,
+} from '../lib/site'
 
 export default function Footer() {
   return (
@@ -44,7 +53,25 @@ export default function Footer() {
         >
           {TG_BOT_HANDLE}
         </a>
-        {' · Telegram — ignore lookalike X accounts.'}
+        {' · '}
+        <a
+          href={TG_CHANNEL_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-porta-text transition hover:text-porta-accent"
+        >
+          {TG_CHANNEL_HANDLE}
+        </a>
+        {' · '}
+        <a
+          href={TG_NEWS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-porta-text transition hover:text-porta-accent"
+        >
+          {TG_NEWS_HANDLE}
+        </a>
+        {' — ignore lookalike X accounts.'}
       </p>
     </footer>
   )
