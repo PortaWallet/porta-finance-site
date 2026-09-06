@@ -25,7 +25,7 @@ Deferred: Next.js App Router — revisit if SEO/blog needs SSR; Vite static is e
 
 ## IA
 
-1. **Nav** — Live now · Roadmap · Follow (TG)
+1. **Nav** — Live now · Roadmap · Open bot (TG)
 2. **Hero** — Honest category line (not “ultimate DeFi trading”)
 3. **Live now** — what’s actually dogfoodable today
 4. **Roadmap** — ambitions clearly labeled *Coming / not live*

@@ -3,7 +3,7 @@ import { TG_BOT_URL } from '../lib/site'
 const links = [
   { href: '#live', label: 'Live' },
   { href: '#roadmap', label: 'Roadmap' },
-  { href: TG_BOT_URL, label: 'Follow', external: true, hideOnMobile: true },
+  { href: TG_BOT_URL, label: 'Open bot', external: true, hideOnMobile: true },
 ]
 
 export default function Nav() {

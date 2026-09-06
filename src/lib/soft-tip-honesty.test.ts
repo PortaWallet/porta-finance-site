@@ -63,6 +63,14 @@ describe('soft tip honesty', () => {
     }
   })
 
+  it('nav bot link is Open bot (not Follow) and still TG_BOT_URL', () => {
+    const nav = readFileSync(resolve(ROOT, 'src/components/Nav.tsx'), 'utf8')
+    expect(nav).toContain('href: TG_BOT_URL')
+    expect(nav).toContain("label: 'Open bot'")
+    expect(nav).not.toContain("label: 'Follow'")
+    expect(nav).not.toMatch(/x\.com|twitter\.com/i)
+  })
+
   it('hero headline stays Telegram-native non-custodial, not Ultimate DeFi', () => {
     const hero = readFileSync(resolve(ROOT, 'src/components/Hero.tsx'), 'utf8')
     expect(hero).toContain('Telegram-native')
