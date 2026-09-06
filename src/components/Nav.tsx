@@ -21,12 +21,11 @@ export default function Nav() {
               className="h-8 w-auto object-contain sm:h-10"
             />
           </a>
-          <a
-            href="#live"
-            className="btn-primary shrink-0 px-3 text-sm sm:hidden"
-          >
-            Get Porta
-          </a>
+          <span className="sm:hidden">
+            <a href="#live" className="btn-primary px-3 text-sm">
+              Get Porta
+            </a>
+          </span>
         </div>
         <div className="flex items-center justify-between gap-1 sm:justify-end sm:gap-2">
           <ul className="flex items-center">
@@ -41,12 +40,11 @@ export default function Nav() {
               </li>
             ))}
           </ul>
-          <a
-            href="#live"
-            className="btn-primary hidden shrink-0 px-4 text-sm sm:inline-flex"
-          >
-            Get Porta
-          </a>
+          <span className="hidden sm:inline-flex">
+            <a href="#live" className="btn-primary px-4 text-sm">
+              Get Porta
+            </a>
+          </span>
         </div>
       </nav>
     </header>

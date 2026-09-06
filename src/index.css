@@ -377,6 +377,10 @@
       0 0 28px rgba(0, 234, 255, 0.16);
   }
 
+  .hidden.btn-primary {
+    display: none;
+  }
+
   .btn-primary {
     position: relative;
     overflow: hidden;
