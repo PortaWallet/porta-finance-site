@@ -11,8 +11,8 @@ import {
   YOUTUBE_URL,
 } from './site'
 
-const LIVE_TIP = '00034-6vs'
-const STALE_TIP = '00027-5zg'
+const LIVE_TIP = '00036-8zr'
+const STALE_TIPS = ['00027-5zg', '00034-6vs'] as const
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 
 /** Marketing copy we own — not a DOM suite. */
@@ -32,6 +32,8 @@ const COPY_SOURCES = [
   'src/lib/brand.ts',
   'index.html',
   'PLAN.md',
+  'DNS-CUTOVER.md',
+  'qa/2026-09-06-grok-fe-porta-finance-live-rebrand-baseline.md',
 ] as const
 
 describe('soft tip honesty', () => {
@@ -39,10 +41,12 @@ describe('soft tip honesty', () => {
     expect(SOFT_TIP).toBe(LIVE_TIP)
   })
 
-  it(`owned copy sources do not mention stale tip ${STALE_TIP}`, () => {
+  it('owned copy sources do not mention stale tips', () => {
     for (const rel of COPY_SOURCES) {
       const text = readFileSync(resolve(ROOT, rel), 'utf8')
-      expect(text, rel).not.toContain(STALE_TIP)
+      for (const stale of STALE_TIPS) {
+        expect(text, `${rel} · ${stale}`).not.toContain(stale)
+      }
     }
   })
 
