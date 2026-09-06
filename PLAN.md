@@ -15,9 +15,12 @@ Deferred: Next.js App Router — revisit if SEO/blog needs SSR; Vite static is e
 
 ## Brand
 
-- **Cyan primary:** `#22E0D0` (Porta cyan) on near-black `#0A0F14`
+- **Cosmic navy/purple** backgrounds (`#07060f` → `#12081f`) with cyan wireframe mesh + glow particles
+- **Portal sphere** (cyan→magenta globe) as favicon + header mark (`/logo.png`, `/favicon.svg`)
+- **Lavender** (`#a89eff`) on key words; **cyan** (`#00eaff`) CTAs; magenta only as atmospheric support
 - Typography: IBM Plex Sans, self-hosted latin 400/600/700 (no Google Fonts)
 - Motion: below-fold fade+rise only; Hero H1 is static for LCP; respect `prefers-reduced-motion`
+- Official links only: porta.finance, t.me/PortaWallet_bot, t.me/PortaWallet, t.me/PortaNews, linkedin.com/company/portawallet, youtube.com/@PortaWallet — no X
 
 ## IA
 
@@ -25,7 +28,7 @@ Deferred: Next.js App Router — revisit if SEO/blog needs SSR; Vite static is e
 2. **Hero** — Honest category line (not “ultimate DeFi trading”)
 3. **Live now** — what’s actually dogfoodable today
 4. **Roadmap** — ambitions clearly labeled *Coming / not live*
-5. **Footer** — © DracoLabs · no fake partners strip
+5. **Footer** — © DracoLabs · official links only (no X)
 
 ### Live now (honest)
 
@@ -46,9 +49,9 @@ Deferred: Next.js App Router — revisit if SEO/blog needs SSR; Vite static is e
 
 ## Copy rules (do-not-claim)
 
-Never: MEV-proof · fake gasless · auto-trading live · AA social recovery live · “ultimate DeFi” · pretend roadmap features are live.
+Never: MEV-proof · fake gasless · auto-trading live · AA social recovery live · “ultimate DeFi” as a primary/live claim · pretend roadmap features are live.
 
-**Hero line:** *Porta — Telegram-native wallet. Create or import, check balances, send, and swap with clear review. Alerts and smarter trading are on the roadmap.*
+**Hero line:** *Porta — Telegram-native non-custodial wallet. Create or import, check balances, send, and swap with clear review. Alerts and smarter trading are on the roadmap.* Heritage “Ultimate DeFi Trading Wallet” art may appear as visual texture only — not the H1.
 
 ## Deliverable this kick
 

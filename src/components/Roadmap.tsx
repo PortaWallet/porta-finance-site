@@ -33,11 +33,12 @@ export default function Roadmap() {
   return (
     <MotionSection
       id="roadmap"
-      className="scroll-mt-20 px-4 py-16 sm:px-6 sm:py-20"
+      className="scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24"
     >
       <div className="mx-auto max-w-5xl">
         <div className="mb-10 flex flex-wrap items-end justify-between gap-4">
           <div className="max-w-2xl">
+            <p className="eyebrow mb-3">Coming · not live</p>
             <h2 className="text-2xl font-bold tracking-tight text-porta-text sm:text-3xl">
               Roadmap
             </h2>
@@ -63,7 +64,7 @@ export default function Roadmap() {
                   <span className="text-[11px] font-semibold tabular-nums tracking-wider text-porta-muted/70">
                     {item.n}
                   </span>
-                  <span className="rounded-full bg-porta-primary/10 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-porta-primary ring-1 ring-porta-primary/20">
+                  <span className="rounded-full bg-white/5 px-2.5 py-0.5 text-[10px] font-semibold uppercase tracking-wide text-porta-muted ring-1 ring-white/10">
                     Coming
                   </span>
                 </div>

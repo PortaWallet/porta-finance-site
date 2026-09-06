@@ -1,15 +1,19 @@
 @import "tailwindcss";
 
 @theme {
-  --color-porta-bg: #0b0611;
-  --color-porta-surface: #16131c;
-  --color-porta-surface-2: #201b2a;
-  --color-porta-primary: #7665f5;
-  --color-porta-primary-hover: #7665f5b3;
+  /* Brand pack: cosmic navy/purple + cyan mesh + lavender keywords. */
+  --color-porta-bg: #07060f;
+  --color-porta-surface: #141022;
+  --color-porta-surface-2: #1c1530;
+  --color-porta-primary: #00eaff;
+  --color-porta-primary-hover: #38ffb7;
   --color-porta-accent: #23f7dd;
-  --color-porta-border: rgba(118, 101, 245, 0.22);
-  --color-porta-text: #e8eef2;
-  --color-porta-muted: #9497a9;
+  --color-porta-lavender: #a89eff;
+  --color-porta-magenta: #bc29ff;
+  --color-porta-violet: #7665f5;
+  --color-porta-border: rgba(0, 234, 255, 0.16);
+  --color-porta-text: #f3f6fb;
+  --color-porta-muted: #8e93ab;
   /* Faces are declared in index.html (self-hosted latin 400/600/700, font-display: swap). */
   --font-sans: "IBM Plex Sans", ui-sans-serif, system-ui, sans-serif;
 }
@@ -29,71 +33,144 @@
     @apply bg-porta-bg text-porta-text font-sans antialiased;
     margin: 0;
     min-height: 100dvh;
+    background-image:
+      radial-gradient(ellipse 90% 70% at 0% 0%, rgba(0, 234, 255, 0.08), transparent 52%),
+      radial-gradient(ellipse 70% 60% at 100% 10%, rgba(188, 41, 255, 0.12), transparent 58%),
+      linear-gradient(180deg, #07060f 0%, #12081f 42%, #07060f 100%);
+    background-attachment: fixed;
   }
 
   ::selection {
-    background: rgba(118, 101, 245, 0.35);
+    background: rgba(168, 158, 255, 0.35);
     color: #fff;
   }
 
   :focus-visible {
     outline: 2px solid var(--color-porta-primary);
-    outline-offset: 2px;
+    outline-offset: 3px;
   }
 }
 
 @layer utilities {
+  .hero-cosmos {
+    background:
+      radial-gradient(ellipse 70% 55% at 18% 30%, rgba(0, 234, 255, 0.16), transparent 58%),
+      radial-gradient(ellipse 55% 45% at 88% 20%, rgba(188, 41, 255, 0.16), transparent 62%),
+      radial-gradient(ellipse 50% 40% at 70% 90%, rgba(118, 101, 245, 0.12), transparent 70%);
+  }
+
+  .glow-particles {
+    background-image:
+      radial-gradient(1.5px 1.5px at 8% 18%, rgba(255, 255, 255, 0.55), transparent),
+      radial-gradient(1px 1px at 16% 62%, rgba(0, 234, 255, 0.5), transparent),
+      radial-gradient(1.5px 1.5px at 28% 34%, rgba(255, 255, 255, 0.4), transparent),
+      radial-gradient(1px 1px at 41% 78%, rgba(168, 158, 255, 0.55), transparent),
+      radial-gradient(1.5px 1.5px at 54% 22%, rgba(0, 234, 255, 0.45), transparent),
+      radial-gradient(1px 1px at 67% 58%, rgba(255, 255, 255, 0.35), transparent),
+      radial-gradient(1.5px 1.5px at 79% 16%, rgba(188, 41, 255, 0.45), transparent),
+      radial-gradient(1px 1px at 88% 72%, rgba(0, 234, 255, 0.4), transparent),
+      radial-gradient(1.5px 1.5px at 93% 40%, rgba(255, 255, 255, 0.3), transparent);
+  }
+
   .glass {
-    background: rgba(22, 19, 28, 0.78);
+    background: rgba(20, 16, 34, 0.78);
     border: 1px solid var(--color-porta-border);
     backdrop-filter: blur(12px);
+    box-shadow: inset 0 1px 0 rgba(243, 246, 251, 0.04);
     transition:
       border-color 0.2s ease,
       box-shadow 0.2s ease;
   }
 
   .glass:hover {
-    border-color: rgba(118, 101, 245, 0.38);
+    border-color: rgba(0, 234, 255, 0.36);
   }
 
   .primary-glow {
     box-shadow:
-      0 0 0 1px rgba(118, 101, 245, 0.28),
-      0 0 36px rgba(118, 101, 245, 0.18);
-  }
-
-  .accent-glow {
-    box-shadow:
-      0 0 0 1px rgba(35, 247, 221, 0.22),
-      0 0 36px rgba(35, 247, 221, 0.12);
+      0 0 0 1px rgba(0, 234, 255, 0.28),
+      0 0 36px rgba(0, 234, 255, 0.16);
   }
 
   .btn-primary {
     display: inline-flex;
     align-items: center;
     justify-content: center;
+    min-height: 2.75rem;
     border-radius: 0.75rem;
     background: var(--color-porta-primary);
-    color: #ffffff;
+    color: #071018;
     font-weight: 600;
     transition:
       background-color 0.2s ease,
-      box-shadow 0.2s ease,
-      transform 0.15s ease;
+      box-shadow 0.2s ease;
     box-shadow:
-      0 0 0 1px rgba(118, 101, 245, 0.35),
-      0 0 24px rgba(118, 101, 245, 0.22);
+      0 0 0 1px rgba(0, 234, 255, 0.4),
+      0 0 24px rgba(0, 234, 255, 0.22);
   }
 
   .btn-primary:hover {
-    background: color-mix(in srgb, var(--color-porta-primary) 70%, transparent);
+    background: var(--color-porta-primary-hover);
     box-shadow:
-      0 0 0 1px rgba(118, 101, 245, 0.45),
-      0 0 40px rgba(118, 101, 245, 0.32);
+      0 0 0 1px rgba(56, 255, 183, 0.45),
+      0 0 40px rgba(0, 234, 255, 0.28);
   }
 
   .btn-primary:focus-visible {
-    outline: 2px solid var(--color-porta-accent);
+    outline: 2px solid var(--color-porta-lavender);
     outline-offset: 3px;
+  }
+
+  .btn-secondary {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 2.75rem;
+    border-radius: 0.75rem;
+    border: 1px solid var(--color-porta-border);
+    background: rgba(20, 16, 34, 0.65);
+    color: var(--color-porta-text);
+    font-weight: 600;
+    transition:
+      border-color 0.2s ease,
+      color 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  .btn-secondary:hover {
+    border-color: rgba(168, 158, 255, 0.5);
+    color: var(--color-porta-lavender);
+    background: rgba(20, 16, 34, 0.92);
+  }
+
+  .link-official {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+    border-radius: 9999px;
+    border: 1px solid var(--color-porta-border);
+    background: rgba(20, 16, 34, 0.72);
+    padding: 0 0.9rem;
+    font-size: 0.8125rem;
+    font-weight: 600;
+    color: var(--color-porta-text);
+    transition:
+      border-color 0.2s ease,
+      color 0.2s ease,
+      background-color 0.2s ease;
+  }
+
+  .link-official:hover {
+    border-color: rgba(0, 234, 255, 0.42);
+    color: var(--color-porta-accent);
+    background: rgba(20, 16, 34, 0.95);
+  }
+
+  .eyebrow {
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--color-porta-lavender);
   }
 }
