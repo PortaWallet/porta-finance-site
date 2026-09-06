@@ -11,8 +11,8 @@ import {
   YOUTUBE_URL,
 } from './site'
 
-const LIVE_TIP = '00043-2qj'
-const STALE_TIPS = ['00027-5zg', '00034-6vs', '00036-8zr', '00037-d46', '00038-lzb', '00039-42b', '00041-rt9', '00042-n4v'] as const
+const LIVE_TIP = '00044-47z'
+const STALE_TIPS = ['00027-5zg', '00034-6vs', '00036-8zr', '00037-d46', '00038-lzb', '00039-42b', '00041-rt9', '00042-n4v', '00043-2qj'] as const
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '../..')
 
 /** Marketing copy we own — not a DOM suite. */

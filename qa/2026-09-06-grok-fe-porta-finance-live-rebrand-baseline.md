@@ -1,10 +1,10 @@
 # FE LIVE baseline — porta.finance rebrand
 
-**Date:** 2026-09-06 · **Reviewer:** Grok (partner FE) · **Tip:** `00043-2qj`
+**Date:** 2026-09-06 · **Reviewer:** Grok (partner FE) · **Tip:** `00044-47z`
 
 ## PASS (kept)
 
-- Soft tip label `00043-2qj`
+- Soft tip label `00044-47z`
 - Official links: porta.finance, `@PortaWallet_bot`, t.me/PortaWallet, t.me/PortaNews (+ LinkedIn, YouTube)
 - No X / Twitter hrefs
 - LCP kept light (no hero video, no heavy campaign PNGs)
