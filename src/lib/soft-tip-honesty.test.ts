@@ -25,6 +25,7 @@ const COPY_SOURCES = [
   'src/components/OfficialLinks.tsx',
   'src/components/Roadmap.tsx',
   'src/components/How.tsx',
+  'src/components/Trust.tsx',
   'src/components/Contact.tsx',
   'src/components/Nav.tsx',
   'index.html',
@@ -98,6 +99,17 @@ describe('soft tip honesty', () => {
     expect(footer).not.toContain('support@')
   })
 
+  it('how is Create → Fund → Review and live H2 is Get Porta', () => {
+    const how = readFileSync(resolve(ROOT, 'src/components/How.tsx'), 'utf8')
+    expect(how).toContain('Create → Fund → Review')
+    expect(how).toContain("title: 'Create'")
+    expect(how).toContain("title: 'Fund'")
+    expect(how).toContain("title: 'Review'")
+    const live = readFileSync(resolve(ROOT, 'src/components/LiveNow.tsx'), 'utf8')
+    expect(live).toContain('Get Porta')
+    expect(live).toContain('review swaps')
+  })
+
   it('roadmap H2 is What’s next with locked JTBD Coming titles', () => {
     const roadmap = readFileSync(resolve(ROOT, 'src/components/Roadmap.tsx'), 'utf8')
     expect(roadmap).toContain('What’s next')
@@ -121,9 +133,10 @@ describe('soft tip honesty', () => {
     expect(h1).not.toMatch(/in Telegram|Telegram-native/i)
     expect(hero).toContain('Independent non-custodial wallet · not a Telegram product')
     expect(hero).toContain(
-      'Create or import, check balances, send, and review swaps. Use Porta',
+      'Create or import, check balances, send, and review swaps —',
     )
-    expect(hero).toContain('via Telegram bot and Mini App')
+    expect(hero).toContain('available in Telegram via bot and Mini App')
+    expect(hero).toContain('Alerts and smarter trading are on the roadmap')
     expect(hero).toContain(`tip {SOFT_TIP}`)
     expect(hero).not.toMatch(/ultimate de[fF]i trading wallet/i)
     expect(hero).toContain("Open {TG_BOT_HANDLE}")

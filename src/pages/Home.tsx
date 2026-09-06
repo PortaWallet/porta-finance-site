@@ -3,8 +3,9 @@ import Nav from '../components/Nav'
 import Hero from '../components/Hero'
 import Footer from '../components/Footer'
 
-const LiveNow = lazy(() => import('../components/LiveNow'))
+const Trust = lazy(() => import('../components/Trust'))
 const How = lazy(() => import('../components/How'))
+const LiveNow = lazy(() => import('../components/LiveNow'))
 const Roadmap = lazy(() => import('../components/Roadmap'))
 const Contact = lazy(() => import('../components/Contact'))
 
@@ -15,6 +16,7 @@ export default function Home() {
       <main>
         <Hero />
         <Suspense fallback={<div className="min-h-[24vh]" aria-hidden />}>
+          <Trust />
           <How />
           <LiveNow />
           <Roadmap />

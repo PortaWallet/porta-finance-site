@@ -39,9 +39,7 @@ export default function Roadmap() {
         <div className="mb-12 flex flex-wrap items-end justify-between gap-4">
           <div className="max-w-2xl">
             <p className="eyebrow mb-3">Coming · not live</p>
-            <h2 className="text-3xl font-bold tracking-tight text-porta-text sm:text-4xl">
-              What’s next
-            </h2>
+            <h2 className="section-title">What’s next</h2>
             <p className="mt-4 text-base leading-relaxed text-porta-muted">
               Ambitions with receipts. Nothing below is live on soft tip{' '}
               {SOFT_TIP}.

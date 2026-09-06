@@ -23,9 +23,7 @@ export default function How() {
     <MotionSection id="how" className="scroll-mt-20 px-4 py-16 sm:px-6 sm:py-24">
       <div className="mx-auto max-w-6xl">
         <p className="eyebrow mb-3">How it works</p>
-        <h2 className="max-w-xl text-3xl font-bold tracking-tight text-porta-text sm:text-4xl">
-          Create, fund, review
-        </h2>
+        <h2 className="section-title max-w-xl">Create → Fund → Review</h2>
         <ol className="mt-10 grid gap-4 sm:grid-cols-3">
           {steps.map((step) => (
             <li key={step.n} className="glass-elevated rounded-3xl p-6">

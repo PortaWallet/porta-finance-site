@@ -10,9 +10,7 @@ export default function Contact() {
       <div className="mx-auto max-w-6xl">
         <div className="glass-elevated rounded-3xl p-6 sm:p-10">
           <p className="eyebrow mb-3">Contact</p>
-          <h2 className="text-3xl font-bold tracking-tight text-porta-text sm:text-4xl">
-            Talk to Porta
-          </h2>
+          <h2 className="section-title">Talk to Porta</h2>
           <p className="mt-4 max-w-2xl text-base leading-relaxed text-porta-muted">
             Email the team. Porta is an independent non-custodial wallet — not a
             Telegram product. Soft tip {SOFT_TIP}. We will never ask for your

@@ -100,6 +100,14 @@
     text-shadow: 0 0 42px rgba(168, 158, 255, 0.38);
   }
 
+  .section-title {
+    font-size: clamp(1.75rem, 3vw, 2.25rem);
+    font-weight: 700;
+    letter-spacing: -0.03em;
+    line-height: 1.15;
+    color: var(--color-porta-text);
+  }
+
   .independence-chip {
     display: inline-flex;
     align-items: center;
