@@ -1,5 +1,5 @@
 /** Single source of truth for live-site honesty (soft dogfood tip + entry points). */
-export const SOFT_TIP = '00036-8zr'
+export const SOFT_TIP = '00037-d46'
 
 export const SITE_HOST = 'porta.finance'
 export const SITE_URL = 'https://www.porta.finance'
