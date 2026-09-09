@@ -200,12 +200,14 @@ describe('soft tip honesty', () => {
 
   it('how is create/import → receive → send & review; apps H2 is Where Porta lives', () => {
     const how = readFileSync(resolve(ROOT, 'content/copy.ts'), 'utf8')
-    expect(how).toContain('Create or import → Receive assets → Send & review')
+    expect(how).toContain(
+      'Create or import → Receive assets → Send and review swaps',
+    )
     expect(how).toContain("title: 'Create or import'")
     expect(how).toContain("title: 'Receive assets'")
-    expect(how).toContain("title: 'Send & review'")
+    expect(how).toContain("title: 'Send and review swaps'")
     expect(how).not.toContain("title: 'Fund'")
-    expect(how).not.toMatch(/on-ramp claim/i)
+    expect(how).not.toMatch(/on-ramp/i)
     const apps = readFileSync(resolve(ROOT, 'content/apps.ts'), 'utf8')
     expect(apps).toContain('Where Porta lives')
     expect(apps).toContain('review swaps')

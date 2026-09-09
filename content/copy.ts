@@ -26,7 +26,7 @@ export const FEATURES = {
     },
     {
       title: 'Receive',
-      body: 'Receive assets you already hold. No on-ramp.',
+      body: 'Receive assets you already hold.',
     },
     {
       title: 'Review',
@@ -41,7 +41,7 @@ export const FEATURES = {
 
 export const HOW = {
   eyebrow: 'How it works',
-  title: 'Create or import → Receive assets → Send & review',
+  title: 'Create or import → Receive assets → Send and review swaps',
   steps: [
     {
       n: '01',
@@ -51,11 +51,11 @@ export const HOW = {
     {
       n: '02',
       title: 'Receive assets',
-      body: 'Receive assets you already hold. No on-ramp.',
+      body: 'Receive assets you already hold.',
     },
     {
       n: '03',
-      title: 'Send & review',
+      title: 'Send and review swaps',
       body: 'Send and review every swap before you confirm.',
     },
   ],

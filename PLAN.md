@@ -24,7 +24,7 @@ Ultra-minimal Apple/Stripe: Inter, OKLCH surfaces, hairline borders, dark/light,
 1. **Nav** — Apps · Roadmap · Official · Contact · **Open in Telegram**
 2. **Hero** — Locked H1: *AA smart-contract wallet — first in Telegram* — CTAs only; brand art, never a fake wallet UI
 3. **Features** — Send / Receive / Review / Bridge (bridge not live)
-4. **How** — Create or import → Receive assets → Send & review
+4. **How** — Create or import → Receive assets → Send and review swaps
 5. **Apps** — Telegram Mini App / Extension (CWS Unlisted soon) / Mobile
 6. **AA + Security** — UserOps / self-funded direction; gasless + social recovery not live
 7. **Developers** — no public SDK claim
