@@ -56,6 +56,8 @@ const COPY_SOURCES = [
   'app/page.tsx',
   'PLAN.md',
   'README.md',
+  '.github/workflows/preview.yml',
+  'lib/preview.ts',
 ] as const
 
 const RETAIL_CTA = /Swap now|Bridge now|Confirm swap|Accept all|AcceptAll/i

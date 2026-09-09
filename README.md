@@ -9,9 +9,10 @@ See **[PLAN.md](./PLAN.md)** for IA, copy honesty, HOLDs, and do-not-claim rules
 ```bash
 npm install
 npm run dev      # http://localhost:3000
-npm run build    # .next/
-npm run start    # production server
-npm test         # honesty + brand tests
+npm run build          # .next/ (Node / Vercel)
+npm run build:preview  # out/ static export for PR preview only
+npm run start          # production server
+npm test               # honesty + brand tests
 ```
 
 ## Stack
@@ -37,3 +38,4 @@ npm test         # honesty + brand tests
 - **Retail feature flags OFF**
 - **AcceptAll dead**
 - **Publish HOLD** — do not cut over GitHub Pages or production from this rebuild. PR only.
+- **Preview HOLD** — `preview.yml` publishes a static export to `preview/pr-<n>` and a downloadable artifact. It does **not** use the `github-pages` environment or edit `pages.yml` / `deploy-pages.yml`.

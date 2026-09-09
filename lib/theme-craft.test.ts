@@ -53,6 +53,15 @@ describe('theme-hard brand pack', () => {
     )
     expect(pages).toContain('Deploy GitHub Pages')
     expect(deploy).toContain('Deploy to GitHub Pages')
+    const preview = readFileSync(
+      resolve(ROOT, '.github/workflows/preview.yml'),
+      'utf8',
+    )
+    expect(preview).toContain('PR preview (HOLD)')
+    expect(preview).toContain('publish_branch: preview/pr-')
+    expect(preview).not.toContain('actions/deploy-pages')
+    expect(preview).not.toContain('www.porta.finance')
+    expect(preview).not.toMatch(/environment:\s*\n\s*name: github-pages/)
   })
 
   it('does not embed client-side API keys or secrets', () => {

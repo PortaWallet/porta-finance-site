@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/button'
 import { SiteLogo } from '@/components/site-logo'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { NAV_LINKS } from '@/content/copy'
+import { HOME_HREF } from '@/lib/preview'
 import { PRIMARY_CTA_LABEL } from '@/lib/site'
 import { TG_BOT_URL } from '@/lib/site'
 
@@ -14,7 +15,7 @@ export function SiteNav() {
         aria-label="Primary"
         className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6"
       >
-        <Link href="/" className="inline-flex min-h-11 items-center">
+        <Link href={HOME_HREF} className="inline-flex min-h-11 items-center">
           <SiteLogo />
         </Link>
         <div className="flex items-center gap-1 sm:gap-2">
