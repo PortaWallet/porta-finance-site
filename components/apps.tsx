@@ -15,15 +15,15 @@ export function Apps() {
   return (
     <MotionSection id="apps" className="section-y">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-6 max-w-2xl">
-          <p className="eyebrow mb-2">{APPS_SECTION.eyebrow}</p>
+        <div className="mb-10 max-w-2xl">
+          <p className="eyebrow mb-3">{APPS_SECTION.eyebrow}</p>
           <h2 className="section-title">{APPS_SECTION.title}</h2>
-          <p className="mt-2 text-sm leading-snug text-muted-foreground">
+          <p className="mt-3 text-base leading-relaxed text-muted-foreground">
             {APPS_SECTION.lede}
           </p>
         </div>
 
-        <MotionStagger className="grid gap-3 lg:grid-cols-3">
+        <MotionStagger className="grid gap-6 lg:grid-cols-3">
           {APP_SURFACES.map((app) => {
             const Icon = icons[app.id]
             return (

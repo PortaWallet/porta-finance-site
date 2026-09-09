@@ -5,6 +5,7 @@ import { Developers } from '@/components/developers'
 import { Features } from '@/components/features'
 import { Hero } from '@/components/hero'
 import { How } from '@/components/how'
+import { MotionSection } from '@/components/motion-section'
 import { Roadmap } from '@/components/roadmap'
 import { Security } from '@/components/security'
 import { SiteFooter } from '@/components/site-footer'
@@ -22,9 +23,13 @@ export default function HomePage() {
         <Features />
         <How />
         <Apps />
-        <AccountAbstraction />
-        <Security />
-        <Developers />
+        <MotionSection className="section-y">
+          <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-3">
+            <AccountAbstraction />
+            <Security />
+            <Developers />
+          </div>
+        </MotionSection>
         <Roadmap />
         <Contact />
       </main>

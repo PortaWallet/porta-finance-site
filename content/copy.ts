@@ -34,7 +34,7 @@ export const FEATURES = {
     },
     {
       title: 'Bridge',
-      body: 'Cross-chain bridge is not live. No retail bridge CTA.',
+      body: 'Cross-chain bridge is not live.',
     },
   ],
 } as const

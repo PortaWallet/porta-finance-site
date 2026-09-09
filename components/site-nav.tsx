@@ -13,7 +13,7 @@ export function SiteNav() {
     <header className="sticky top-0 z-50 border-b border-border/80 bg-background/80 backdrop-blur-xl">
       <nav
         aria-label="Primary"
-        className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-2 sm:px-6 sm:py-2.5"
+        className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6"
       >
         <Link href={HOME_HREF} className="inline-flex min-h-10 items-center">
           <SiteLogo />

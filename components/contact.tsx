@@ -10,11 +10,11 @@ export function Contact() {
     <MotionSection id="contact" className="section-y">
       <div className="mx-auto max-w-6xl">
         <Card>
-          <CardContent className="grid gap-4 pt-4 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-8">
+          <CardContent className="grid gap-6 p-6 sm:grid-cols-[minmax(0,1fr)_auto] sm:items-center sm:gap-12 sm:p-8">
             <div>
-              <p className="eyebrow mb-2">{CONTACT.eyebrow}</p>
+              <p className="eyebrow mb-3">{CONTACT.eyebrow}</p>
               <h2 className="section-title">{CONTACT.title}</h2>
-              <p className="mt-2 max-w-2xl text-sm leading-snug text-muted-foreground">
+              <p className="mt-3 max-w-xl text-base leading-relaxed text-muted-foreground">
                 {CONTACT.body}
               </p>
             </div>

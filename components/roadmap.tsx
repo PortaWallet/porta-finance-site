@@ -6,18 +6,18 @@ export function Roadmap() {
   return (
     <MotionSection id="roadmap" className="section-y">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-4 flex flex-wrap items-end justify-between gap-2">
+        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div className="max-w-2xl">
-            <p className="eyebrow mb-2">{ROADMAP.eyebrow}</p>
+            <p className="eyebrow mb-3">{ROADMAP.eyebrow}</p>
             <h2 className="section-title">{ROADMAP.title}</h2>
-            <p className="mt-2 text-sm leading-snug text-muted-foreground">
+            <p className="mt-3 text-base leading-relaxed text-muted-foreground">
               {ROADMAP.lede}
             </p>
           </div>
           <Badge variant="coming">{ROADMAP.badge}</Badge>
         </div>
 
-        <ol className="grid gap-2">
+        <ol className="grid gap-4">
           {ROADMAP.items.map((item) => (
             <li
               key={item.title}

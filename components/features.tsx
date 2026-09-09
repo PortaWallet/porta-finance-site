@@ -14,22 +14,24 @@ export function Features() {
   return (
     <MotionSection id="features" className="section-y">
       <div className="mx-auto max-w-6xl">
-        <p className="eyebrow mb-2">{FEATURES.eyebrow}</p>
+        <p className="eyebrow mb-3">{FEATURES.eyebrow}</p>
         <h2 className="section-title max-w-xl">{FEATURES.title}</h2>
-        <MotionStagger className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+        <MotionStagger className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {FEATURES.items.map((item) => {
             const Icon = icons[item.title]
             return (
               <MotionItem key={item.title} className="h-full">
                 <Card className="app-card h-full">
-                  <CardHeader className="p-5">
-                    <span className="app-card-icon mb-3" aria-hidden>
+                  <CardHeader className="p-6">
+                    <span className="app-card-icon mb-4" aria-hidden>
                       <Icon className="size-4" />
                     </span>
                     <CardTitle className="text-lg">{item.title}</CardTitle>
                   </CardHeader>
-                  <CardContent className="px-5 pb-5">
-                    <CardDescription>{item.body}</CardDescription>
+                  <CardContent className="px-6 pb-6">
+                    <CardDescription className="leading-relaxed">
+                      {item.body}
+                    </CardDescription>
                   </CardContent>
                 </Card>
               </MotionItem>
