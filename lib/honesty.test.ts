@@ -17,6 +17,7 @@ import {
   SOFT_TIP,
   TG_CHANNEL_URL,
   TG_NEWS_URL,
+  X_URL,
   YOUTUBE_URL,
 } from '@/lib/site'
 
@@ -109,8 +110,21 @@ describe('soft tip honesty', () => {
     }
   })
 
-  it('marketing sources do not contain X / Twitter hrefs', () => {
-    for (const rel of COPY_SOURCES) {
+  it('X / Twitter is official once — not in Apps, nav, or hero', () => {
+    expect(X_URL).toBe('https://x.com/PortaWallet')
+    const officialX = OFFICIAL_LINKS.filter((link) =>
+      /x\.com|twitter\.com/i.test(link.href),
+    )
+    expect(officialX).toHaveLength(1)
+    expect(officialX[0]?.href).toBe(X_URL)
+    expect(officialX[0]?.label).toMatch(/X \/ Twitter @PortaWallet/)
+    const banned = [
+      'components/apps.tsx',
+      'components/site-nav.tsx',
+      'components/hero.tsx',
+      'content/apps.ts',
+    ] as const
+    for (const rel of banned) {
       const text = readFileSync(resolve(ROOT, rel), 'utf8')
       expect(text, rel).not.toMatch(/x\.com|twitter\.com/i)
     }
@@ -208,6 +222,11 @@ describe('soft tip honesty', () => {
     expect(how).toContain("title: 'Send and review swaps'")
     expect(how).not.toContain("title: 'Fund'")
     expect(how).not.toMatch(/on-ramp/i)
+    const howUi = readFileSync(resolve(ROOT, 'components/how.tsx'), 'utf8')
+    expect(howUi).toContain('Wallet')
+    expect(howUi).toContain('ArrowDownToLine')
+    expect(howUi).toContain('Send')
+    expect(howUi).not.toContain('{step.n}')
     const apps = readFileSync(resolve(ROOT, 'content/apps.ts'), 'utf8')
     expect(apps).toContain('Where Porta lives')
     expect(apps).toContain('review swaps')
@@ -315,11 +334,12 @@ describe('soft tip honesty', () => {
     expect(developers).not.toMatch(/SDK is live|API is live/i)
   })
 
-  it('official surfaces are locked and include LinkedIn + YouTube (no X)', () => {
+  it('official surfaces are locked and include LinkedIn + YouTube + X once', () => {
     expect(TG_CHANNEL_URL).toBe('https://t.me/PortaWallet')
     expect(TG_NEWS_URL).toBe('https://t.me/PortaNews')
     expect(LINKEDIN_URL).toBe('https://www.linkedin.com/company/portawallet')
     expect(YOUTUBE_URL).toBe('https://www.youtube.com/@PortaWallet')
+    expect(X_URL).toBe('https://x.com/PortaWallet')
     const hrefs = OFFICIAL_LINKS.map((link) => link.href)
     expect(hrefs).toEqual([
       'mailto:hello@porta.finance',
@@ -329,8 +349,8 @@ describe('soft tip honesty', () => {
       'https://t.me/PortaNews',
       'https://www.linkedin.com/company/portawallet',
       'https://www.youtube.com/@PortaWallet',
+      'https://x.com/PortaWallet',
     ])
-    expect(hrefs.join(' ')).not.toMatch(/x\.com|twitter\.com/i)
   })
 
   it('official links stay below the fold — footer only, not Apps', () => {

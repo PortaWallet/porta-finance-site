@@ -29,7 +29,7 @@ Ultra-minimal Apple/Stripe: Inter, OKLCH surfaces, hairline borders, dark/light,
 6. **AA + Security** — UserOps / self-funded direction; gasless + social recovery not live
 7. **Developers** — no public SDK claim
 8. **Roadmap** — Coming / not live
-9. **Contact / Footer** — hello@porta.finance · official links once (no X)
+9. **Contact / Footer** — hello@porta.finance · official links once (includes X / Twitter @PortaWallet)
 
 ### Apps (honest)
 

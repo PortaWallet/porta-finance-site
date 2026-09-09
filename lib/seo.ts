@@ -19,6 +19,7 @@ export function organizationJsonLd() {
       'https://t.me/PortaNews',
       'https://www.linkedin.com/company/portawallet',
       'https://www.youtube.com/@PortaWallet',
+      'https://x.com/PortaWallet',
     ],
   }
 }

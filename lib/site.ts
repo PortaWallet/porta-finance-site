@@ -25,6 +25,10 @@ export const YOUTUBE_URL = 'https://www.youtube.com/@PortaWallet'
 export const GITHUB_LABEL = 'GitHub'
 export const GITHUB_URL = 'https://github.com/PortaWallet'
 
+export const X_HANDLE = '@PortaWallet'
+export const X_URL = 'https://x.com/PortaWallet'
+export const X_LABEL = `X / Twitter ${X_HANDLE}`
+
 export const MINI_APP_URL =
   'https://production-wallet-telegram-omytp43vwa-ew.a.run.app'
 
@@ -32,7 +36,7 @@ export const MINI_APP_URL =
 export const APK_HREF = '/downloads/porta-wallet.apk'
 export const APK_AVAILABLE = true
 
-/** Official surfaces only. No X / Twitter hrefs. */
+/** Official surfaces once (footer). Includes X / Twitter — do not duplicate into Apps. */
 export const OFFICIAL_LINKS = [
   { href: CONTACT_MAILTO, label: CONTACT_EMAIL, external: false },
   { href: SITE_URL, label: SITE_HOST, external: false },
@@ -41,6 +45,7 @@ export const OFFICIAL_LINKS = [
   { href: TG_NEWS_URL, label: TG_NEWS_HANDLE, external: true },
   { href: LINKEDIN_URL, label: LINKEDIN_LABEL, external: true },
   { href: YOUTUBE_URL, label: `YouTube ${YOUTUBE_HANDLE}`, external: true },
+  { href: X_URL, label: X_LABEL, external: true },
 ] as const
 
 export const PRIMARY_CTA_LABEL = 'Open in Telegram'
