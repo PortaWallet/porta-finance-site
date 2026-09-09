@@ -6,7 +6,7 @@ export function Roadmap() {
   return (
     <MotionSection id="roadmap" className="section-y">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
+        <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
           <div className="max-w-2xl">
             <p className="eyebrow mb-3">{ROADMAP.eyebrow}</p>
             <h2 className="section-title">{ROADMAP.title}</h2>

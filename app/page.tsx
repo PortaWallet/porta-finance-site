@@ -23,8 +23,8 @@ export default function HomePage() {
         <Features />
         <How />
         <Apps />
-        <MotionSection className="section-y">
-          <div className="mx-auto grid max-w-6xl gap-12 md:grid-cols-3">
+        <MotionSection className="section-y section-band">
+          <div className="mx-auto grid max-w-6xl gap-4 md:grid-cols-3">
             <AccountAbstraction />
             <Security />
             <Developers />
