@@ -4,7 +4,7 @@ import { SOFT_TIP, TG_BOT_HANDLE } from '@/lib/site'
 
 export function HeroGraphic() {
   return (
-    <figure className="relative mx-auto hidden min-h-[28rem] w-full lg:block">
+    <figure className="relative mx-auto hidden w-full min-h-0 lg:block lg:min-h-[28rem]">
       <div
         aria-hidden
         className="portal-stage pointer-events-none absolute right-[-6%] top-1/2 -translate-y-1/2"

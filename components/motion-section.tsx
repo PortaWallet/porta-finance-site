@@ -12,13 +12,16 @@ type Props = {
   id?: string
 }
 
+/**
+ * Visible by default. Never start at opacity 0 — htmlpreview / failed IO
+ * would otherwise leave the rest of the page as an empty hole.
+ */
 export function MotionSection({ children, className, id }: Props) {
   const reduced = usePrefersReducedMotion()
 
   const variants: Variants = reduced
-    ? { hidden: { opacity: 1, y: 0 }, show: { opacity: 1, y: 0 } }
+    ? { show: { opacity: 1, y: 0 } }
     : {
-        hidden: { opacity: 0, y: 16 },
         show: { opacity: 1, y: 0, transition: spring },
       }
 
@@ -26,9 +29,8 @@ export function MotionSection({ children, className, id }: Props) {
     <motion.section
       id={id}
       className={className}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: '-80px' }}
+      initial={false}
+      animate="show"
       variants={variants}
     >
       {children}
@@ -46,20 +48,11 @@ export function MotionStagger({
   const reduced = usePrefersReducedMotion()
 
   const variants: Variants = reduced
-    ? { hidden: {}, show: {} }
-    : {
-        hidden: {},
-        show: { transition: { staggerChildren: 0.08 } },
-      }
+    ? { show: {} }
+    : { show: { transition: { staggerChildren: 0.08 } } }
 
   return (
-    <motion.div
-      className={className}
-      initial="hidden"
-      whileInView="show"
-      viewport={{ once: true, margin: '-40px' }}
-      variants={variants}
-    >
+    <motion.div className={className} initial={false} animate="show" variants={variants}>
       {children}
     </motion.div>
   )
@@ -75,14 +68,11 @@ export function MotionItem({
   const reduced = usePrefersReducedMotion()
 
   const variants: Variants = reduced
-    ? { hidden: { opacity: 1, y: 0 }, show: { opacity: 1, y: 0 } }
-    : {
-        hidden: { opacity: 0, y: 12 },
-        show: { opacity: 1, y: 0, transition: spring },
-      }
+    ? { show: { opacity: 1, y: 0 } }
+    : { show: { opacity: 1, y: 0, transition: spring } }
 
   return (
-    <motion.div className={className} variants={variants}>
+    <motion.div className={className} initial={false} animate="show" variants={variants}>
       {children}
     </motion.div>
   )

@@ -19,7 +19,7 @@ import {
   YOUTUBE_URL,
 } from '@/lib/site'
 
-const LIVE_TIP = '00044-47z'
+const LIVE_TIP = '00051-xsf'
 const STALE_TIPS = [
   '00027-5zg',
   '00034-6vs',
@@ -30,6 +30,7 @@ const STALE_TIPS = [
   '00041-rt9',
   '00042-n4v',
   '00043-2qj',
+  '00044-47z',
 ] as const
 const ROOT = resolve(dirname(fileURLToPath(import.meta.url)), '..')
 
@@ -56,6 +57,8 @@ const COPY_SOURCES = [
   'app/page.tsx',
   'PLAN.md',
   'README.md',
+  'DNS-CUTOVER.md',
+  'components/motion-section.tsx',
   '.github/workflows/preview.yml',
   'lib/preview.ts',
 ] as const

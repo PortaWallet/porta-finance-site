@@ -1,6 +1,6 @@
 # porta.finance — Next.js 15 modernization (ARCH PLAN)
 
-**Date:** 2026-09-09 · **Soft tip:** `00044-47z` · **Path:** App Router rebuild of the Vite marketing site.
+**Date:** 2026-09-09 · **Soft tip:** `00051-xsf` (`2bc372f`) · **Path:** App Router rebuild of the Vite marketing site.
 
 ## Stack (locked)
 

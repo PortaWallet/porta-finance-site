@@ -30,6 +30,17 @@ describe('theme-hard brand pack', () => {
     expect(layout).toContain('next/font/google')
   })
 
+  it('motion sections stay visible without whileInView opacity 0', () => {
+    const motion = readFileSync(
+      resolve(ROOT, 'components/motion-section.tsx'),
+      'utf8',
+    )
+    expect(motion).toContain('initial={false}')
+    expect(motion).not.toContain('initial="hidden"')
+    expect(motion).not.toContain('whileInView')
+    expect(motion).not.toContain('opacity: 0')
+  })
+
   it('hero keeps one tip chip and uses brand pack paths', () => {
     const hero = readFileSync(resolve(ROOT, 'components/hero.tsx'), 'utf8')
     const copy = readFileSync(resolve(ROOT, 'content/copy.ts'), 'utf8')
