@@ -23,11 +23,21 @@ jobs:
           node-version: '22'
           cache: npm
       - run: npm ci
-      - run: npm run build
-      - run: echo "www.porta.finance" > dist/CNAME
+      # Static HTML export. Default `npm run build` is the Node server and
+      # does not emit out/. Do not use build:preview — that relativizes
+      # paths and strips downloads/ for htmlpreview only.
+      - name: Static export for GitHub Pages
+        env:
+          PREVIEW_EXPORT: '1'
+          NEXT_PUBLIC_PREVIEW_EXPORT: '1'
+        run: npm run build
+      - name: Custom domain CNAME
+        run: |
+          mkdir -p out
+          echo "www.porta.finance" > out/CNAME
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: dist
+          path: out
   deploy:
     needs: build
     runs-on: ubuntu-latest
