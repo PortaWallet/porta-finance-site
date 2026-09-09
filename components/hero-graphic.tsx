@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import { BRAND } from '@/lib/brand'
-import { SOFT_TIP, TG_BOT_HANDLE } from '@/lib/site'
+import { TG_BOT_HANDLE } from '@/lib/site'
 import { cn } from '@/lib/utils'
 
 export function ReviewPanel({ className }: { className?: string }) {
@@ -50,7 +50,7 @@ export function ReviewPanel({ className }: { className?: string }) {
       </div>
 
       <p className="border-t border-border px-3 py-2 text-[11px] font-medium text-muted-foreground">
-        Soft tip {SOFT_TIP} · no balances invented
+        Review first · no balances invented
       </p>
     </div>
   )

@@ -9,6 +9,8 @@ export const HOLDS = {
   RETAIL_FEATURE_FLAGS: false,
   /** One-tap accept is dead — no bulk-confirm control. */
   ACCEPT_ALL: false,
+  /** Chrome Web Store Unlisted is not live — no store URL. */
+  CWS_LIVE: false,
 } as const
 
 export const PUBLISH_HOLD = true

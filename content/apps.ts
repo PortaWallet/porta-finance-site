@@ -25,7 +25,7 @@ export type AppSurface = {
 export const APPS_SECTION = {
   eyebrow: 'Apps',
   title: 'Where Porta lives',
-  lede: `Primary entry is ${TG_BOT_HANDLE}. Soft dogfood — no seed phrases or keys here.`,
+  lede: `Primary entry is ${TG_BOT_HANDLE}. Create or import, send, and review swaps — not auto-trade.`,
 } as const
 
 export const APP_SURFACES: readonly AppSurface[] = [
@@ -48,7 +48,7 @@ export const APP_SURFACES: readonly AppSurface[] = [
       'Browser wallet alongside Telegram. Chrome Web Store Unlisted is not live.',
     status: 'coming',
     statusLabel: 'Coming',
-    cta: 'Coming',
+    cta: 'CWS Unlisted soon',
     disabled: true,
   },
   ...(APK_AVAILABLE

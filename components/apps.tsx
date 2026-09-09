@@ -1,25 +1,9 @@
 import { ArrowUpRight, Puzzle, Smartphone, Send } from 'lucide-react'
 import { MotionItem, MotionSection, MotionStagger } from '@/components/motion-section'
-import { OfficialLinks } from '@/components/official-links'
 import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { APP_SURFACES, APPS_SECTION } from '@/content/apps'
-import {
-  LINKEDIN_LABEL,
-  LINKEDIN_URL,
-  SITE_HOST,
-  SITE_URL,
-  SOFT_TIP,
-  TG_BOT_HANDLE,
-  TG_BOT_URL,
-  TG_CHANNEL_HANDLE,
-  TG_CHANNEL_URL,
-  TG_NEWS_HANDLE,
-  TG_NEWS_URL,
-  YOUTUBE_HANDLE,
-  YOUTUBE_URL,
-} from '@/lib/site'
 
 const icons = {
   telegram: Send,
@@ -37,85 +21,35 @@ export function Apps() {
   return (
     <MotionSection id="apps" className="section-y">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-6 max-w-3xl">
+        <div className="mb-6 max-w-2xl">
           <p className="eyebrow mb-2">{APPS_SECTION.eyebrow}</p>
           <h2 className="section-title">{APPS_SECTION.title}</h2>
           <p className="mt-2 text-sm leading-snug text-muted-foreground">
-            {APPS_SECTION.lede} Soft tip{' '}
-            <code className="rounded-md bg-muted px-1.5 py-0.5 text-xs">{SOFT_TIP}</code>.
+            {APPS_SECTION.lede}
           </p>
-          <p className="mt-2 text-xs leading-snug text-muted-foreground">
-            Official only —{' '}
-            <a href={SITE_URL} className="text-foreground hover:text-primary">
-              {SITE_HOST}
-            </a>
-            ,{' '}
-            <a
-              href={TG_BOT_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground hover:text-primary"
-            >
-              {TG_BOT_HANDLE}
-            </a>
-            ,{' '}
-            <a
-              href={TG_CHANNEL_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground hover:text-primary"
-            >
-              {TG_CHANNEL_HANDLE}
-            </a>
-            ,{' '}
-            <a
-              href={TG_NEWS_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground hover:text-primary"
-            >
-              {TG_NEWS_HANDLE}
-            </a>
-            ,{' '}
-            <a
-              href={LINKEDIN_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground hover:text-primary"
-            >
-              {LINKEDIN_LABEL}
-            </a>
-            ,{' '}
-            <a
-              href={YOUTUBE_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground hover:text-primary"
-            >
-              YouTube {YOUTUBE_HANDLE}
-            </a>
-            . Ignore lookalikes (including on X).
-          </p>
-          <OfficialLinks className="mt-3" />
         </div>
 
-        <MotionStagger className="grid gap-2 lg:grid-cols-3">
+        <MotionStagger className="grid gap-3 lg:grid-cols-3">
           {APP_SURFACES.map((app) => {
             const Icon = icons[app.id]
             return (
               <MotionItem key={app.id} className="h-full">
-                <Card className="h-full">
-                  <CardHeader>
-                    <div className="mb-1 flex items-center justify-between gap-2">
-                      <Icon className="size-4 text-muted-foreground" aria-hidden />
+                <Card className="app-card h-full">
+                  <CardHeader className="p-5">
+                    <div className="mb-3 flex items-center justify-between gap-2">
+                      <span className="app-card-icon" aria-hidden>
+                        <Icon className="size-4" />
+                      </span>
                       <Badge variant={statusVariant(app.status)}>{app.statusLabel}</Badge>
                     </div>
-                    <CardTitle>{app.title}</CardTitle>
-                    <CardDescription>{app.description}</CardDescription>
+                    <CardTitle className="text-lg">{app.title}</CardTitle>
+                    <CardDescription className="mt-1">{app.description}</CardDescription>
                   </CardHeader>
-                  <CardContent className="mt-auto flex flex-col items-start gap-1">
+                  <CardContent className="mt-auto flex flex-col items-start gap-1 px-5 pb-5">
                     {app.disabled || !app.href ? (
-                      <span className="text-sm font-medium text-muted-foreground">{app.cta}</span>
+                      <span className="rounded-full border border-border bg-muted/50 px-3 py-1.5 text-xs font-semibold tracking-wide text-muted-foreground">
+                        {app.cta}
+                      </span>
                     ) : (
                       <Button asChild>
                         <a

@@ -1,7 +1,6 @@
 import { ArrowUpRight } from 'lucide-react'
 import Image from 'next/image'
 import { HeroGraphic, ReviewPanel } from '@/components/hero-graphic'
-import { Badge } from '@/components/ui/badge'
 import { Button } from '@/components/ui/button'
 import { HERO } from '@/content/copy'
 import { BRAND } from '@/lib/brand'
@@ -45,19 +44,11 @@ export function Hero() {
                 {HERO.secondaryCta}
               </a>
             </Button>
-            <Badge variant="live" className="self-start sm:self-center">
-              {HERO.status}
-            </Badge>
           </div>
 
-          <div className="mt-4 flex flex-wrap items-center gap-2">
-            <p className="inline-flex rounded-full border border-border bg-card px-3 py-1 text-xs font-medium">
-              {HERO.tip}
-            </p>
-            <p className="text-xs font-medium tracking-wide text-muted-foreground">
-              {HERO.keys}
-            </p>
-          </div>
+          <p className="mt-4 text-xs font-medium tracking-wide text-muted-foreground">
+            {HERO.keys}
+          </p>
         </div>
 
         <HeroGraphic />

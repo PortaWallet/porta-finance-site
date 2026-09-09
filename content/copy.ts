@@ -1,7 +1,6 @@
 import {
   PRIMARY_CTA_LABEL,
   SOFT_TIP,
-  TG_BOT_HANDLE,
 } from '@/lib/site'
 
 export const NAV_LINKS = [
@@ -19,8 +18,6 @@ export const HERO = {
   lede: `Create or import, send, and review swaps in the Telegram Mini App. AA is the product direction — social recovery, session limits, and gasless are not live.`,
   primaryCta: PRIMARY_CTA_LABEL,
   secondaryCta: 'Open Mini App',
-  status: 'Live · dogfood',
-  tip: `Soft dogfood via ${TG_BOT_HANDLE} · tip ${SOFT_TIP}`,
   keys: 'Non-custodial · keys stay on your device',
 } as const
 

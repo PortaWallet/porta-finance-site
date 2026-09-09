@@ -5,6 +5,7 @@ import { describe, expect, it } from 'vitest'
 import { HOLDS, PUBLISH_HOLD } from '@/content/holds'
 import {
   FLAGS,
+  isCwsLive,
   isOneTapAcceptEnabled,
   isF64Live,
   isRetailCtaAllowed,
@@ -107,6 +108,20 @@ describe('soft tip honesty', () => {
     }
   })
 
+  it('CWS HOLD: no live Chrome Web Store URL', () => {
+    const marketing = COPY_SOURCES.filter((rel) => !rel.endsWith('.md'))
+    for (const rel of marketing) {
+      const text = readFileSync(resolve(ROOT, rel), 'utf8')
+      expect(text, rel).not.toMatch(
+        /chrome\.google\.com\/webstore|chromewebstore\.google\.com/i,
+      )
+    }
+    const apps = readFileSync(resolve(ROOT, 'content/apps.ts'), 'utf8')
+    expect(apps).toContain('CWS Unlisted soon')
+    expect(apps).toContain("statusLabel: 'Coming'")
+    expect(apps).not.toMatch(/href:.*extension|CWS_URL|CHROME_STORE/i)
+  })
+
   it('forbids retail execution CTAs in product UI and content', () => {
     const marketing = COPY_SOURCES.filter(
       (rel) => !rel.endsWith('.md'),
@@ -166,6 +181,9 @@ describe('soft tip honesty', () => {
     expect(apps).toContain('Telegram Mini App')
     expect(apps).toContain('Browser extension')
     expect(apps).toContain("title: 'Mobile'")
+    expect(apps).toContain('CWS Unlisted soon')
+    expect(apps).toContain("statusLabel: 'Coming'")
+    expect(apps).not.toMatch(/chrome\.google\.com|chromewebstore/i)
   })
 
   it('roadmap H2 is What’s next with locked JTBD Coming titles', () => {
@@ -200,14 +218,19 @@ describe('soft tip honesty', () => {
     expect(seo).not.toContain('Telegram-native')
   })
 
-  it('R3: one Live · dogfood chip; no run.app paragraph in hero', () => {
+  it('R3: public hero has no soft dogfood, tip, or run.app paragraph', () => {
     const hero = readFileSync(resolve(ROOT, 'components/hero.tsx'), 'utf8')
+    const graphic = readFileSync(
+      resolve(ROOT, 'components/hero-graphic.tsx'),
+      'utf8',
+    )
     const copy = readFileSync(resolve(ROOT, 'content/copy.ts'), 'utf8')
-    expect(copy.match(/Live · dogfood/g)).toHaveLength(1)
-    expect(hero).toContain('HERO.status')
+    expect(hero).not.toMatch(/dogfood|SOFT_TIP|HERO\.tip|HERO\.status/i)
     expect(hero).not.toContain('run.app')
     expect(hero).not.toContain('Cloud Run')
     expect(hero).toContain('<HeroGraphic')
+    expect(graphic).not.toMatch(/SOFT_TIP|dogfood|Soft tip/i)
+    expect(copy).not.toMatch(/Soft dogfood|HERO\.tip|status: 'Live/)
   })
 
   it('R6: portal + ring figcaption is Brand art · Coming — not a live network list', () => {
@@ -251,24 +274,23 @@ describe('soft tip honesty', () => {
     expect(hrefs.join(' ')).not.toMatch(/x\.com|twitter\.com/i)
   })
 
-  it('footer + apps render the official-links set', () => {
+  it('official links stay below the fold — footer only, not Apps', () => {
     const official = readFileSync(
       resolve(ROOT, 'components/official-links.tsx'),
       'utf8',
     )
     expect(official).toContain('OFFICIAL_LINKS')
-    for (const rel of [
-      'components/site-footer.tsx',
-      'components/apps.tsx',
-    ] as const) {
-      const text = readFileSync(resolve(ROOT, rel), 'utf8')
-      expect(text, rel).toContain('OfficialLinks')
-    }
+    const footer = readFileSync(
+      resolve(ROOT, 'components/site-footer.tsx'),
+      'utf8',
+    )
+    expect(footer).toContain('OfficialLinks')
+    expect(footer).toContain('id="official"')
     const apps = readFileSync(resolve(ROOT, 'components/apps.tsx'), 'utf8')
-    expect(apps).toContain('TG_CHANNEL_URL')
-    expect(apps).toContain('TG_NEWS_URL')
-    expect(apps).toContain('LINKEDIN_URL')
-    expect(apps).toContain('YOUTUBE_URL')
+    expect(apps).not.toContain('OfficialLinks')
+    expect(apps).not.toContain('TG_CHANNEL_URL')
+    expect(apps).not.toContain('LINKEDIN_URL')
+    expect(apps).not.toContain('YOUTUBE_URL')
     expect(apps).not.toMatch(/run\.app|Cloud Run/)
   })
 })
@@ -284,6 +306,9 @@ describe('HOLDs', () => {
     expect(isF64Live()).toBe(false)
     expect(isRetailCtaAllowed()).toBe(false)
     expect(isOneTapAcceptEnabled()).toBe(false)
+    expect(HOLDS.CWS_LIVE).toBe(false)
+    expect(FLAGS.cwsLive).toBe(false)
+    expect(isCwsLive()).toBe(false)
     expect(PUBLISH_HOLD).toBe(true)
   })
 })

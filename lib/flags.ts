@@ -5,6 +5,7 @@ export const FLAGS = {
   f64: HOLDS.F6_4,
   retailFeatureFlags: HOLDS.RETAIL_FEATURE_FLAGS,
   oneTapAccept: HOLDS.ACCEPT_ALL,
+  cwsLive: HOLDS.CWS_LIVE,
 } as const
 
 export function isRetailCtaAllowed(): false {
@@ -17,4 +18,8 @@ export function isF64Live(): false {
 
 export function isOneTapAcceptEnabled(): false {
   return FLAGS.oneTapAccept
+}
+
+export function isCwsLive(): false {
+  return FLAGS.cwsLive
 }

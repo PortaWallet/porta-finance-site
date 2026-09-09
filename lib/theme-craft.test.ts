@@ -42,12 +42,11 @@ describe('theme-hard brand pack', () => {
     expect(motion).not.toContain('opacity: 0')
   })
 
-  it('hero keeps one tip chip and uses brand pack paths', () => {
+  it('hero uses brand pack paths and keeps tip off the public hero', () => {
     const hero = readFileSync(resolve(ROOT, 'components/hero.tsx'), 'utf8')
-    const copy = readFileSync(resolve(ROOT, 'content/copy.ts'), 'utf8')
-    expect(copy.match(/· tip \$\{SOFT_TIP\}/g)).toHaveLength(1)
-    expect(hero).toContain('HERO.tip')
     expect(hero).toContain('hero-display')
+    expect(hero).not.toContain('HERO.tip')
+    expect(hero).not.toContain('SOFT_TIP')
     expect(hero).not.toContain('glow-particles')
     expect(hero).not.toMatch(/banner-ultimate-defi-trading-wallet/i)
     const graphic = readFileSync(
@@ -55,6 +54,7 @@ describe('theme-hard brand pack', () => {
       'utf8',
     )
     expect(graphic).toContain('BRAND.portalHero')
+    expect(graphic).not.toContain('SOFT_TIP')
   })
 
   it('does not touch GitHub Pages deploy workflows', () => {
