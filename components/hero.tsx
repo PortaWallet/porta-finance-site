@@ -6,11 +6,7 @@ import { HERO } from '@/content/copy'
 import { BRAND } from '@/lib/brand'
 import { MINI_APP_URL, TG_BOT_URL } from '@/lib/site'
 
-const HERO_CHIPS = [
-  HERO.keys,
-  'Review, not auto-trade',
-  'AA smart-contract wallet',
-] as const
+const HERO_CHIPS = [HERO.keys, HERO.review, HERO.aa, HERO.gas] as const
 
 export function Hero() {
   return (

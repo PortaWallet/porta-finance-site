@@ -108,6 +108,11 @@ describe('theme-hard brand pack', () => {
     expect(preview).not.toContain('actions/deploy-pages')
     expect(preview).not.toContain('www.porta.finance')
     expect(preview).not.toMatch(/environment:\s*\n\s*name: github-pages/)
+    expect(deploy).toContain('PREVIEW_EXPORT')
+    expect(deploy).toContain('echo "www.porta.finance" > out/CNAME')
+    expect(deploy).toContain('path: out')
+    expect(deploy).not.toContain('path: dist')
+    expect(deploy).not.toContain('dist/CNAME')
   })
 
   it('does not embed client-side API keys or secrets', () => {

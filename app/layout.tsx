@@ -27,6 +27,8 @@ export const metadata: Metadata = {
     'Porta',
     'smart-contract wallet',
     'account abstraction',
+    'smart account',
+    'UserOps',
     'Telegram Mini App',
     'non-custodial',
   ],

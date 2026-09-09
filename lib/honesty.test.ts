@@ -150,6 +150,7 @@ describe('soft tip honesty', () => {
       expect(text, rel).not.toMatch(/is MEV-proof|MEV-proof wallet/i)
       expect(text, rel).not.toMatch(/is gasless|fully gasless/i)
       expect(text, rel).not.toMatch(/F6\.4/)
+      expect(text, rel).not.toMatch(/VerifyingPaymaster/)
     }
   })
 
@@ -314,6 +315,13 @@ describe('soft tip honesty', () => {
     const copy = readFileSync(resolve(ROOT, 'content/copy.ts'), 'utf8')
     expect(copy).toContain('UserOps')
     expect(copy).toContain('self-funded')
+    expect(copy).toContain('Self-funded — not sponsored')
+    expect(copy).toContain('Smart account — self-funded, not sponsored')
+    expect(copy).toContain("title: 'Smart account'")
+    expect(copy).toContain("title: 'UserOps'")
+    expect(copy).toContain("title: 'Sponsorship'")
+    expect(copy).toContain('Gas sponsorship is not live')
+    expect(copy).toContain('No paymaster cover, no gasless sends, no sponsored UI')
     expect(copy).toContain('Gasless and social recovery are not live')
     expect(copy).toContain("title: 'Send'")
     expect(copy).toContain("title: 'Receive'")
@@ -327,12 +335,34 @@ describe('soft tip honesty', () => {
     expect(page).toContain('<AccountAbstraction')
     expect(page).toContain('<Security')
     expect(page).toContain('<Developers')
+    const aa = readFileSync(resolve(ROOT, 'components/aa.tsx'), 'utf8')
+    expect(aa).toContain("id=\"aa\"")
+    expect(aa).toContain("'Building'")
+    expect(aa).toContain("'Not live'")
+    expect(aa).not.toMatch(/\$0 gas|Free gas|Sponsored send/i)
+    expect(aa).not.toContain('VerifyingPaymaster')
     const developers = readFileSync(
       resolve(ROOT, 'components/developers.tsx'),
       'utf8',
     )
     expect(developers).toContain('GITHUB_URL')
     expect(developers).not.toMatch(/SDK is live|API is live/i)
+  })
+
+  it('public chrome never ships fake sponsored / paymaster UI', () => {
+    const fakeSponsored =
+      /\$0 gas|free gas|gas paid for you|sponsored send|gas is sponsored|fully sponsored/i
+    for (const rel of PUBLIC_UI) {
+      const text = readFileSync(resolve(ROOT, rel), 'utf8')
+      expect(text, rel).not.toMatch(fakeSponsored)
+      expect(text, rel).not.toContain('VerifyingPaymaster')
+      expect(text, rel).not.toMatch(/F6\.4/)
+    }
+    const seo = readFileSync(resolve(ROOT, 'lib/seo.ts'), 'utf8')
+    expect(seo).toContain('sponsorship is not live')
+    const footer = readFileSync(resolve(ROOT, 'content/copy.ts'), 'utf8')
+    expect(footer).toContain('sponsorship is not live')
+    expect(footer).not.toContain('No official X')
   })
 
   it('official surfaces are locked and include LinkedIn + YouTube + X once', () => {
