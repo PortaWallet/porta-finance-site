@@ -38,6 +38,7 @@ export const FEATURES = {
     {
       title: 'Bridge',
       body: 'Cross-chain bridge is not live.',
+      status: 'Not live',
     },
   ],
 } as const
@@ -110,3 +111,24 @@ export const FOOTER = {
   honesty:
     'Honest claims only. Non-custodial — keys stay on your device. Self-funded gas — sponsorship is not live.',
 } as const
+
+/** Footer sitemap only — do not add these to the locked primary nav. */
+export const SITE_MAP = [
+  {
+    label: 'Product',
+    links: [
+      { href: '#features', label: 'Wallet' },
+      { href: '#how', label: 'How it works' },
+      { href: '#apps', label: 'Apps' },
+      { href: '#aa', label: 'Account abstraction' },
+    ],
+  },
+  {
+    label: 'Company',
+    links: [
+      { href: '#roadmap', label: 'Roadmap' },
+      { href: '#official', label: 'Official' },
+      { href: '#contact', label: 'Contact' },
+    ],
+  },
+] as const

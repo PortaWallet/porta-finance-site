@@ -87,6 +87,9 @@ export default function RootLayout({
           enableSystem
           disableTransitionOnChange
         >
+          <a href="#main" className="skip-link">
+            Skip to content
+          </a>
           <JsonLd />
           {children}
         </ThemeProvider>

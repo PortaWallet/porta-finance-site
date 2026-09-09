@@ -328,6 +328,7 @@ describe('soft tip honesty', () => {
     expect(copy).toContain("title: 'Review'")
     expect(copy).toContain("title: 'Bridge'")
     expect(copy).toContain('Cross-chain bridge is not live')
+    expect(copy).toContain("status: 'Not live'")
     expect(copy).toContain('No public SDK yet')
     expect(copy).toContain('No fake audits or TVL')
     const page = readFileSync(resolve(ROOT, 'app/page.tsx'), 'utf8')
@@ -382,6 +383,28 @@ describe('soft tip honesty', () => {
       'https://www.youtube.com/@PortaWallet',
       'https://x.com/PortaWallet',
     ])
+  })
+
+  it('footer sitemap is Product / Company jumps — locked nav unchanged', () => {
+    const copy = readFileSync(resolve(ROOT, 'content/copy.ts'), 'utf8')
+    expect(copy).toContain('SITE_MAP')
+    expect(copy).toContain("label: 'Product'")
+    expect(copy).toContain("label: 'Company'")
+    expect(copy).toContain("href: '#features'")
+    expect(copy).toContain("href: '#how'")
+    expect(copy).toContain("href: '#aa'")
+    expect(copy).toContain("label: 'Account abstraction'")
+    const footer = readFileSync(resolve(ROOT, 'components/site-footer.tsx'), 'utf8')
+    expect(footer).toContain('SITE_MAP')
+    expect(footer).toContain('On this page')
+    expect(footer).toContain('OfficialLinks')
+    expect(footer).toContain('id="official"')
+    expect(footer).not.toMatch(/x\.com|twitter\.com/i)
+    const nav = readFileSync(resolve(ROOT, 'components/site-nav.tsx'), 'utf8')
+    expect(nav).toContain('NAV_LINKS')
+    expect(nav).not.toContain('SITE_MAP')
+    expect(nav).not.toContain('#features')
+    expect(nav).not.toContain('#aa')
   })
 
   it('official links stay below the fold — footer only, not Apps', () => {
