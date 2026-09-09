@@ -4,11 +4,11 @@ import { HOW } from '@/content/copy'
 
 export function How() {
   return (
-    <MotionSection id="how" className="scroll-mt-24 px-4 py-16 sm:px-6 sm:py-24">
+    <MotionSection id="how" className="section-y">
       <div className="mx-auto max-w-6xl">
-        <p className="eyebrow mb-3">{HOW.eyebrow}</p>
+        <p className="eyebrow mb-2">{HOW.eyebrow}</p>
         <h2 className="section-title max-w-xl">{HOW.title}</h2>
-        <MotionStagger className="mt-10 grid gap-4 sm:grid-cols-3">
+        <MotionStagger className="mt-6 grid gap-2 sm:grid-cols-3">
           {HOW.steps.map((step) => (
             <MotionItem key={step.n} className="h-full">
               <Card className="h-full">

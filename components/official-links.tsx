@@ -7,12 +7,12 @@ type Props = {
 
 export function OfficialLinks({ className }: Props) {
   return (
-    <ul className={cn('flex flex-wrap gap-2', className)}>
+    <ul className={cn('flex flex-wrap gap-1.5', className)}>
       {OFFICIAL_LINKS.map((link) => (
         <li key={link.href}>
           <a
             href={link.href}
-            className="inline-flex min-h-11 items-center rounded-full border border-border bg-card px-3.5 text-sm font-medium text-foreground transition-colors hover:border-foreground/25 hover:bg-muted/50"
+            className="inline-flex min-h-9 items-center rounded-full border border-border bg-card px-2.5 text-xs font-medium text-foreground transition-colors hover:border-foreground/25 hover:bg-muted/50"
             {...(link.external
               ? { target: '_blank', rel: 'noopener noreferrer' }
               : {})}

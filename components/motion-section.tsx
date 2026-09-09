@@ -1,10 +1,11 @@
 'use client'
 
-import { motion, type Variants } from 'framer-motion'
-import type { ReactNode } from 'react'
+import { motion } from 'framer-motion'
+import { useEffect, useState, type ReactNode } from 'react'
 import { usePrefersReducedMotion } from '@/hooks/use-prefers-reduced-motion'
 
-const spring = { type: 'spring' as const, stiffness: 380, damping: 32 }
+const spring = { type: 'spring' as const, stiffness: 380, damping: 36 }
+const OFFSET = 12
 
 type Props = {
   children: ReactNode
@@ -13,25 +14,25 @@ type Props = {
 }
 
 /**
- * Visible by default. Never start at opacity 0 — htmlpreview / failed IO
- * would otherwise leave the rest of the page as an empty hole.
+ * Fade-up after mount. Never opacity 0 — htmlpreview / failed IO must
+ * still show the full page. prefers-reduced-motion skips the offset.
  */
 export function MotionSection({ children, className, id }: Props) {
   const reduced = usePrefersReducedMotion()
+  const [ready, setReady] = useState(false)
 
-  const variants: Variants = reduced
-    ? { show: { opacity: 1, y: 0 } }
-    : {
-        show: { opacity: 1, y: 0, transition: spring },
-      }
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => setReady(true))
+    return () => cancelAnimationFrame(frame)
+  }, [])
 
   return (
     <motion.section
       id={id}
       className={className}
       initial={false}
-      animate="show"
-      variants={variants}
+      animate={{ y: reduced || ready ? 0 : OFFSET }}
+      transition={reduced ? { duration: 0 } : spring}
     >
       {children}
     </motion.section>
@@ -46,13 +47,25 @@ export function MotionStagger({
   className?: string
 }) {
   const reduced = usePrefersReducedMotion()
+  const [ready, setReady] = useState(false)
 
-  const variants: Variants = reduced
-    ? { show: {} }
-    : { show: { transition: { staggerChildren: 0.08 } } }
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => setReady(true))
+    return () => cancelAnimationFrame(frame)
+  }, [])
 
   return (
-    <motion.div className={className} initial={false} animate="show" variants={variants}>
+    <motion.div
+      className={className}
+      initial={false}
+      animate={ready && !reduced ? 'show' : 'from'}
+      variants={{
+        from: {},
+        show: {
+          transition: { staggerChildren: 0.05 },
+        },
+      }}
+    >
       {children}
     </motion.div>
   )
@@ -67,12 +80,18 @@ export function MotionItem({
 }) {
   const reduced = usePrefersReducedMotion()
 
-  const variants: Variants = reduced
-    ? { show: { opacity: 1, y: 0 } }
-    : { show: { opacity: 1, y: 0, transition: spring } }
-
   return (
-    <motion.div className={className} initial={false} animate="show" variants={variants}>
+    <motion.div
+      className={className}
+      initial={false}
+      variants={{
+        from: { y: reduced ? 0 : OFFSET },
+        show: {
+          y: 0,
+          transition: reduced ? { duration: 0 } : spring,
+        },
+      }}
+    >
       {children}
     </motion.div>
   )

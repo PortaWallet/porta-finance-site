@@ -3,7 +3,7 @@ import { SOFT_TIP } from '@/lib/site'
 export const ROADMAP = {
   eyebrow: 'Coming · not live',
   title: 'What’s next',
-  lede: `Ambitions with receipts. Nothing below is live on soft tip ${SOFT_TIP}.`,
+  lede: `Nothing below is live on soft tip ${SOFT_TIP}.`,
   badge: 'Not live yet',
   items: [
     {

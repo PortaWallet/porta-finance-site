@@ -24,6 +24,7 @@ describe('theme-hard brand pack', () => {
     expect(css).toContain('portal-drift')
     expect(css).toContain('min-height: 46vh')
     expect(css).toContain('hero-display')
+    expect(css).toContain('.section-y')
     expect(css).not.toContain('.glow-particles')
     const layout = readFileSync(resolve(ROOT, 'app/layout.tsx'), 'utf8')
     expect(layout).toContain('Inter')

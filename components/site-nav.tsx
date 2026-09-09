@@ -10,21 +10,21 @@ import { TG_BOT_URL } from '@/lib/site'
 
 export function SiteNav() {
   return (
-    <header className="sticky top-0 z-50 border-b border-border/80 bg-background/75 backdrop-blur-xl">
+    <header className="sticky top-0 z-50 border-b border-border/80 bg-background/80 backdrop-blur-xl">
       <nav
         aria-label="Primary"
-        className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-3 sm:px-6"
+        className="mx-auto flex max-w-6xl items-center justify-between gap-2 px-4 py-2 sm:px-6 sm:py-2.5"
       >
-        <Link href={HOME_HREF} className="inline-flex min-h-11 items-center">
+        <Link href={HOME_HREF} className="inline-flex min-h-10 items-center">
           <SiteLogo />
         </Link>
-        <div className="flex items-center gap-1 sm:gap-2">
+        <div className="flex items-center gap-1">
           <ul className="hidden items-center md:flex">
             {NAV_LINKS.map((link) => (
               <li key={link.label}>
                 <a
                   href={link.href}
-                  className="inline-flex min-h-11 items-center rounded-full px-3 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  className="inline-flex min-h-10 items-center rounded-full px-2.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {link.label}
                 </a>
@@ -46,13 +46,13 @@ export function SiteNav() {
       </nav>
       <nav
         aria-label="Sections"
-        className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4 pb-2 md:hidden sm:px-6"
+        className="mx-auto grid max-w-6xl grid-cols-4 gap-1 px-4 pb-2 md:hidden sm:px-6"
       >
         {NAV_LINKS.map((link) => (
           <a
             key={link.label}
             href={link.href}
-            className="inline-flex min-h-10 shrink-0 items-center rounded-full px-3 text-xs font-medium text-muted-foreground"
+            className="inline-flex min-h-9 items-center justify-center rounded-lg border border-border bg-card px-1 text-center text-[11px] font-medium text-muted-foreground"
           >
             {link.label}
           </a>

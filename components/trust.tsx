@@ -7,24 +7,26 @@ import { BRAND } from '@/lib/brand'
 
 export function Trust() {
   return (
-    <MotionSection id="trust" className="scroll-mt-24 px-4 py-16 sm:px-6 sm:py-24">
-      <div className="mx-auto max-w-6xl">
-        <p className="eyebrow mb-3">{TRUST.eyebrow}</p>
-        <h2 className="section-title max-w-2xl">{TRUST.title}</h2>
-        <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground sm:text-lg">
-          {TRUST.body}
-        </p>
-        <Card className="mt-8 max-w-2xl">
-          <CardContent className="flex items-center gap-4 pt-6">
+    <MotionSection id="trust" className="section-y">
+      <div className="mx-auto grid max-w-6xl gap-4 lg:grid-cols-[minmax(0,1.1fr)_minmax(0,0.9fr)] lg:items-end">
+        <div>
+          <p className="eyebrow mb-2">{TRUST.eyebrow}</p>
+          <h2 className="section-title max-w-xl">{TRUST.title}</h2>
+          <p className="mt-2 max-w-xl text-sm leading-snug text-muted-foreground sm:text-base">
+            {TRUST.body}
+          </p>
+        </div>
+        <Card>
+          <CardContent className="flex items-center gap-3 pt-4">
             <Image
               src={BRAND.portalMark}
               alt=""
-              width={40}
-              height={40}
-              className="size-10 shrink-0 rounded-full object-cover"
+              width={32}
+              height={32}
+              className="size-8 shrink-0 rounded-full object-cover"
             />
-            <p className="text-sm leading-relaxed text-foreground">{TRUST.panel}</p>
-            <Shield className="ml-auto hidden size-5 text-muted-foreground sm:block" aria-hidden />
+            <p className="text-sm leading-snug text-foreground">{TRUST.panel}</p>
+            <Shield className="ml-auto hidden size-4 text-muted-foreground sm:block" aria-hidden />
           </CardContent>
         </Card>
       </div>

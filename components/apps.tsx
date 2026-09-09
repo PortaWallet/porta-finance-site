@@ -35,17 +35,17 @@ function statusVariant(status: (typeof APP_SURFACES)[number]['status']) {
 
 export function Apps() {
   return (
-    <MotionSection id="apps" className="scroll-mt-24 px-4 py-16 sm:px-6 sm:py-24">
+    <MotionSection id="apps" className="section-y">
       <div className="mx-auto max-w-6xl">
-        <div className="mb-10 max-w-2xl">
-          <p className="eyebrow mb-3">{APPS_SECTION.eyebrow}</p>
+        <div className="mb-6 max-w-3xl">
+          <p className="eyebrow mb-2">{APPS_SECTION.eyebrow}</p>
           <h2 className="section-title">{APPS_SECTION.title}</h2>
-          <p className="mt-3 text-sm leading-relaxed text-muted-foreground sm:text-base">
+          <p className="mt-2 text-sm leading-snug text-muted-foreground">
             {APPS_SECTION.lede} Soft tip{' '}
             <code className="rounded-md bg-muted px-1.5 py-0.5 text-xs">{SOFT_TIP}</code>.
           </p>
-          <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
-            Official links only —{' '}
+          <p className="mt-2 text-xs leading-snug text-muted-foreground">
+            Official only —{' '}
             <a href={SITE_URL} className="text-foreground hover:text-primary">
               {SITE_HOST}
             </a>
@@ -85,7 +85,7 @@ export function Apps() {
             >
               {LINKEDIN_LABEL}
             </a>
-            , and{' '}
+            ,{' '}
             <a
               href={YOUTUBE_URL}
               target="_blank"
@@ -94,26 +94,26 @@ export function Apps() {
             >
               YouTube {YOUTUBE_HANDLE}
             </a>
-            . Ignore lookalike accounts (including on X).
+            . Ignore lookalikes (including on X).
           </p>
-          <OfficialLinks className="mt-4" />
+          <OfficialLinks className="mt-3" />
         </div>
 
-        <MotionStagger className="grid gap-4 lg:grid-cols-3">
+        <MotionStagger className="grid gap-2 lg:grid-cols-3">
           {APP_SURFACES.map((app) => {
             const Icon = icons[app.id]
             return (
               <MotionItem key={app.id} className="h-full">
                 <Card className="h-full">
                   <CardHeader>
-                    <div className="mb-2 flex items-center justify-between gap-2">
-                      <Icon className="size-5 text-muted-foreground" aria-hidden />
+                    <div className="mb-1 flex items-center justify-between gap-2">
+                      <Icon className="size-4 text-muted-foreground" aria-hidden />
                       <Badge variant={statusVariant(app.status)}>{app.statusLabel}</Badge>
                     </div>
                     <CardTitle>{app.title}</CardTitle>
                     <CardDescription>{app.description}</CardDescription>
                   </CardHeader>
-                  <CardContent className="mt-auto flex flex-col items-start gap-2">
+                  <CardContent className="mt-auto flex flex-col items-start gap-1">
                     {app.disabled || !app.href ? (
                       <span className="text-sm font-medium text-muted-foreground">{app.cta}</span>
                     ) : (
@@ -131,7 +131,7 @@ export function Apps() {
                       </Button>
                     )}
                     {app.secondaryHref && app.secondaryCta ? (
-                      <Button asChild variant="link">
+                      <Button asChild variant="link" className="h-8 px-0">
                         <a
                           href={app.secondaryHref}
                           target="_blank"
