@@ -57,7 +57,7 @@ Telegram is the **first surface**, not the product owner. Chip: independent AA s
 - Retail feature flags **OFF**
 - AcceptAll **dead**
 - **Publish HOLD** — PR only. Do not edit GitHub Pages workflows or cut over production.
-- **Preview HOLD** — static export to `preview/pr-<n>` + Actions artifact. Never `github-pages` / www.porta.finance.
+- **Preview HOLD** — static export to `preview-pr-<n>` + Actions artifact. Never `github-pages` or the live custom domain.
 
 ## Perf / SEO / security
 

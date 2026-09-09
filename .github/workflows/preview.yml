@@ -55,7 +55,25 @@ jobs:
           if-no-files-found: error
           retention-days: 14
 
-      - name: Publish preview/pr-${{ github.event.pull_request.number || 'manual' }} branch
+      - name: Point static assets at jsDelivr (for htmlpreview)
+        if: github.event.pull_request.number
+        env:
+          PREVIEW_CDN: https://cdn.jsdelivr.net/gh/${{ github.repository }}@preview-pr-${{ github.event.pull_request.number }}
+        run: node scripts/cdnize-preview.mjs
+
+      - name: Publish preview-pr-${{ github.event.pull_request.number }} branch
+        if: github.event.pull_request.number
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: preview-pr-${{ github.event.pull_request.number }}
+          force_orphan: true
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com
+          commit_message: 'preview: static export for PR #${{ github.event.pull_request.number }} (HOLD)'
+
+      - name: Also publish preview/pr-${{ github.event.pull_request.number }}
         if: github.event.pull_request.number
         uses: peaceiris/actions-gh-pages@v4
         with:
@@ -71,12 +89,13 @@ jobs:
         id: urls
         if: github.event.pull_request.number
         run: |
-          git fetch origin "preview/pr-${{ github.event.pull_request.number }}" --depth=1
-          SHA=$(git rev-parse "origin/preview/pr-${{ github.event.pull_request.number }}")
+          git fetch origin "preview-pr-${{ github.event.pull_request.number }}" --depth=1
+          SHA=$(git rev-parse "origin/preview-pr-${{ github.event.pull_request.number }}")
           echo "preview_sha=${SHA}" >> "$GITHUB_OUTPUT"
-          echo "preview_url=https://cdn.jsdelivr.net/gh/${{ github.repository }}@${SHA}/index.html" >> "$GITHUB_OUTPUT"
-          echo "githack_url=https://raw.githack.com/${{ github.repository }}/${SHA}/index.html" >> "$GITHUB_OUTPUT"
-          echo "branch=preview/pr-${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"
+          echo "preview_url=https://htmlpreview.github.io/?https://github.com/${{ github.repository }}/blob/preview-pr-${{ github.event.pull_request.number }}/index.html" >> "$GITHUB_OUTPUT"
+          echo "cdn_url=https://cdn.jsdelivr.net/gh/${{ github.repository }}@preview-pr-${{ github.event.pull_request.number }}/index.html" >> "$GITHUB_OUTPUT"
+          echo "branch=preview-pr-${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"
+          echo "alias_branch=preview/pr-${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"
           echo "artifact=porta-preview-pr-${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"
 
       - name: Comment preview URL on PR
@@ -86,9 +105,10 @@ jobs:
           script: |
             const pr = context.payload.pull_request.number
             const previewUrl = '${{ steps.urls.outputs.preview_url }}'
-            const githackUrl = '${{ steps.urls.outputs.githack_url }}'
+            const cdnUrl = '${{ steps.urls.outputs.cdn_url }}'
             const sha = '${{ steps.urls.outputs.preview_sha }}'
             const branch = '${{ steps.urls.outputs.branch }}'
+            const aliasBranch = '${{ steps.urls.outputs.alias_branch }}'
             const artifact = '${{ steps.urls.outputs.artifact }}'
             const runUrl = `https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}`
             const marker = '<!-- porta-pr-preview-hold -->'
@@ -99,11 +119,11 @@ jobs:
 
             **Open the site:** ${previewUrl}
 
-            Fallback: ${githackUrl}
+            CDN copy (may show as source in some browsers): ${cdnUrl}
 
             | | |
             | --- | --- |
-            | Preview branch | \`${branch}\` |
+            | Preview branch | \`${branch}\` (alias \`${aliasBranch}\`) |
             | Preview SHA | \`${sha}\` |
             | Artifact | [\`${artifact}\`](${runUrl}) — download \`out/\`, then \`npx --yes serve .\` |
 

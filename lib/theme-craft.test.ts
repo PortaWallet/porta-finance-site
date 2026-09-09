@@ -58,6 +58,7 @@ describe('theme-hard brand pack', () => {
       'utf8',
     )
     expect(preview).toContain('PR preview (HOLD)')
+    expect(preview).toContain('publish_branch: preview-pr-')
     expect(preview).toContain('publish_branch: preview/pr-')
     expect(preview).not.toContain('actions/deploy-pages')
     expect(preview).not.toContain('www.porta.finance')

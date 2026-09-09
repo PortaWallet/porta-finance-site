@@ -38,4 +38,4 @@ npm test               # honesty + brand tests
 - **Retail feature flags OFF**
 - **AcceptAll dead**
 - **Publish HOLD** — do not cut over GitHub Pages or production from this rebuild. PR only.
-- **Preview HOLD** — `preview.yml` publishes a static export to `preview/pr-<n>` and a downloadable artifact. It does **not** use the `github-pages` environment or edit `pages.yml` / `deploy-pages.yml`.
+- **Preview HOLD** — `preview.yml` publishes a static export to `preview-pr-<n>` / `preview/pr-<n>` and a downloadable artifact. It does **not** use the `github-pages` environment or edit `pages.yml` / `deploy-pages.yml`.
