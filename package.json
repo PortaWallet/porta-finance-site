@@ -1,30 +1,39 @@
 {
   "name": "porta-finance-site",
   "private": true,
-  "version": "0.1.0",
+  "version": "0.2.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "tsc -b && vite build && cp dist/index.html dist/404.html",
-    "preview": "vite preview",
+    "dev": "next dev --turbopack",
+    "build": "next build",
+    "build:preview": "PREVIEW_EXPORT=1 NEXT_PUBLIC_PREVIEW_EXPORT=1 next build && node scripts/relativize-preview.mjs",
+    "start": "next start",
     "test": "vitest run",
-    "deploy:pages": "npm run build && echo www.porta.finance > dist/CNAME"
+    "lint": "next lint"
   },
   "dependencies": {
+    "@radix-ui/react-separator": "^1.1.7",
+    "@radix-ui/react-slot": "^1.2.3",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
     "framer-motion": "^12.23.12",
-    "react": "^19.2.8",
-    "react-dom": "^19.2.8",
-    "react-router-dom": "^7.8.2"
+    "lucide-react": "^0.544.0",
+    "next": "^15.5.4",
+    "next-themes": "^0.4.6",
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "tailwind-merge": "^3.3.1"
   },
   "devDependencies": {
-    "@tailwindcss/vite": "^4.1.12",
+    "@eslint/eslintrc": "^3.3.1",
+    "@tailwindcss/postcss": "^4.1.12",
     "@types/node": "^24.13.3",
-    "@types/react": "^19.2.18",
-    "@types/react-dom": "^19.2.4",
-    "@vitejs/plugin-react": "^6.1.0",
+    "@types/react": "^19.1.12",
+    "@types/react-dom": "^19.1.9",
+    "eslint": "^9.35.0",
+    "eslint-config-next": "^15.5.4",
     "tailwindcss": "^4.1.12",
     "typescript": "~5.9.2",
-    "vite": "^8.2.2",
     "vitest": "^5.0.0"
   }
 }

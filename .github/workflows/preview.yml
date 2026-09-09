@@ -1,0 +1,161 @@
+# PR-only static preview. Does NOT touch pages.yml / deploy-pages.yml
+# and does NOT publish to the production custom domain or github-pages.
+name: PR preview (HOLD)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  pull-requests: write
+  actions: read
+
+concurrency:
+  group: preview-pr-${{ github.event.pull_request.number || github.ref_name }}
+  cancel-in-progress: true
+
+jobs:
+  preview:
+    if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
+    runs-on: ubuntu-latest
+    environment:
+      name: preview/pr-${{ github.event.pull_request.number || 'manual' }}
+      url: ${{ steps.urls.outputs.preview_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+
+      - run: npm ci
+
+      - name: Static export (preview only)
+        run: npm run build:preview
+
+      - name: Drop APK from preview host
+        run: rm -rf out/downloads
+
+      - name: Stamp preview hold
+        run: |
+          cat > out/PREVIEW.txt <<EOF
+          Porta finance site — PR preview HOLD
+          Not production. Not the live custom domain.
+          Source: ${{ github.event.pull_request.html_url || github.repository }}
+          SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+          EOF
+          printf '\n<!-- porta-preview %s how-icons x-twitter -->\n' "${{ github.event.pull_request.head.sha || github.sha }}" >> out/index.html
+          cp out/index.html out/open.html
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: porta-preview-pr-${{ github.event.pull_request.number || 'manual' }}
+          path: out
+          if-no-files-found: error
+          retention-days: 14
+
+      - name: Point static assets at jsDelivr (for htmlpreview)
+        if: github.event.pull_request.number
+        env:
+          PREVIEW_CDN: https://cdn.jsdelivr.net/gh/${{ github.repository }}@preview-pr-${{ github.event.pull_request.number }}
+        run: node scripts/cdnize-preview.mjs
+
+      - name: Publish preview-pr-${{ github.event.pull_request.number }} branch
+        if: github.event.pull_request.number
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: preview-pr-${{ github.event.pull_request.number }}
+          force_orphan: true
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com
+          commit_message: 'preview: static export for PR #${{ github.event.pull_request.number }} (HOLD)'
+
+      - name: Also publish preview/pr-${{ github.event.pull_request.number }}
+        if: github.event.pull_request.number
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./out
+          publish_branch: preview/pr-${{ github.event.pull_request.number }}
+          force_orphan: true
+          user_name: github-actions[bot]
+          user_email: github-actions[bot]@users.noreply.github.com
+          commit_message: 'preview: static export for PR #${{ github.event.pull_request.number }} (HOLD)'
+
+      - name: Purge sticky jsDelivr branch cache
+        if: github.event.pull_request.number
+        continue-on-error: true
+        run: |
+          curl -fsS "https://purge.jsdelivr.net/gh/${{ github.repository }}@preview-pr-${{ github.event.pull_request.number }}/index.html" || true
+
+      - name: Resolve preview URLs
+        id: urls
+        if: github.event.pull_request.number
+        run: |
+          git fetch origin "preview-pr-${{ github.event.pull_request.number }}" --depth=1
+          SHA=$(git rev-parse "origin/preview-pr-${{ github.event.pull_request.number }}")
+          echo "preview_sha=${SHA}" >> "$GITHUB_OUTPUT"
+          echo "preview_url=https://htmlpreview.github.io/?https://github.com/${{ github.repository }}/blob/preview-pr-${{ github.event.pull_request.number }}/open.html" >> "$GITHUB_OUTPUT"
+          echo "cdn_url=https://cdn.jsdelivr.net/gh/${{ github.repository }}@preview-pr-${{ github.event.pull_request.number }}/open.html" >> "$GITHUB_OUTPUT"
+          echo "branch=preview-pr-${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"
+          echo "alias_branch=preview/pr-${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"
+          echo "artifact=porta-preview-pr-${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"
+
+      - name: Comment preview URL on PR
+        if: github.event.pull_request.number
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const pr = context.payload.pull_request.number
+            const previewUrl = '${{ steps.urls.outputs.preview_url }}'
+            const cdnUrl = '${{ steps.urls.outputs.cdn_url }}'
+            const sha = '${{ steps.urls.outputs.preview_sha }}'
+            const branch = '${{ steps.urls.outputs.branch }}'
+            const aliasBranch = '${{ steps.urls.outputs.alias_branch }}'
+            const artifact = '${{ steps.urls.outputs.artifact }}'
+            const runUrl = `https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}`
+            const marker = '<!-- porta-pr-preview-hold -->'
+            const body = `${marker}
+            ## Preview (HOLD — not production)
+
+            Not published to the production custom domain. Production GitHub Pages workflows were not used.
+
+            **Open the site:** ${previewUrl}
+
+            CDN copy (may show as source in some browsers): ${cdnUrl}
+
+            | | |
+            | --- | --- |
+            | Preview branch | \`${branch}\` (alias \`${aliasBranch}\`) |
+            | Preview SHA | \`${sha}\` |
+            | Artifact | [\`${artifact}\`](${runUrl}) — download \`out/\`, then \`npx --yes serve .\` |
+
+            jsDelivr can lag ~1–2 minutes after this comment. If the first load 404s, wait and refresh or use the fallback / artifact.
+            `
+
+            const { data: comments } = await github.rest.issues.listComments({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              issue_number: pr,
+            })
+            const existing = comments.find((c) => c.body && c.body.includes(marker))
+            if (existing) {
+              await github.rest.issues.updateComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                comment_id: existing.id,
+                body,
+              })
+            } else {
+              await github.rest.issues.createComment({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: pr,
+                body,
+              })
+            }
