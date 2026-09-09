@@ -22,6 +22,9 @@ export const LINKEDIN_URL = 'https://www.linkedin.com/company/portawallet'
 export const YOUTUBE_HANDLE = '@PortaWallet'
 export const YOUTUBE_URL = 'https://www.youtube.com/@PortaWallet'
 
+export const GITHUB_LABEL = 'GitHub'
+export const GITHUB_URL = 'https://github.com/PortaWallet'
+
 export const MINI_APP_URL =
   'https://production-wallet-telegram-omytp43vwa-ew.a.run.app'
 

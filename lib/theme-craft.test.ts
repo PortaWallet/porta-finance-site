@@ -42,11 +42,12 @@ describe('theme-hard brand pack', () => {
     expect(motion).not.toContain('opacity: 0')
   })
 
-  it('hero uses brand pack paths and keeps tip off the public hero', () => {
+  it('hero uses brand pack paths and never mounts a fake wallet mock', () => {
     const hero = readFileSync(resolve(ROOT, 'components/hero.tsx'), 'utf8')
     expect(hero).toContain('hero-display')
     expect(hero).not.toContain('HERO.tip')
     expect(hero).not.toContain('SOFT_TIP')
+    expect(hero).not.toContain('ReviewPanel')
     expect(hero).not.toContain('glow-particles')
     expect(hero).not.toMatch(/banner-ultimate-defi-trading-wallet/i)
     const graphic = readFileSync(
@@ -55,6 +56,8 @@ describe('theme-hard brand pack', () => {
     )
     expect(graphic).toContain('BRAND.portalHero')
     expect(graphic).not.toContain('SOFT_TIP')
+    expect(graphic).not.toContain('ReviewPanel')
+    expect(graphic).not.toMatch(/Review this swap before I confirm/)
   })
 
   it('does not touch GitHub Pages deploy workflows', () => {

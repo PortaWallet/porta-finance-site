@@ -22,20 +22,22 @@ Ultra-minimal Apple/Stripe: Inter, OKLCH surfaces, hairline borders, dark/light,
 ## IA
 
 1. **Nav** — Apps · Roadmap · Official · Contact · **Open in Telegram**
-2. **Hero** — Locked H1: *AA smart-contract wallet — first in Telegram*
-3. **Trust** — keys on device; review, not auto-trade
-4. **How** — Create → Fund → Review
-5. **Apps** — Telegram Mini App / Extension / Mobile with honest status
-6. **Roadmap** — Coming / not live
-7. **Contact / Footer** — hello@porta.finance · official links only (no X)
+2. **Hero** — Locked H1: *AA smart-contract wallet — first in Telegram* — CTAs only; brand art, never a fake wallet UI
+3. **Features** — Send / Receive / Review / Bridge (bridge not live)
+4. **How** — Create or import → Receive assets → Send & review
+5. **Apps** — Telegram Mini App / Extension (CWS Unlisted soon) / Mobile
+6. **AA + Security** — UserOps / self-funded direction; gasless + social recovery not live
+7. **Developers** — no public SDK claim
+8. **Roadmap** — Coming / not live
+9. **Contact / Footer** — hello@porta.finance · official links once (no X)
 
 ### Apps (honest)
 
 | Surface | Status |
 |---------|--------|
-| Telegram Mini App / `@PortaWallet_bot` | Live · dogfood |
-| Browser extension | Coming |
-| Mobile APK | Dogfood (not Live, not a store release) |
+| Telegram Mini App / `@PortaWallet_bot` | Live entry (eng-only tip; no public dogfood chrome) |
+| Browser extension | Coming / CWS Unlisted soon |
+| Mobile APK | Available as APK, not Live, not a store release |
 
 ### Roadmap (not live)
 
@@ -49,7 +51,7 @@ Ultra-minimal Apple/Stripe: Inter, OKLCH surfaces, hairline borders, dark/light,
 
 Never: MEV-proof · fake gasless · auto-trading live · AA social recovery live · “ultimate DeFi” as a primary/live claim · pretend roadmap features are live · retail CTAs (`Swap now`, `Bridge now`, `Confirm swap`, AcceptAll).
 
-Telegram is the **first surface**, not the product owner. Chip: independent AA smart-contract wallet · not a Telegram product.
+Telegram is the **first surface**. Do not say “not a Telegram product” on the public site. No fake wallet/tx mocks. No public soft-tip or LIVE·DOGFOOD chrome.
 
 ## HOLDs
 

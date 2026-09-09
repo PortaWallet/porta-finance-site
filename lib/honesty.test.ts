@@ -47,11 +47,14 @@ const COPY_SOURCES = [
   'components/apps.tsx',
   'components/hero.tsx',
   'components/hero-graphic.tsx',
+  'components/features.tsx',
+  'components/aa.tsx',
+  'components/security.tsx',
+  'components/developers.tsx',
   'components/site-footer.tsx',
   'components/official-links.tsx',
   'components/roadmap.tsx',
   'components/how.tsx',
-  'components/trust.tsx',
   'components/contact.tsx',
   'components/site-nav.tsx',
   'app/layout.tsx',
@@ -64,7 +67,33 @@ const COPY_SOURCES = [
   'lib/preview.ts',
 ] as const
 
+const PUBLIC_UI = [
+  'lib/seo.ts',
+  'content/copy.ts',
+  'content/apps.ts',
+  'content/roadmap.ts',
+  'components/apps.tsx',
+  'components/hero.tsx',
+  'components/hero-graphic.tsx',
+  'components/features.tsx',
+  'components/aa.tsx',
+  'components/security.tsx',
+  'components/developers.tsx',
+  'components/site-footer.tsx',
+  'components/official-links.tsx',
+  'components/roadmap.tsx',
+  'components/how.tsx',
+  'components/contact.tsx',
+  'components/site-nav.tsx',
+  'app/layout.tsx',
+  'app/page.tsx',
+] as const
+
 const RETAIL_CTA = /Swap now|Bridge now|Confirm swap|Accept all|AcceptAll/i
+const FAKE_WALLET_UI =
+  /ReviewPanel|Review this swap before I confirm|From<\/span>|To<\/span>|Fees<\/span>/
+const TELEGRAM_DENIAL = /not a Telegram product|not a Telegram app/i
+const PUBLIC_DOGFOOD = /Live · dogfood|soft dogfood|Soft tip|SOFT_TIP/i
 
 describe('soft tip honesty', () => {
   it(`SOFT_TIP is exactly ${LIVE_TIP}`, () => {
@@ -99,6 +128,8 @@ describe('soft tip honesty', () => {
       'components/site-footer.tsx',
       'components/contact.tsx',
       'components/official-links.tsx',
+      'components/aa.tsx',
+      'components/features.tsx',
     ] as const
     for (const rel of liveSources) {
       const text = readFileSync(resolve(ROOT, rel), 'utf8')
@@ -123,9 +154,7 @@ describe('soft tip honesty', () => {
   })
 
   it('forbids retail execution CTAs in product UI and content', () => {
-    const marketing = COPY_SOURCES.filter(
-      (rel) => !rel.endsWith('.md'),
-    )
+    const marketing = COPY_SOURCES.filter((rel) => !rel.endsWith('.md'))
     for (const rel of marketing) {
       const text = readFileSync(resolve(ROOT, rel), 'utf8')
       expect(text, rel).not.toMatch(RETAIL_CTA)
@@ -169,12 +198,14 @@ describe('soft tip honesty', () => {
     expect(footerCopy).toContain('© 2026 DracoLabs Ltd')
   })
 
-  it('how is Create → Fund → Review and apps H2 is Where Porta lives', () => {
+  it('how is create/import → receive → send & review; apps H2 is Where Porta lives', () => {
     const how = readFileSync(resolve(ROOT, 'content/copy.ts'), 'utf8')
-    expect(how).toContain('Create → Fund → Review')
-    expect(how).toContain("title: 'Create'")
-    expect(how).toContain("title: 'Fund'")
-    expect(how).toContain("title: 'Review'")
+    expect(how).toContain('Create or import → Receive assets → Send & review')
+    expect(how).toContain("title: 'Create or import'")
+    expect(how).toContain("title: 'Receive assets'")
+    expect(how).toContain("title: 'Send & review'")
+    expect(how).not.toContain("title: 'Fund'")
+    expect(how).not.toMatch(/on-ramp claim/i)
     const apps = readFileSync(resolve(ROOT, 'content/apps.ts'), 'utf8')
     expect(apps).toContain('Where Porta lives')
     expect(apps).toContain('review swaps')
@@ -206,31 +237,31 @@ describe('soft tip honesty', () => {
     const h1Text = h1.replace(/<[^>]+>/g, '').replace(/\s+/g, ' ').trim()
     expect(h1Text).toBe('AA smart-contract wallet — first in Telegram')
     expect(copy).toContain("h1: 'AA smart-contract wallet — first in Telegram'")
-    expect(copy).toContain(
-      'Independent AA smart-contract wallet · not a Telegram product',
-    )
     expect(copy).toContain("secondaryCta: 'Open Mini App'")
     expect(copy).toContain('PRIMARY_CTA_LABEL')
+    expect(copy).not.toMatch(TELEGRAM_DENIAL)
+    expect(hero).not.toMatch(TELEGRAM_DENIAL)
     const layout = readFileSync(resolve(ROOT, 'app/layout.tsx'), 'utf8')
     expect(layout).toContain('SITE_TITLE')
     const seo = readFileSync(resolve(ROOT, 'lib/seo.ts'), 'utf8')
     expect(seo).toContain('Porta — AA smart-contract wallet')
     expect(seo).not.toContain('Telegram-native')
+    expect(seo).not.toMatch(TELEGRAM_DENIAL)
   })
 
-  it('R3: public hero has no soft dogfood, tip, or run.app paragraph', () => {
+  it('public chrome: no fake wallet mock, dogfood pills, tip, or Telegram denial', () => {
+    for (const rel of PUBLIC_UI) {
+      const text = readFileSync(resolve(ROOT, rel), 'utf8')
+      expect(text, rel).not.toMatch(FAKE_WALLET_UI)
+      expect(text, rel).not.toMatch(TELEGRAM_DENIAL)
+      expect(text, rel).not.toMatch(PUBLIC_DOGFOOD)
+      expect(text, rel).not.toMatch(/00051-xsf/)
+    }
     const hero = readFileSync(resolve(ROOT, 'components/hero.tsx'), 'utf8')
-    const graphic = readFileSync(
-      resolve(ROOT, 'components/hero-graphic.tsx'),
-      'utf8',
-    )
-    const copy = readFileSync(resolve(ROOT, 'content/copy.ts'), 'utf8')
-    expect(hero).not.toMatch(/dogfood|SOFT_TIP|HERO\.tip|HERO\.status/i)
     expect(hero).not.toContain('run.app')
     expect(hero).not.toContain('Cloud Run')
     expect(hero).toContain('<HeroGraphic')
-    expect(graphic).not.toMatch(/SOFT_TIP|dogfood|Soft tip/i)
-    expect(copy).not.toMatch(/Soft dogfood|HERO\.tip|status: 'Live/)
+    expect(hero).not.toContain('ReviewPanel')
   })
 
   it('R6: portal + ring figcaption is Brand art · Coming — not a live network list', () => {
@@ -247,13 +278,39 @@ describe('soft tip honesty', () => {
     expect(graphic).toContain('Coming')
     expect(graphic).toContain('not a live network list')
     expect(graphic).not.toMatch(/Ethereum|CHAINS|12 EVM|name dump/i)
+    expect(graphic).not.toContain('ReviewPanel')
   })
 
-  it('R5: APK / mobile is Dogfood or Coming, never Live', () => {
+  it('R5: APK / mobile is never Live and has no public Dogfood chrome', () => {
     const apps = readFileSync(resolve(ROOT, 'content/apps.ts'), 'utf8')
     expect(apps).toContain("title: 'Mobile'")
-    expect(apps).toContain("'Dogfood'")
+    expect(apps).not.toMatch(/Dogfood|dogfood/)
     expect(apps).not.toMatch(/id: 'mobile'[\s\S]{0,220}status: 'live'/)
+  })
+
+  it('AA honesty + Security + Developers + feature cards are present', () => {
+    const copy = readFileSync(resolve(ROOT, 'content/copy.ts'), 'utf8')
+    expect(copy).toContain('UserOps')
+    expect(copy).toContain('self-funded')
+    expect(copy).toContain('Gasless and social recovery are not live')
+    expect(copy).toContain("title: 'Send'")
+    expect(copy).toContain("title: 'Receive'")
+    expect(copy).toContain("title: 'Review'")
+    expect(copy).toContain("title: 'Bridge'")
+    expect(copy).toContain('Cross-chain bridge is not live')
+    expect(copy).toContain('No public SDK yet')
+    expect(copy).toContain('No fake audits or TVL')
+    const page = readFileSync(resolve(ROOT, 'app/page.tsx'), 'utf8')
+    expect(page).toContain('<Features')
+    expect(page).toContain('<AccountAbstraction')
+    expect(page).toContain('<Security')
+    expect(page).toContain('<Developers')
+    const developers = readFileSync(
+      resolve(ROOT, 'components/developers.tsx'),
+      'utf8',
+    )
+    expect(developers).toContain('GITHUB_URL')
+    expect(developers).not.toMatch(/SDK is live|API is live/i)
   })
 
   it('official surfaces are locked and include LinkedIn + YouTube (no X)', () => {
@@ -296,7 +353,7 @@ describe('soft tip honesty', () => {
 })
 
 describe('HOLDs', () => {
-  it('keeps F6.4, retail FF, and AcceptAll off', () => {
+  it('keeps F6.4, retail FF, AcceptAll, and CWS off', () => {
     expect(HOLDS.F6_4).toBe(false)
     expect(HOLDS.RETAIL_FEATURE_FLAGS).toBe(false)
     expect(HOLDS.ACCEPT_ALL).toBe(false)

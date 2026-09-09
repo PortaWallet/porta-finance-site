@@ -6,14 +6,14 @@ import {
   TG_BOT_URL,
 } from '@/lib/site'
 
-export type AppStatus = 'live' | 'coming' | 'dogfood'
+export type AppStatus = 'live' | 'coming'
 
 export type AppSurface = {
   id: 'telegram' | 'extension' | 'mobile'
   title: string
   description: string
   status: AppStatus
-  statusLabel: string
+  statusLabel?: string
   href?: string
   cta: string
   disabled?: boolean
@@ -25,7 +25,7 @@ export type AppSurface = {
 export const APPS_SECTION = {
   eyebrow: 'Apps',
   title: 'Where Porta lives',
-  lede: `Primary entry is ${TG_BOT_HANDLE}. Create or import, send, and review swaps — not auto-trade.`,
+  lede: `Primary entry is ${TG_BOT_HANDLE}. Create or import, receive assets, send, and review swaps.`,
 } as const
 
 export const APP_SURFACES: readonly AppSurface[] = [
@@ -35,7 +35,6 @@ export const APP_SURFACES: readonly AppSurface[] = [
     description:
       'Open the official bot, then the Mini App — create or import, send, and review swaps. Not auto-trade.',
     status: 'live',
-    statusLabel: 'Live · dogfood',
     href: TG_BOT_URL,
     cta: 'Open in Telegram',
     secondaryHref: MINI_APP_URL,
@@ -57,9 +56,8 @@ export const APP_SURFACES: readonly AppSurface[] = [
           id: 'mobile' as const,
           title: 'Mobile',
           description:
-            'Sideload APK for testing — not a store release. Not live.',
-          status: 'dogfood' as const,
-          statusLabel: 'Dogfood',
+            'Android APK for install outside a store. Not a store release.',
+          status: 'coming' as const,
           href: APK_HREF,
           cta: 'Download APK',
           download: true,

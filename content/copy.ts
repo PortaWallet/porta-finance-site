@@ -1,7 +1,4 @@
-import {
-  PRIMARY_CTA_LABEL,
-  SOFT_TIP,
-} from '@/lib/site'
+import { PRIMARY_CTA_LABEL } from '@/lib/site'
 
 export const NAV_LINKS = [
   { href: '#apps', label: 'Apps' },
@@ -12,49 +9,85 @@ export const NAV_LINKS = [
 
 export const HERO = {
   eyebrow: 'Porta Wallet',
-  independence:
-    'Independent AA smart-contract wallet · not a Telegram product',
   h1: 'AA smart-contract wallet — first in Telegram',
-  lede: `Create or import, send, and review swaps in the Telegram Mini App. AA is the product direction — social recovery, session limits, and gasless are not live.`,
+  lede: 'Create or import, receive assets, send, and review swaps in the Telegram Mini App.',
   primaryCta: PRIMARY_CTA_LABEL,
   secondaryCta: 'Open Mini App',
   keys: 'Non-custodial · keys stay on your device',
 } as const
 
-export const TRUST = {
-  eyebrow: 'Trust',
-  title: 'Keys stay on your device',
-  body: 'Non-custodial. Every swap is a review — not auto-trade. We do not claim MEV-proof, gasless, or live social recovery.',
-  panel:
-    'Independent wallet. Review every swap. Keys never leave your device.',
+export const FEATURES = {
+  eyebrow: 'Wallet',
+  title: 'Send, receive, review',
+  items: [
+    {
+      title: 'Send',
+      body: 'Send from your Porta wallet in the Mini App.',
+    },
+    {
+      title: 'Receive',
+      body: 'Receive assets you already hold. No on-ramp.',
+    },
+    {
+      title: 'Review',
+      body: 'Review every swap before you confirm. Not auto-trade.',
+    },
+    {
+      title: 'Bridge',
+      body: 'Cross-chain bridge is not live. No retail bridge CTA.',
+    },
+  ],
 } as const
 
 export const HOW = {
   eyebrow: 'How it works',
-  title: 'Create → Fund → Review',
+  title: 'Create or import → Receive assets → Send & review',
   steps: [
     {
       n: '01',
-      title: 'Create',
-      body: 'Create or import. Keys stay on your device — Porta is non-custodial.',
+      title: 'Create or import',
+      body: 'Create a wallet or import one. Keys stay on your device.',
     },
     {
       n: '02',
-      title: 'Fund',
-      body: 'Bring assets you already hold. No live on-ramp claim.',
+      title: 'Receive assets',
+      body: 'Receive assets you already hold. No on-ramp.',
     },
     {
       n: '03',
-      title: 'Review',
+      title: 'Send & review',
       body: 'Send and review every swap before you confirm.',
     },
   ],
 } as const
 
+export const AA = {
+  eyebrow: 'Account abstraction',
+  title: 'AA is the direction',
+  body: 'Porta is an AA smart-contract wallet. UserOps and self-funded gas are what we are building. Gasless and social recovery are not live.',
+} as const
+
+export const SECURITY = {
+  eyebrow: 'Security',
+  title: 'Keys stay on your device',
+  body: 'Non-custodial. Review every swap — not auto-trade. No audit theater, TVL, or invented metrics.',
+  items: [
+    'Keys never leave your device',
+    'We will never ask for your seed phrase',
+    'No fake audits or TVL',
+  ],
+} as const
+
+export const DEVELOPERS = {
+  eyebrow: 'Developers',
+  title: 'No public SDK yet',
+  body: 'There is no public SDK, API, or docs site to claim. Official surfaces only.',
+} as const
+
 export const CONTACT = {
   eyebrow: 'Contact',
   title: 'Talk to Porta',
-  body: `Independent AA smart-contract wallet — not a Telegram product. Soft tip ${SOFT_TIP}. We will never ask for your seed phrase.`,
+  body: 'AA smart-contract wallet in Telegram. We will never ask for your seed phrase.',
   never: 'Never send seeds, keys, or recovery phrases. No form. Official email only.',
 } as const
 

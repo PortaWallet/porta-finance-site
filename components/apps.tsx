@@ -11,12 +11,6 @@ const icons = {
   mobile: Smartphone,
 } as const
 
-function statusVariant(status: (typeof APP_SURFACES)[number]['status']) {
-  if (status === 'live') return 'live' as const
-  if (status === 'dogfood') return 'dogfood' as const
-  return 'coming' as const
-}
-
 export function Apps() {
   return (
     <MotionSection id="apps" className="section-y">
@@ -40,7 +34,9 @@ export function Apps() {
                       <span className="app-card-icon" aria-hidden>
                         <Icon className="size-4" />
                       </span>
-                      <Badge variant={statusVariant(app.status)}>{app.statusLabel}</Badge>
+                      {app.statusLabel ? (
+                        <Badge variant="coming">{app.statusLabel}</Badge>
+                      ) : null}
                     </div>
                     <CardTitle className="text-lg">{app.title}</CardTitle>
                     <CardDescription className="mt-1">{app.description}</CardDescription>

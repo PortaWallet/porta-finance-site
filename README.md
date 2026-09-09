@@ -28,7 +28,7 @@ npm test               # honesty + brand tests
 
 - Primary CTA: **Open in Telegram** → https://t.me/PortaWallet_bot
 - Contact: hello@porta.finance
-- Apps: Telegram Mini App (Live · dogfood) / Extension (Coming) / Mobile (Dogfood APK, not Live)
+- Apps: Telegram Mini App / Extension (Coming · CWS Unlisted soon) / Mobile APK (not Live)
 - No retail CTAs (`Swap now`, `Bridge now`, `Confirm swap`, AcceptAll)
 - No client-side API keys or secrets
 

@@ -1,9 +1,7 @@
-import { SOFT_TIP } from '@/lib/site'
-
 export const ROADMAP = {
   eyebrow: 'Coming · not live',
   title: 'What’s next',
-  lede: `Nothing below is live on soft tip ${SOFT_TIP}.`,
+  lede: 'Nothing below is live.',
   badge: 'Not live yet',
   items: [
     {
@@ -14,7 +12,7 @@ export const ROADMAP = {
     {
       n: '02',
       title: 'Alerts that open a review — not a trade',
-      body: 'Alerts that land you in a review flow inside Porta. Available via Telegram as a surface — not a Telegram product.',
+      body: 'Alerts that land you in a review flow inside Porta. Telegram is a surface — Porta is the wallet.',
     },
     {
       n: '03',

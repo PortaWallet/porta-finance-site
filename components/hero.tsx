@@ -1,6 +1,6 @@
 import { ArrowUpRight } from 'lucide-react'
 import Image from 'next/image'
-import { HeroGraphic, ReviewPanel } from '@/components/hero-graphic'
+import { HeroGraphic } from '@/components/hero-graphic'
 import { Button } from '@/components/ui/button'
 import { HERO } from '@/content/copy'
 import { BRAND } from '@/lib/brand'
@@ -21,9 +21,6 @@ export function Hero() {
       <div className="relative mx-auto grid max-w-6xl items-center gap-8 lg:grid-cols-[minmax(0,0.92fr)_minmax(24rem,1.08fr)] lg:gap-10">
         <div className="relative z-10 text-left">
           <p className="eyebrow">{HERO.eyebrow}</p>
-          <p className="mt-2 inline-flex max-w-full rounded-full border border-border bg-card px-2.5 py-1 text-[11px] font-medium leading-snug text-muted-foreground">
-            {HERO.independence}
-          </p>
           <h1 className="hero-display mt-4 text-foreground">
             <span className="hero-keyword">AA smart-contract</span> wallet —
             first in Telegram
@@ -52,7 +49,6 @@ export function Hero() {
         </div>
 
         <HeroGraphic />
-        <ReviewPanel className="lg:hidden" />
       </div>
     </section>
   )
