@@ -19,6 +19,7 @@ const replacements = [
   ['./favicon.png', `${cdn}/favicon.png`],
   ['./favicon.svg', `${cdn}/favicon.svg`],
   ['./apple-touch-icon.png', `${cdn}/apple-touch-icon.png`],
+  ['./og.png', `${cdn}/og.png`],
 ]
 
 function walk(dir) {

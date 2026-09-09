@@ -19,9 +19,10 @@ export function HeroGraphic() {
         <Image
           src={BRAND.portalHero}
           alt=""
-          width={168}
-          height={168}
+          width={640}
+          height={640}
           priority
+          unoptimized
           className="portal-sphere absolute top-1/2 left-1/2 h-[58%] w-[58%] -translate-x-1/2 -translate-y-1/2 object-contain"
         />
       </div>

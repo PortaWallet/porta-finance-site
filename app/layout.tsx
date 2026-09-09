@@ -40,7 +40,14 @@ export const metadata: Metadata = {
     description: SITE_DESCRIPTION,
     siteName: 'Porta',
     locale: 'en_US',
-    images: [{ url: '/brand/portal-hero.webp', alt: 'Porta portal mark' }],
+    images: [
+      {
+        url: '/og.png',
+        width: 1200,
+        height: 630,
+        alt: 'Porta portal mark',
+      },
+    ],
   },
   robots: {
     index: true,

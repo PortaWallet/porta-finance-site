@@ -274,7 +274,7 @@ describe('soft tip honesty', () => {
     expect(graphic).toContain('BRAND.portalHero')
     expect(graphic).toContain('BRAND.ring')
     const brand = readFileSync(resolve(ROOT, 'lib/brand.ts'), 'utf8')
-    expect(brand).toContain("/brand/portal-hero.webp")
+    expect(brand).toContain("/brand/portal-hero.svg")
     expect(brand).toContain('/brand/multichain-ring.svg')
     expect(graphic).toContain('Brand art')
     expect(graphic).toContain('Coming')

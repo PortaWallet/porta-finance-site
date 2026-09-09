@@ -28,6 +28,8 @@ const replacements = [
   ["'/favicon.svg", "'./favicon.svg"],
   ['"/apple-touch-icon.png', '"./apple-touch-icon.png'],
   ["'/apple-touch-icon.png", "'./apple-touch-icon.png"],
+  ['"/og.png', '"./og.png'],
+  ["'/og.png", "'./og.png"],
   ['"/downloads/', '"./downloads/'],
   ["'/downloads/", "'./downloads/"],
   ['url(/_next/', 'url(./_next/'],

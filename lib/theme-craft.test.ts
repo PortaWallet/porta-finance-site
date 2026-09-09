@@ -15,6 +15,32 @@ describe('theme-hard brand pack', () => {
     }
   })
 
+  it('hero globe is a vector SVG, not a soft upscaled raster', () => {
+    const svg = readFileSync(resolve(ROOT, 'public/brand/portal-hero.svg'), 'utf8')
+    expect(svg).toMatch(/^<svg\b/)
+    expect(svg).toContain('viewBox')
+    expect(statSync(resolve(ROOT, 'public/brand/portal-hero.svg')).size).toBeGreaterThan(2000)
+    const brand = readFileSync(resolve(ROOT, 'lib/brand.ts'), 'utf8')
+    expect(brand).not.toContain('portal-hero.webp')
+    expect(brand).toContain("/brand/portal-hero.svg")
+    const graphic = readFileSync(resolve(ROOT, 'components/hero-graphic.tsx'), 'utf8')
+    expect(graphic).not.toMatch(/width=\{1[0-9]{2}\}/)
+  })
+
+  it('og image is a retina-class PNG, not the 256 hero webp', () => {
+    const og = readFileSync(resolve(ROOT, 'public/og.png'))
+    expect(og.subarray(0, 8).equals(Buffer.from([137, 80, 78, 71, 13, 10, 26, 10]))).toBe(
+      true,
+    )
+    const width = og.readUInt32BE(16)
+    const height = og.readUInt32BE(20)
+    expect(width).toBe(1200)
+    expect(height).toBe(630)
+    const apple = readFileSync(resolve(ROOT, 'public/apple-touch-icon.png'))
+    expect(apple.readUInt32BE(16)).toBeGreaterThanOrEqual(180)
+    expect(apple.readUInt32BE(20)).toBeGreaterThanOrEqual(180)
+  })
+
   it('tokens use Inter + OKLCH with reduced-motion support', () => {
     const css = readFileSync(resolve(ROOT, 'app/globals.css'), 'utf8')
     expect(css).toContain('oklch(')
@@ -55,6 +81,9 @@ describe('theme-hard brand pack', () => {
       'utf8',
     )
     expect(graphic).toContain('BRAND.portalHero')
+    expect(graphic).toMatch(/width=\{640\}/)
+    expect(graphic).toMatch(/height=\{640\}/)
+    expect(graphic).toContain('unoptimized')
     expect(graphic).not.toContain('SOFT_TIP')
     expect(graphic).not.toContain('ReviewPanel')
     expect(graphic).not.toMatch(/Review this swap before I confirm/)
