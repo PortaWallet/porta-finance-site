@@ -22,7 +22,7 @@ export const ROADMAP = {
     {
       n: '04',
       title: 'Recovery & session limits',
-      body: 'Account-abstraction recovery and session limits are in progress. Not gasless today — and we will not claim it is.',
+      body: 'Account-abstraction recovery and session limits are in progress. Sponsorship and gasless are not live — and we will not claim they are.',
     },
     {
       n: '05',

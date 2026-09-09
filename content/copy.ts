@@ -14,6 +14,9 @@ export const HERO = {
   primaryCta: PRIMARY_CTA_LABEL,
   secondaryCta: 'Open Mini App',
   keys: 'Non-custodial · keys stay on your device',
+  review: 'Review, not auto-trade',
+  aa: 'AA smart-contract wallet',
+  gas: 'Self-funded — not sponsored',
 } as const
 
 export const FEATURES = {
@@ -60,8 +63,22 @@ export const HOW = {
 
 export const AA = {
   eyebrow: 'Account abstraction',
-  title: 'AA is the direction',
-  body: 'Porta is an AA smart-contract wallet. UserOps and self-funded gas are what we are building. Gasless and social recovery are not live.',
+  title: 'Smart account — self-funded, not sponsored',
+  body: 'Porta is an AA smart-contract wallet. UserOps and self-funded gas are the path we are building. Gasless and social recovery are not live.',
+  items: [
+    {
+      title: 'Smart account',
+      body: 'A smart-contract account you control. Keys stay on your device. Not a custodial account.',
+    },
+    {
+      title: 'UserOps',
+      body: 'Account-abstraction UserOps are the execution path we are building. Self-funded gas — you pay.',
+    },
+    {
+      title: 'Sponsorship',
+      body: 'Gas sponsorship is not live. No paymaster cover, no gasless sends, no sponsored UI.',
+    },
+  ],
 } as const
 
 export const SECURITY = {
@@ -91,5 +108,5 @@ export const CONTACT = {
 export const FOOTER = {
   legal: '© 2026 DracoLabs Ltd',
   honesty:
-    'Honest claims only. Non-custodial — keys stay on your device. No official X. Publish HOLD — this rebuild is not a live cutover.',
+    'Honest claims only. Non-custodial — keys stay on your device. Self-funded gas — sponsorship is not live.',
 } as const

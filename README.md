@@ -30,6 +30,8 @@ npm test               # honesty + brand tests
 - Contact: hello@porta.finance
 - Apps: Telegram Mini App / Extension (Coming · CWS Unlisted soon) / Mobile APK (not Live)
 - No retail CTAs (`Swap now`, `Bridge now`, `Confirm swap`, AcceptAll)
+- AA honesty: smart account + UserOps + self-funded gas; sponsorship / gasless / social recovery not live
+- No fake sponsored UI (`$0 gas`, Sponsored send)
 - No client-side API keys or secrets
 
 ## HOLDs

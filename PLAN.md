@@ -26,7 +26,7 @@ Ultra-minimal Apple/Stripe: Inter, OKLCH surfaces, hairline borders, dark/light,
 3. **Features** — Send / Receive / Review / Bridge (bridge not live)
 4. **How** — Create or import → Receive assets → Send and review swaps
 5. **Apps** — Telegram Mini App / Extension (CWS Unlisted soon) / Mobile
-6. **AA + Security** — UserOps / self-funded direction; gasless + social recovery not live
+6. **AA + Security** — Smart account / UserOps / self-funded gas; sponsorship + gasless + social recovery not live
 7. **Developers** — no public SDK claim
 8. **Roadmap** — Coming / not live
 9. **Contact / Footer** — hello@porta.finance · official links once (includes X / Twitter @PortaWallet)
@@ -44,12 +44,12 @@ Ultra-minimal Apple/Stripe: Inter, OKLCH surfaces, hairline borders, dark/light,
 - See every swap before you confirm
 - Alerts that open a review — not a trade
 - Optional protected swaps (never MEV-proof)
-- Recovery & session limits (AA building — not gasless)
+- Recovery & session limits (AA building — sponsorship / gasless not live)
 - Advanced trading later
 
 ## Copy rules (do-not-claim)
 
-Never: MEV-proof · fake gasless · auto-trading live · AA social recovery live · “ultimate DeFi” as a primary/live claim · pretend roadmap features are live · retail CTAs (`Swap now`, `Bridge now`, `Confirm swap`, AcceptAll).
+Never: MEV-proof · fake gasless · paymaster sponsorship live · auto-trading live · AA social recovery live · “ultimate DeFi” as a primary/live claim · pretend roadmap features are live · retail CTAs (`Swap now`, `Bridge now`, `Confirm swap`, AcceptAll) · fake sponsored UI (`$0 gas`, Sponsored send).
 
 Telegram is the **first surface**. Do not say “not a Telegram product” on the public site. No fake wallet/tx mocks. No public soft-tip or LIVE·DOGFOOD chrome.
 
