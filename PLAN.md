@@ -17,7 +17,7 @@ Vite + IBM Plex + cosmic flood is retired on this branch. Brand pack (portal, ri
 
 ## Design
 
-Ultra-minimal Apple/Stripe: Inter, OKLCH surfaces, hairline borders, dark/light, spring reveals below the fold. Hero H1 is static for LCP. `prefers-reduced-motion` kills animation.
+Ultra-minimal Apple/Stripe: Inter, OKLCH surfaces, hairline borders, dark/light, spring reveals below the fold. Hero H1 is static for LCP. `prefers-reduced-motion` kills animation. Competitor polish is incremental — 4-up wallet strip, How journey connectors, footer sitemap — not a rewrite.
 
 ## IA
 
@@ -29,7 +29,7 @@ Ultra-minimal Apple/Stripe: Inter, OKLCH surfaces, hairline borders, dark/light,
 6. **AA + Security** — Smart account / UserOps / self-funded gas; sponsorship + gasless + social recovery not live
 7. **Developers** — no public SDK claim
 8. **Roadmap** — Coming / not live
-9. **Contact / Footer** — hello@porta.finance · official links once (includes X / Twitter @PortaWallet)
+9. **Contact / Footer** — hello@porta.finance · official links once (includes X / Twitter @PortaWallet) · footer sitemap (Product / Company) only — primary nav stays Apps · Roadmap · Official · Contact
 
 ### Apps (honest)
 

@@ -46,13 +46,13 @@ export function SiteNav() {
       </nav>
       <nav
         aria-label="Sections"
-        className="mx-auto grid max-w-6xl grid-cols-4 gap-1 px-4 pb-2 md:hidden sm:px-6"
+        className="mx-auto flex max-w-6xl gap-1 overflow-x-auto px-4 pb-2 md:hidden sm:px-6"
       >
         {NAV_LINKS.map((link) => (
           <a
             key={link.label}
             href={link.href}
-            className="inline-flex min-h-9 items-center justify-center rounded-lg border border-border bg-card px-1 text-center text-[11px] font-medium text-muted-foreground"
+            className="inline-flex min-h-9 shrink-0 items-center rounded-full px-3 text-xs font-medium text-muted-foreground transition-colors hover:bg-muted hover:text-foreground"
           >
             {link.label}
           </a>

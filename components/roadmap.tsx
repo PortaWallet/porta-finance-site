@@ -4,7 +4,7 @@ import { ROADMAP } from '@/content/roadmap'
 
 export function Roadmap() {
   return (
-    <MotionSection id="roadmap" className="section-y">
+    <MotionSection id="roadmap" className="section-y section-band">
       <div className="mx-auto max-w-6xl">
         <div className="mb-6 flex flex-wrap items-end justify-between gap-3">
           <div className="max-w-2xl">
@@ -17,16 +17,16 @@ export function Roadmap() {
           <Badge variant="coming">{ROADMAP.badge}</Badge>
         </div>
 
-        <ol className="grid gap-4">
+        <ol className="roadmap-rail grid gap-3">
           {ROADMAP.items.map((item) => (
             <li
               key={item.title}
-              className="rounded-xl border border-border bg-card px-4 py-3"
+              className="relative rounded-xl border border-border bg-card px-4 py-3 pl-14"
             >
+              <span className="absolute top-3 left-3 inline-flex size-7 items-center justify-center rounded-full border border-border bg-muted text-[11px] font-semibold tracking-wider text-muted-foreground tabular-nums">
+                {item.n}
+              </span>
               <div className="flex flex-wrap items-center gap-2">
-                <span className="text-[11px] font-semibold tracking-wider text-muted-foreground tabular-nums">
-                  {item.n}
-                </span>
                 <h3 className="text-sm font-semibold tracking-tight sm:text-base">
                   {item.title}
                 </h3>

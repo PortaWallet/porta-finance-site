@@ -18,7 +18,7 @@ export default function HomePage() {
   return (
     <div className="min-h-dvh">
       <SiteNav />
-      <main>
+      <main id="main">
         <Hero />
         <Features />
         <How />

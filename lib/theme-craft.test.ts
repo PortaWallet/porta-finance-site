@@ -51,6 +51,9 @@ describe('theme-hard brand pack', () => {
     expect(css).toContain('min-height: 46vh')
     expect(css).toContain('hero-display')
     expect(css).toContain('.section-y')
+    expect(css).toContain('skip-link')
+    expect(css).toContain('how-flow')
+    expect(css).toContain('roadmap-rail')
     expect(css).not.toContain('.glow-particles')
     const layout = readFileSync(resolve(ROOT, 'app/layout.tsx'), 'utf8')
     expect(layout).toContain('Inter')
@@ -71,6 +74,7 @@ describe('theme-hard brand pack', () => {
   it('hero uses brand pack paths and never mounts a fake wallet mock', () => {
     const hero = readFileSync(resolve(ROOT, 'components/hero.tsx'), 'utf8')
     expect(hero).toContain('hero-display')
+    expect(hero).toContain('HERO_CHIPS')
     expect(hero).not.toContain('HERO.tip')
     expect(hero).not.toContain('SOFT_TIP')
     expect(hero).not.toContain('ReviewPanel')
@@ -87,6 +91,25 @@ describe('theme-hard brand pack', () => {
     expect(graphic).not.toContain('SOFT_TIP')
     expect(graphic).not.toContain('ReviewPanel')
     expect(graphic).not.toMatch(/Review this swap before I confirm/)
+  })
+
+  it('competitor IA polish keeps How as a journey and Features as a 4-up strip', () => {
+    const features = readFileSync(resolve(ROOT, 'components/features.tsx'), 'utf8')
+    expect(features).toContain('lg:grid-cols-4')
+    expect(features).toContain('status')
+    const how = readFileSync(resolve(ROOT, 'components/how.tsx'), 'utf8')
+    expect(how).toContain('how-flow')
+    expect(how).toContain('section-band')
+    expect(how).toContain('ArrowRight')
+    expect(how).not.toContain('{step.n}')
+    const roadmap = readFileSync(resolve(ROOT, 'components/roadmap.tsx'), 'utf8')
+    expect(roadmap).toContain('roadmap-rail')
+    expect(roadmap).toContain('section-band')
+    const layout = readFileSync(resolve(ROOT, 'app/layout.tsx'), 'utf8')
+    expect(layout).toContain('skip-link')
+    expect(layout).toContain('#main')
+    const page = readFileSync(resolve(ROOT, 'app/page.tsx'), 'utf8')
+    expect(page).toContain('id="main"')
   })
 
   it('does not touch GitHub Pages deploy workflows', () => {

@@ -1,4 +1,4 @@
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, Cpu, Eye, Fuel, KeyRound } from 'lucide-react'
 import Image from 'next/image'
 import { HeroGraphic } from '@/components/hero-graphic'
 import { Button } from '@/components/ui/button'
@@ -6,7 +6,12 @@ import { HERO } from '@/content/copy'
 import { BRAND } from '@/lib/brand'
 import { MINI_APP_URL, TG_BOT_URL } from '@/lib/site'
 
-const HERO_CHIPS = [HERO.keys, HERO.review, HERO.aa, HERO.gas] as const
+const HERO_CHIPS = [
+  { label: HERO.keys, Icon: KeyRound },
+  { label: HERO.review, Icon: Eye },
+  { label: HERO.aa, Icon: Cpu },
+  { label: HERO.gas, Icon: Fuel },
+] as const
 
 export function Hero() {
   return (
@@ -46,9 +51,10 @@ export function Hero() {
           </div>
 
           <ul className="mt-6 flex flex-wrap gap-2">
-            {HERO_CHIPS.map((chip) => (
-              <li key={chip} className="chip">
-                {chip}
+            {HERO_CHIPS.map(({ label, Icon }) => (
+              <li key={label} className="chip">
+                <Icon aria-hidden />
+                {label}
               </li>
             ))}
           </ul>
