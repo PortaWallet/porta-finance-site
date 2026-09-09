@@ -1,8 +1,11 @@
 node_modules
 dist
+.next
+out
 .chrome-data
 brand-from-live
 preview-shots
 *.log
 .DS_Store
 .vercel
+*.tsbuildinfo

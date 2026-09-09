@@ -1,27 +1,39 @@
 # porta.finance site
 
-Marketing refresh for [porta.finance](https://porta.finance) — Vite + React 19 + TypeScript + Tailwind CSS v4 + Framer Motion.
+Marketing site for [porta.finance](https://www.porta.finance) — Next.js 15 App Router, React 19, strict TypeScript, Tailwind CSS v4, shadcn/ui + Radix, Framer Motion, next-themes, Lucide.
 
-See **[PLAN.md](./PLAN.md)** for IA, brand tokens, live vs roadmap rules, and do-not-claim copy.
+See **[PLAN.md](./PLAN.md)** for IA, copy honesty, HOLDs, and do-not-claim rules.
 
 ## Scripts
 
 ```bash
 npm install
-npm run dev      # http://localhost:5173
-npm run build    # dist/
-npm run preview  # preview production build
+npm run dev      # http://localhost:3000
+npm run build    # .next/
+npm run start    # production server
+npm test         # honesty + brand tests
 ```
 
 ## Stack
 
-- Vite + React 19 + TypeScript
-- Tailwind CSS v4 (`@tailwindcss/vite`)
-- framer-motion (respects `prefers-reduced-motion`)
-- react-router-dom (Home at `/`)
+- Next.js 15 App Router (`app/` `components/` `lib/` `content/`)
+- Tailwind CSS v4 + OKLCH tokens, Inter via `next/font`
+- shadcn/ui (New York) on Radix
+- framer-motion springs (respects `prefers-reduced-motion`)
+- next-themes dark / light / system
+- SSG + daily ISR (`revalidate = 86400`)
 
-## Notes
+## Honesty
 
-- Android APK (when staged): `public/downloads/porta-wallet.apk`
-- Chrome extension: labeled dogfood soon — no fake Web Store URL
-- Never publish seeds, keys, or overclaim roadmap features as live
+- Primary CTA: **Open in Telegram** → https://t.me/PortaWallet_bot
+- Contact: hello@porta.finance
+- Apps: Telegram Mini App (Live · dogfood) / Extension (Coming) / Mobile (Dogfood APK, not Live)
+- No retail CTAs (`Swap now`, `Bridge now`, `Confirm swap`, AcceptAll)
+- No client-side API keys or secrets
+
+## HOLDs
+
+- **F6.4 OFF**
+- **Retail feature flags OFF**
+- **AcceptAll dead**
+- **Publish HOLD** — do not cut over GitHub Pages or production from this rebuild. PR only.

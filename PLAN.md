@@ -1,60 +1,66 @@
-# porta.finance refresh — kick plan (Senior FE)
+# porta.finance — Next.js 15 modernization (ARCH PLAN)
 
-**Date:** 2026-09-05 · **Soft tip context:** `00044-47z` · **Path:** `/workspace/porta-finance-site/`
+**Date:** 2026-09-09 · **Soft tip:** `00044-47z` · **Path:** App Router rebuild of the Vite marketing site.
 
 ## Stack (locked)
 
 | Choice | Why |
 |--------|-----|
-| **Vite + React 19 + TypeScript** | Fastest path to polished marketing; tiny bundle; CDN-deployable |
-| **Tailwind CSS v4** | Utility speed + design tokens (Porta cyan) |
-| **Framer Motion** | Smooth section reveals / hero without jank |
-| **React Router** | Home + optional `/roadmap` deep-link later |
+| **Next.js 15 App Router** | SSG/ISR marketing, semantic metadata, no Vite SPA SEO tax |
+| **React 19 + strict TypeScript** | Current Next 15 pairing; brief floor was 18.3+ |
+| **Tailwind CSS v4 + OKLCH** | Design tokens without a JS config |
+| **shadcn/ui + Radix + Lucide** | Accessible primitives, owned source |
+| **Framer Motion + next-themes** | Spring micro-interactions; dark/light |
+| **Inter via next/font** | Apple/Stripe type; self-hosted at build; no runtime Google Fonts RTT |
 
-Deferred: Next.js App Router — revisit if SEO/blog needs SSR; Vite static is enough for v1 ship.
+Vite + IBM Plex + cosmic flood is retired on this branch. Brand pack (portal, ring, mesh, mark) stays.
 
-## Brand
+## Design
 
-- **Cosmic navy/purple** backgrounds (`#07060f` → `#12081f`) with cyan wireframe mesh + glow particles
-- **Portal sphere** (cyan→magenta globe) as favicon + header mark (`/logo.png`, `/favicon.svg`, `/brand/portal-hero.webp`)
-- Hero includes portal + multichain ring graphic (Coming — not a live chain list)
-- **Lavender** (`#a89eff`) on key words; **cyan** (`#00eaff`) CTAs; magenta only as atmospheric support
-- Typography: IBM Plex Sans, self-hosted latin 400/600/700 (no Google Fonts)
-- Motion: below-fold fade+rise only; Hero H1 is static for LCP; respect `prefers-reduced-motion`
-- Official links only: porta.finance, t.me/PortaWallet_bot, t.me/PortaWallet, t.me/PortaNews, linkedin.com/company/portawallet, youtube.com/@PortaWallet — no X
+Ultra-minimal Apple/Stripe: Inter, OKLCH surfaces, hairline borders, dark/light, spring reveals below the fold. Hero H1 is static for LCP. `prefers-reduced-motion` kills animation.
 
 ## IA
 
-1. **Nav** — Live · How · Roadmap · Official (`#official`)
-2. **Hero** — Locked H1: *Non-custodial wallet — create, send, and swap with clear review* (not Telegram-native, not “in Telegram”)
-3. **How** — 3-step start
-4. **Live now** — what’s actually dogfoodable today (APK = Dogfood, not Live)
-5. **Roadmap** — ambitions clearly labeled *Coming / not live*
-6. **Footer / Official** — © DracoLabs · official links only (no X)
+1. **Nav** — Apps · Roadmap · Official · Contact · **Open in Telegram**
+2. **Hero** — Locked H1: *AA smart-contract wallet — first in Telegram*
+3. **Trust** — keys on device; review, not auto-trade
+4. **How** — Create → Fund → Review
+5. **Apps** — Telegram Mini App / Extension / Mobile with honest status
+6. **Roadmap** — Coming / not live
+7. **Contact / Footer** — hello@porta.finance · official links only (no X)
 
-### Live now (honest)
+### Apps (honest)
 
-| Surface | Link / status |
-|---------|----------------|
-| Telegram bot | https://t.me/PortaWallet_bot |
-| Mini App | https://production-wallet-telegram-omytp43vwa-ew.a.run.app (soft dogfood tip `00044-47z`; primary entry `@PortaWallet_bot`) |
-| Chrome extension | CWS Unlisted path — button present, label “Dogfood soon” until store URL exists |
-| Android APK | `/downloads/porta-wallet.apk` (staged from dogfood build when present) |
+| Surface | Status |
+|---------|--------|
+| Telegram Mini App / `@PortaWallet_bot` | Live · dogfood |
+| Browser extension | Coming |
+| Mobile APK | Dogfood (not Live, not a store release) |
 
-### Roadmap (not live — F6→F3 style ambitions)
+### Roadmap (not live)
 
-- **Trust / swap honesty** (Phase 1 G1–G8) — when Joshua green-lights
-- **Smart Actions alerts → Review in Porta** (alerts in Telegram) — GTM wedge
-- **Protected swap** (opt-in, never “MEV-proof”)
-- **Account abstraction** — social recovery / session limits as *building*, not shipped gasless
-- **Trading strategies / copy** — later; not brand lead
+- See every swap before you confirm
+- Alerts that open a review — not a trade
+- Optional protected swaps (never MEV-proof)
+- Recovery & session limits (AA building — not gasless)
+- Advanced trading later
 
 ## Copy rules (do-not-claim)
 
-Never: MEV-proof · fake gasless · auto-trading live · AA social recovery live · “ultimate DeFi” as a primary/live claim · pretend roadmap features are live.
+Never: MEV-proof · fake gasless · auto-trading live · AA social recovery live · “ultimate DeFi” as a primary/live claim · pretend roadmap features are live · retail CTAs (`Swap now`, `Bridge now`, `Confirm swap`, AcceptAll).
 
-**Hero line:** *Non-custodial wallet — create, send, and swap with clear review.* Telegram is a surface (bot / Mini App) in the sub only — not the H1. Heritage “Ultimate DeFi Trading Wallet” art may appear as visual texture only — not the H1.
+Telegram is the **first surface**, not the product owner. Chip: independent AA smart-contract wallet · not a Telegram product.
 
-## Deliverable this kick
+## HOLDs
 
-Scaffold that `npm install && npm run dev` runs; PLAN.md + polished Home with Live now / Roadmap; cyan brand; no secrets/seeds.
+- F6.4 **OFF**
+- Retail feature flags **OFF**
+- AcceptAll **dead**
+- **Publish HOLD** — PR only. Do not edit GitHub Pages workflows or cut over production.
+
+## Perf / SEO / security
+
+- Static generation + `revalidate = 86400`
+- `metadata`, sitemap, robots, JSON-LD
+- No CLS: reserved image sizes, `next/font` fallbacks
+- No client-side API keys or secrets
