@@ -47,6 +47,7 @@ jobs:
           Source: ${{ github.event.pull_request.html_url || github.repository }}
           SHA: ${{ github.event.pull_request.head.sha || github.sha }}
           EOF
+          printf '\n<!-- porta-preview %s how-icons x-twitter -->\n' "${{ github.event.pull_request.head.sha || github.sha }}" >> out/index.html
 
       - uses: actions/upload-artifact@v4
         with:
@@ -85,6 +86,12 @@ jobs:
           user_email: github-actions[bot]@users.noreply.github.com
           commit_message: 'preview: static export for PR #${{ github.event.pull_request.number }} (HOLD)'
 
+      - name: Purge sticky jsDelivr branch cache
+        if: github.event.pull_request.number
+        continue-on-error: true
+        run: |
+          curl -fsS "https://purge.jsdelivr.net/gh/${{ github.repository }}@preview-pr-${{ github.event.pull_request.number }}/index.html" || true
+
       - name: Resolve preview URLs
         id: urls
         if: github.event.pull_request.number
@@ -92,8 +99,8 @@ jobs:
           git fetch origin "preview-pr-${{ github.event.pull_request.number }}" --depth=1
           SHA=$(git rev-parse "origin/preview-pr-${{ github.event.pull_request.number }}")
           echo "preview_sha=${SHA}" >> "$GITHUB_OUTPUT"
-          echo "preview_url=https://htmlpreview.github.io/?https://github.com/${{ github.repository }}/blob/preview-pr-${{ github.event.pull_request.number }}/index.html" >> "$GITHUB_OUTPUT"
-          echo "cdn_url=https://cdn.jsdelivr.net/gh/${{ github.repository }}@preview-pr-${{ github.event.pull_request.number }}/index.html" >> "$GITHUB_OUTPUT"
+          echo "preview_url=https://htmlpreview.github.io/?https://github.com/${{ github.repository }}/blob/${SHA}/index.html" >> "$GITHUB_OUTPUT"
+          echo "cdn_url=https://cdn.jsdelivr.net/gh/${{ github.repository }}@${SHA}/index.html" >> "$GITHUB_OUTPUT"
           echo "branch=preview-pr-${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"
           echo "alias_branch=preview/pr-${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"
           echo "artifact=porta-preview-pr-${{ github.event.pull_request.number }}" >> "$GITHUB_OUTPUT"

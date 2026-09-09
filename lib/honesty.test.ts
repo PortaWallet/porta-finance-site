@@ -227,6 +227,7 @@ describe('soft tip honesty', () => {
     expect(howUi).toContain('ArrowDownToLine')
     expect(howUi).toContain('Send')
     expect(howUi).not.toContain('{step.n}')
+    expect(how).not.toMatch(/n: '0[123]'/)
     const apps = readFileSync(resolve(ROOT, 'content/apps.ts'), 'utf8')
     expect(apps).toContain('Where Porta lives')
     expect(apps).toContain('review swaps')

@@ -44,17 +44,14 @@ export const HOW = {
   title: 'Create or import → Receive assets → Send and review swaps',
   steps: [
     {
-      n: '01',
       title: 'Create or import',
       body: 'Create a wallet or import one. Keys stay on your device.',
     },
     {
-      n: '02',
       title: 'Receive assets',
       body: 'Receive assets you already hold.',
     },
     {
-      n: '03',
       title: 'Send and review swaps',
       body: 'Send and review every swap before you confirm.',
     },
