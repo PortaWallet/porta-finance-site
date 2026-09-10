@@ -11,6 +11,17 @@ import {
   isRetailCtaAllowed,
 } from '@/lib/flags'
 import {
+  LEGAL_UPDATED_ISO,
+  LEGAL_UPDATED_LABEL,
+  POLICY,
+  POLICY_ID,
+  POLICY_PATH,
+  TERMS,
+  TERMS_ID,
+  TERMS_PATH,
+} from '@/content/legal'
+import {
+  CONTACT_EMAIL,
   LINKEDIN_URL,
   OFFICIAL_LINKS,
   PRIMARY_CTA_LABEL,
@@ -42,6 +53,7 @@ const COPY_SOURCES = [
   'lib/flags.ts',
   'lib/brand.ts',
   'content/copy.ts',
+  'content/legal.ts',
   'content/apps.ts',
   'content/roadmap.ts',
   'content/holds.ts',
@@ -57,6 +69,7 @@ const COPY_SOURCES = [
   'components/roadmap.tsx',
   'components/how.tsx',
   'components/contact.tsx',
+  'components/legal.tsx',
   'components/site-nav.tsx',
   'app/layout.tsx',
   'app/page.tsx',
@@ -66,11 +79,13 @@ const COPY_SOURCES = [
   'components/motion-section.tsx',
   '.github/workflows/preview.yml',
   'lib/preview.ts',
+  'scripts/relativize-preview.mjs',
 ] as const
 
 const PUBLIC_UI = [
   'lib/seo.ts',
   'content/copy.ts',
+  'content/legal.ts',
   'content/apps.ts',
   'content/roadmap.ts',
   'components/apps.tsx',
@@ -85,6 +100,7 @@ const PUBLIC_UI = [
   'components/roadmap.tsx',
   'components/how.tsx',
   'components/contact.tsx',
+  'components/legal.tsx',
   'components/site-nav.tsx',
   'app/layout.tsx',
   'app/page.tsx',
@@ -141,6 +157,8 @@ describe('soft tip honesty', () => {
       'components/hero-graphic.tsx',
       'components/site-footer.tsx',
       'components/contact.tsx',
+      'components/legal.tsx',
+      'content/legal.ts',
       'components/official-links.tsx',
       'components/aa.tsx',
       'components/features.tsx',
@@ -402,6 +420,62 @@ describe('soft tip honesty', () => {
     expect(apps).not.toContain('LINKEDIN_URL')
     expect(apps).not.toContain('YOUTUBE_URL')
     expect(apps).not.toMatch(/run\.app|Cloud Run/)
+  })
+
+  it('privacy and terms hashes exist for Google OAuth — #policy and #terms', () => {
+    expect(POLICY_ID).toBe('policy')
+    expect(TERMS_ID).toBe('terms')
+    expect(POLICY_PATH).toBe('/#policy')
+    expect(TERMS_PATH).toBe('/#terms')
+    expect(POLICY.id).toBe('policy')
+    expect(TERMS.id).toBe('terms')
+    expect(LEGAL_UPDATED_ISO).toBe('2026-09-10')
+    expect(LEGAL_UPDATED_LABEL).toBe('10 September 2026')
+    expect(POLICY.title).toBe('Privacy Policy')
+    expect(TERMS.title).toBe('Terms of Service')
+    expect(POLICY.lede).toMatch(/keys stay on your device/i)
+    expect(POLICY.sections.some((s) => /Google sign-in/i.test(s.body))).toBe(
+      true,
+    )
+    expect(POLICY.sections.some((s) => s.body.includes(CONTACT_EMAIL))).toBe(
+      true,
+    )
+    expect(TERMS.sections.some((s) => /as-is/i.test(s.body))).toBe(true)
+    expect(TERMS.sections.some((s) => /do not take custody/i.test(s.body))).toBe(
+      true,
+    )
+    expect(TERMS.sections.some((s) => /network/i.test(s.body))).toBe(true)
+    expect(TERMS.sections.some((s) => s.body.includes(CONTACT_EMAIL))).toBe(
+      true,
+    )
+    const legal = readFileSync(resolve(ROOT, 'content/legal.ts'), 'utf8')
+    expect(legal).not.toMatch(/#term(?!s)/)
+    expect(legal).not.toMatch(TELEGRAM_DENIAL)
+    expect(legal).not.toMatch(PUBLIC_DOGFOOD)
+    expect(legal).not.toMatch(/we hold your (keys|assets|funds)/i)
+    expect(legal).not.toMatch(/custodial wallet/i)
+    const ui = readFileSync(resolve(ROOT, 'components/legal.tsx'), 'utf8')
+    expect(ui).toContain('id={doc.id}')
+    expect(ui).toContain('LEGAL_UPDATED_ISO')
+    expect(ui).toContain('CONTACT_EMAIL')
+    expect(ui).not.toMatch(TELEGRAM_DENIAL)
+    const page = readFileSync(resolve(ROOT, 'app/page.tsx'), 'utf8')
+    expect(page).toContain('<Policy')
+    expect(page).toContain('<Terms')
+    const footer = readFileSync(
+      resolve(ROOT, 'components/site-footer.tsx'),
+      'utf8',
+    )
+    expect(footer).toContain('LEGAL_LINKS')
+    expect(footer).toContain('href={link.href}')
+    expect(footer).not.toContain('#term"')
+    expect(footer).not.toContain("href: '#term'")
+    const relativize = readFileSync(
+      resolve(ROOT, 'scripts/relativize-preview.mjs'),
+      'utf8',
+    )
+    expect(relativize).toContain('href="/#policy"')
+    expect(relativize).toContain('href="/#terms"')
   })
 })
 

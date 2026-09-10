@@ -36,6 +36,10 @@ const replacements = [
   ['url(/brand/', 'url(./brand/'],
   ['href="/"', 'href="./"'],
   ["href='/'", "href='./'"],
+  ['href="/#policy"', 'href="./#policy"'],
+  ["href='/#policy'", "href='./#policy'"],
+  ['href="/#terms"', 'href="./#terms"'],
+  ["href='/#terms'", "href='./#terms'"],
 ]
 
 function walk(dir) {
