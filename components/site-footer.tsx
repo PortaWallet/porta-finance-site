@@ -1,7 +1,9 @@
-import { CONTACT_EMAIL, CONTACT_MAILTO } from '@/lib/site'
-import { FOOTER } from '@/content/copy'
 import { OfficialLinks } from '@/components/official-links'
 import { Separator } from '@/components/ui/separator'
+import { FOOTER } from '@/content/copy'
+import { LEGAL_LINKS } from '@/content/legal'
+import { HOME_HREF } from '@/lib/preview'
+import { CONTACT_EMAIL, CONTACT_MAILTO } from '@/lib/site'
 
 export function SiteFooter() {
   return (
@@ -25,6 +27,17 @@ export function SiteFooter() {
               {CONTACT_EMAIL}
             </a>
             <p className="mt-1 text-sm text-muted-foreground">{FOOTER.legal}</p>
+            <nav aria-label="Legal" className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
+              {LEGAL_LINKS.map((link) => (
+                <a
+                  key={link.id}
+                  href={`${HOME_HREF}#${link.id}`}
+                  className="text-sm font-medium text-foreground transition-colors hover:text-primary"
+                >
+                  {link.label}
+                </a>
+              ))}
+            </nav>
           </div>
           <p className="max-w-md text-xs leading-snug text-muted-foreground sm:text-right">
             {FOOTER.honesty}

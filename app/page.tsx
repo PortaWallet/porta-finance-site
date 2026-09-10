@@ -3,6 +3,7 @@ import { Apps } from '@/components/apps'
 import { Contact } from '@/components/contact'
 import { Developers } from '@/components/developers'
 import { Features } from '@/components/features'
+import { Policy, Terms } from '@/components/legal'
 import { Hero } from '@/components/hero'
 import { How } from '@/components/how'
 import { MotionSection } from '@/components/motion-section'
@@ -32,6 +33,8 @@ export default function HomePage() {
         </MotionSection>
         <Roadmap />
         <Contact />
+        <Policy />
+        <Terms />
       </main>
       <SiteFooter />
     </div>
