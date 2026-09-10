@@ -162,6 +162,7 @@ describe('soft tip honesty', () => {
       'components/official-links.tsx',
       'components/aa.tsx',
       'components/features.tsx',
+      'components/how.tsx',
     ] as const
     for (const rel of liveSources) {
       const text = readFileSync(resolve(ROOT, rel), 'utf8')
@@ -239,6 +240,9 @@ describe('soft tip honesty', () => {
     expect(how).toContain("title: 'Create or import'")
     expect(how).toContain("title: 'Receive assets'")
     expect(how).toContain("title: 'Send and review swaps'")
+    expect(how).toContain(
+      "body: 'Send and review every swap before you confirm — not auto-trade. You pay gas; sponsorship is not live.'",
+    )
     expect(how).not.toContain("title: 'Fund'")
     expect(how).not.toMatch(/on-ramp/i)
     const howUi = readFileSync(resolve(ROOT, 'components/how.tsx'), 'utf8')

@@ -56,7 +56,7 @@ export const HOW = {
     },
     {
       title: 'Send and review swaps',
-      body: 'Send and review every swap before you confirm.',
+      body: 'Send and review every swap before you confirm — not auto-trade. You pay gas; sponsorship is not live.',
     },
   ],
 } as const
