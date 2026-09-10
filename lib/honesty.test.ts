@@ -79,6 +79,7 @@ const COPY_SOURCES = [
   'components/motion-section.tsx',
   '.github/workflows/preview.yml',
   'lib/preview.ts',
+  'scripts/relativize-preview.mjs',
 ] as const
 
 const PUBLIC_UI = [
@@ -466,9 +467,15 @@ describe('soft tip honesty', () => {
       'utf8',
     )
     expect(footer).toContain('LEGAL_LINKS')
-    expect(footer).toContain('HOME_HREF')
-    expect(footer).toContain('#${link.id}')
+    expect(footer).toContain('href={link.href}')
     expect(footer).not.toContain('#term"')
+    expect(footer).not.toContain("href: '#term'")
+    const relativize = readFileSync(
+      resolve(ROOT, 'scripts/relativize-preview.mjs'),
+      'utf8',
+    )
+    expect(relativize).toContain('href="/#policy"')
+    expect(relativize).toContain('href="/#terms"')
   })
 })
 

@@ -2,7 +2,6 @@ import { OfficialLinks } from '@/components/official-links'
 import { Separator } from '@/components/ui/separator'
 import { FOOTER } from '@/content/copy'
 import { LEGAL_LINKS } from '@/content/legal'
-import { HOME_HREF } from '@/lib/preview'
 import { CONTACT_EMAIL, CONTACT_MAILTO } from '@/lib/site'
 
 export function SiteFooter() {
@@ -31,7 +30,7 @@ export function SiteFooter() {
               {LEGAL_LINKS.map((link) => (
                 <a
                   key={link.id}
-                  href={`${HOME_HREF}#${link.id}`}
+                  href={link.href}
                   className="text-sm font-medium text-foreground transition-colors hover:text-primary"
                 >
                   {link.label}
