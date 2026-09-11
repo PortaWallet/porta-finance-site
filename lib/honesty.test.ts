@@ -21,6 +21,8 @@ import {
   TERMS_PATH,
 } from '@/content/legal'
 import {
+  APK_HREF,
+  APK_RELEASE_HREF,
   CONTACT_EMAIL,
   LINKEDIN_URL,
   OFFICIAL_LINKS,
@@ -259,6 +261,8 @@ describe('soft tip honesty', () => {
     expect(apps).toContain("title: 'Mobile'")
     expect(apps).toContain('CWS Unlisted soon')
     expect(apps).toContain("statusLabel: 'Coming'")
+    expect(apps).toContain('Agents screens ship on the extension and web')
+    expect(apps).toContain('Chrome Web Store Unlisted is not live')
     expect(apps).not.toMatch(/chrome\.google\.com|chromewebstore/i)
   })
 
@@ -331,6 +335,16 @@ describe('soft tip honesty', () => {
     expect(apps).toContain("title: 'Mobile'")
     expect(apps).not.toMatch(/Dogfood|dogfood/)
     expect(apps).not.toMatch(/id: 'mobile'[\s\S]{0,220}status: 'live'/)
+    expect(apps).toContain('APK_RELEASE_HREF')
+    expect(apps).toContain('Release page')
+    expect(APK_HREF).toBe(
+      'https://github.com/PortaWallet/Porta-Wallet-Mobile/releases/download/apk-dogfood-20260911-post202/porta_release_00057_82cf1b4.apk',
+    )
+    expect(APK_RELEASE_HREF).toBe(
+      'https://github.com/PortaWallet/Porta-Wallet-Mobile/releases/tag/apk-dogfood-20260911-post202',
+    )
+    expect(APK_HREF).toMatch(/\.apk$/)
+    expect(APK_HREF).not.toMatch(/\/downloads\//)
   })
 
   it('AA honesty + Security + Developers + feature cards are present', () => {
@@ -348,10 +362,20 @@ describe('soft tip honesty', () => {
     expect(copy).toContain("title: 'Send'")
     expect(copy).toContain("title: 'Receive'")
     expect(copy).toContain("title: 'Review'")
+    expect(copy).toContain("title: 'Agents'")
     expect(copy).toContain("title: 'Bridge'")
     expect(copy).toContain('Cross-chain bridge is not live')
+    expect(copy).toContain('Mandate / Agents')
+    expect(copy).toContain('scoped agent sessions')
+    expect(copy).toContain('valet keys')
+    expect(copy).toContain('Telegram and Mobile are catching up')
+    expect(copy).toContain('Not production-complete on every surface')
+    expect(copy).toContain('not sponsored gas')
+    expect(copy).not.toMatch(/Agents are live on (Telegram|Mobile|every surface)/i)
     expect(copy).toContain('No public SDK yet')
     expect(copy).toContain('No fake audits or TVL')
+    const features = readFileSync(resolve(ROOT, 'components/features.tsx'), 'utf8')
+    expect(features).toContain('Agents: KeyRound')
     const page = readFileSync(resolve(ROOT, 'app/page.tsx'), 'utf8')
     expect(page).toContain('<Features')
     expect(page).toContain('<AccountAbstraction')

@@ -29,6 +29,8 @@ export const metadata: Metadata = {
     'account abstraction',
     'smart account',
     'UserOps',
+    'Agents',
+    'Mandate',
     'Telegram Mini App',
     'non-custodial',
   ],

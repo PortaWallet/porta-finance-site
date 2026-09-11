@@ -53,7 +53,9 @@ export function Apps() {
                           {...(app.href.startsWith('http')
                             ? { target: '_blank', rel: 'noopener noreferrer' }
                             : {})}
-                          {...(app.download ? { download: 'porta-wallet.apk' } : {})}
+                          {...(app.download && !app.href.startsWith('http')
+                            ? { download: 'porta-wallet.apk' }
+                            : {})}
                         >
                           {app.cta}
                           <ArrowUpRight className="size-3.5" aria-hidden />

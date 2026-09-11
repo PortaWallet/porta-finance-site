@@ -2,7 +2,7 @@ import { SITE_URL, TG_BOT_URL, CONTACT_EMAIL } from '@/lib/site'
 
 export const SITE_TITLE = 'Porta — AA smart-contract wallet'
 export const SITE_DESCRIPTION =
-  'Porta is an account-abstraction smart-contract wallet. Open it in Telegram to create or import, receive assets, send, and review swaps. Self-funded gas — sponsorship is not live.'
+  'Porta is an account-abstraction smart-contract wallet. Open it in Telegram to create or import, receive assets, send, and review swaps. Mandate / Agents are scoped sessions on the smart account — extension and web first. Self-funded gas — sponsorship is not live.'
 
 export function organizationJsonLd() {
   return {

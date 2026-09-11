@@ -23,10 +23,10 @@ Ultra-minimal Apple/Stripe: Inter, OKLCH surfaces, hairline borders, dark/light,
 
 1. **Nav** — Apps · Roadmap · Official · Contact · **Open in Telegram**
 2. **Hero** — Locked H1: *AA smart-contract wallet — first in Telegram* — CTAs only; brand art, never a fake wallet UI
-3. **Features** — Send / Receive / Review / Bridge (bridge not live)
+3. **Features** — Send / Receive / Review / Agents / Bridge (bridge not live)
 4. **How** — Create or import → Receive assets → Send and review swaps
-5. **Apps** — Telegram Mini App / Extension (CWS Unlisted soon) / Mobile
-6. **AA + Security** — Smart account / UserOps / self-funded gas; sponsorship + gasless + social recovery not live
+5. **Apps** — Telegram Mini App / Extension (CWS Unlisted soon; Agents screens on Ext/web) / Mobile APK (GitHub release asset)
+6. **AA + Security** — Smart account / UserOps / self-funded gas; Mandate / Agents = scoped sessions (Ext/web shipping, TG+Mobile catching up); sponsorship + gasless + social recovery not live
 7. **Developers** — no public SDK claim
 8. **Roadmap** — Coming / not live
 9. **Contact / Footer** — hello@porta.finance · official links once (includes X / Twitter @PortaWallet)
@@ -36,8 +36,8 @@ Ultra-minimal Apple/Stripe: Inter, OKLCH surfaces, hairline borders, dark/light,
 | Surface | Status |
 |---------|--------|
 | Telegram Mini App / `@PortaWallet_bot` | Live entry (eng-only tip; no public dogfood chrome) |
-| Browser extension | Coming / CWS Unlisted soon |
-| Mobile APK | Available as APK, not Live, not a store release |
+| Browser extension | Coming / CWS Unlisted soon — Agents screens ship on Ext/web; no store listing |
+| Mobile APK | GitHub release APK, not Live, not a store release |
 
 ### Roadmap (not live)
 
