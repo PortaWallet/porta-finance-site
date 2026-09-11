@@ -556,10 +556,10 @@ describe('soft tip honesty', () => {
     const terms = readFileSync(resolve(ROOT, 'app/terms/page.tsx'), 'utf8')
     expect(privacy).toContain('LegalPage')
     expect(privacy).toContain('POLICY')
-    expect(privacy).toContain(POLICY_PATH)
+    expect(privacy).toContain('POLICY_PATH')
     expect(terms).toContain('LegalPage')
     expect(terms).toContain('TERMS')
-    expect(terms).toContain(TERMS_PATH)
+    expect(terms).toContain('TERMS_PATH')
     const privacyAlias = readFileSync(
       resolve(ROOT, 'app/privacy-policy/page.tsx'),
       'utf8',
