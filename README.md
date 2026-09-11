@@ -30,7 +30,8 @@ npm test               # honesty + brand tests
 - Contact: hello@porta.finance
 - Apps: Telegram Mini App / Extension (Coming · CWS Unlisted soon; Agents screens on Ext/web) / Mobile APK (GitHub release, not Live)
 - Official links once below Apps (footer) — never duplicated into Apps
-- No retail CTAs (`Swap now`, `Bridge now`, `Confirm swap`, AcceptAll)
+- No retail execute CTAs (`Swap now`, `Bridge now`, `Confirm swap`). AcceptAll is HOLD · dead on `/roadmap`.
+- Roadmap: `/roadmap` EN one-pager — HOLD / LIVE / Coming from the Crypto + DeFi SoT. No Hebrew. No fake metrics.
 - Agents: Joshua EN SoT verbatim (English only — no Hebrew on www). One line: you lend a small, controlled budget — not the wallet. `swap_24h` greyed / not active.
 - AA honesty: smart account + UserOps + self-funded gas; sponsorship / gasless / social recovery not live
 - No fake sponsored UI (`$0 gas`, Sponsored send)

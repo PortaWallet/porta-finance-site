@@ -86,6 +86,7 @@ const COPY_SOURCES = [
   'app/terms/page.tsx',
   'app/privacy-policy/page.tsx',
   'app/terms-of-service/page.tsx',
+  'app/roadmap/page.tsx',
   'app/sitemap.ts',
   'app/not-found.tsx',
   'PLAN.md',
@@ -126,9 +127,9 @@ const PUBLIC_UI = [
   'app/terms/page.tsx',
   'app/privacy-policy/page.tsx',
   'app/terms-of-service/page.tsx',
+  'app/roadmap/page.tsx',
 ] as const
 
-const RETAIL_CTA = /Swap now|Bridge now|Confirm swap|Accept all|AcceptAll/i
 const FAKE_WALLET_UI =
   /ReviewPanel|Review this swap before I confirm|From<\/span>|To<\/span>|Fees<\/span>/
 const TELEGRAM_DENIAL = /not a Telegram product|not a Telegram app/i
@@ -215,7 +216,10 @@ describe('soft tip honesty', () => {
     const marketing = COPY_SOURCES.filter((rel) => !rel.endsWith('.md'))
     for (const rel of marketing) {
       const text = readFileSync(resolve(ROOT, rel), 'utf8')
-      expect(text, rel).not.toMatch(RETAIL_CTA)
+      expect(text, rel).not.toMatch(/Swap now|Bridge now|Confirm swap/i)
+      if (/AcceptAll|Accept all/.test(text)) {
+        expect(text, rel).toMatch(/HOLD · dead|ACCEPT_ALL/)
+      }
     }
   })
 
@@ -223,14 +227,16 @@ describe('soft tip honesty', () => {
     const nav = readFileSync(resolve(ROOT, 'components/site-nav.tsx'), 'utf8')
     const copy = readFileSync(resolve(ROOT, 'content/copy.ts'), 'utf8')
     expect(copy).toContain("href: '#apps'")
-    expect(copy).toContain("href: '#roadmap'")
+    expect(copy).toContain('ROADMAP_PATH')
     expect(copy).toContain("href: '#official'")
     expect(copy).toContain("href: '#contact'")
     expect(copy).toContain("label: 'Official'")
     expect(copy).toContain("label: 'Contact'")
+    expect(copy).not.toContain("href: '#roadmap'")
     expect(nav).toContain('PRIMARY_CTA_LABEL')
     expect(nav).toContain('TG_BOT_URL')
     expect(nav).toContain('NAV_LINKS')
+    expect(nav).toContain('navHref')
     expect(nav).not.toContain("label: 'Open bot'")
     expect(nav).not.toContain("label: 'Follow'")
     expect(nav).not.toMatch(/x\.com|twitter\.com/i)
@@ -288,17 +294,53 @@ describe('soft tip honesty', () => {
     expect(apps).not.toMatch(/chrome\.google\.com|chromewebstore/i)
   })
 
-  it('roadmap H2 is What’s next with locked JTBD Coming titles', () => {
+  it('roadmap is the EN Crypto + DeFi one-pager with HOLD / LIVE / Coming', () => {
     const roadmap = readFileSync(resolve(ROOT, 'content/roadmap.ts'), 'utf8')
+    const ui = readFileSync(resolve(ROOT, 'components/roadmap.tsx'), 'utf8')
+    const page = readFileSync(resolve(ROOT, 'app/roadmap/page.tsx'), 'utf8')
+    expect(roadmap).toContain("pageTitle: 'Crypto + DeFi roadmap'")
+    expect(roadmap).toContain("export const ROADMAP_PATH = '/roadmap'")
     expect(roadmap).toContain('What’s next')
     expect(roadmap).toContain('Coming · not live')
     expect(roadmap).toContain('Not live yet')
+    expect(roadmap).toContain('HOLD · NO-GO')
+    expect(roadmap).toContain('HOLD · OFF')
+    expect(roadmap).toContain('HOLD · dead')
+    expect(roadmap).toContain('F6.4 VerifyingPaymaster sponsorship')
+    expect(roadmap).toContain('NO-GO')
+    expect(roadmap).toContain('Retail DeFi feature flags')
+    expect(roadmap).toContain('AcceptAll')
+    expect(roadmap).toContain('AA Send')
+    expect(roadmap).toContain('Self-funded UserOps')
+    expect(roadmap).toContain('Canonical EntryPoint')
+    expect(roadmap).toContain('Porta JWT RPC')
+    expect(roadmap).toContain('Mandate Agents UI')
+    expect(roadmap).toContain('Sepolia Mandate V2')
+    expect(roadmap).toContain('FactoryV2')
+    expect(roadmap).toContain('Review quote / Confirm quote')
     expect(roadmap).toContain('See every swap before you confirm')
+    expect(roadmap).toContain('minReceived')
+    expect(roadmap).toContain('they do not execute')
+    expect(roadmap).toContain('UserOp-65')
+    expect(roadmap).toContain('FactoryV2 as the default')
+    expect(roadmap).toContain('Linea-first')
+    expect(roadmap).toContain('Social recovery')
+    expect(roadmap).toContain('Smart Actions')
     expect(roadmap).toContain('Alerts that open a review — not a trade')
-    expect(roadmap).toContain('Optional protected swaps')
-    expect(roadmap).toContain('Recovery & session limits')
-    expect(roadmap).toContain('Advanced trading later')
-    expect(roadmap).not.toMatch(/F6\.|G1–G8|Phase 1/)
+    expect(roadmap).toContain('Limit / TWAP later')
+    expect(roadmap).toContain('ZK privacy lane')
+    expect(roadmap).toContain('Design only')
+    expect(roadmap).toContain('Perps and restaking')
+    expect(roadmap).not.toMatch(/G1–G8|Phase 1/)
+    expect(roadmap).not.toMatch(/AI copy-trading|\$PORTA|insurance fund|UniV4|agents marketplace/i)
+    expect(roadmap).not.toMatch(/[\u0590-\u05FF]/)
+    expect(roadmap).not.toMatch(/Optional protected swaps/)
+    expect(ui).toContain('RoadmapPage')
+    expect(ui).toContain("variant={statusVariant(item.status)}")
+    expect(ui).toContain("asPage")
+    expect(page).toContain('RoadmapPage')
+    expect(page).toContain('ROADMAP_PATH')
+    expect(page).toContain('CryptoDefiRoadmapPage')
   })
 
   it('R1/R2: locked H1 positions AA wallet + Telegram Mini App first', () => {
@@ -451,9 +493,15 @@ describe('soft tip honesty', () => {
   it('public chrome never ships fake sponsored / paymaster UI', () => {
     const fakeSponsored =
       /\$0 gas|free gas|gas paid for you|sponsored send|gas is sponsored|fully sponsored/i
+    const holdLabeled = new Set([
+      'content/roadmap.ts',
+      'components/roadmap.tsx',
+      'app/roadmap/page.tsx',
+    ])
     for (const rel of PUBLIC_UI) {
       const text = readFileSync(resolve(ROOT, rel), 'utf8')
       expect(text, rel).not.toMatch(fakeSponsored)
+      if (holdLabeled.has(rel)) continue
       expect(text, rel).not.toContain('VerifyingPaymaster')
       expect(text, rel).not.toMatch(/F6\.4/)
     }
@@ -579,16 +627,18 @@ describe('soft tip honesty', () => {
     expect(footer).not.toContain('#term"')
     expect(footer).not.toContain("href: '#term'")
     const nav = readFileSync(resolve(ROOT, 'components/site-nav.tsx'), 'utf8')
-    expect(nav).toContain('`${HOME_HREF}${link.href}`')
+    expect(nav).toContain('navHref')
     const sitemap = readFileSync(resolve(ROOT, 'app/sitemap.ts'), 'utf8')
     expect(sitemap).toContain('POLICY_PATH')
     expect(sitemap).toContain('TERMS_PATH')
+    expect(sitemap).toContain('ROADMAP_PATH')
     const relativize = readFileSync(
       resolve(ROOT, 'scripts/relativize-preview.mjs'),
       'utf8',
     )
     expect(relativize).toContain('href="/privacy"')
     expect(relativize).toContain('href="/terms"')
+    expect(relativize).toContain('href="/roadmap"')
     expect(relativize).toContain('href="/privacy-policy"')
     expect(relativize).toContain('href="/terms-of-service"')
     expect(relativize).toContain('href="/#policy"')

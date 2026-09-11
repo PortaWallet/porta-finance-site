@@ -1,8 +1,9 @@
+import { ROADMAP_PATH } from '@/content/roadmap'
 import { PRIMARY_CTA_LABEL } from '@/lib/site'
 
 export const NAV_LINKS = [
   { href: '#apps', label: 'Apps' },
-  { href: '#roadmap', label: 'Roadmap' },
+  { href: ROADMAP_PATH, label: 'Roadmap' },
   { href: '#official', label: 'Official' },
   { href: '#contact', label: 'Contact' },
 ] as const
