@@ -1,4 +1,4 @@
-import { ArrowLeftRight, Inbox, Send, ShieldCheck } from 'lucide-react'
+import { ArrowLeftRight, Inbox, KeyRound, Send, ShieldCheck } from 'lucide-react'
 import { MotionItem, MotionSection, MotionStagger } from '@/components/motion-section'
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { FEATURES } from '@/content/copy'
@@ -7,6 +7,7 @@ const icons = {
   Send,
   Receive: Inbox,
   Review: ShieldCheck,
+  Agents: KeyRound,
   Bridge: ArrowLeftRight,
 } as const
 

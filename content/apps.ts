@@ -1,6 +1,7 @@
 import {
   APK_AVAILABLE,
   APK_HREF,
+  APK_RELEASE_HREF,
   MINI_APP_URL,
   TG_BOT_HANDLE,
   TG_BOT_URL,
@@ -44,7 +45,7 @@ export const APP_SURFACES: readonly AppSurface[] = [
     id: 'extension',
     title: 'Browser extension',
     description:
-      'Browser wallet alongside Telegram. Chrome Web Store Unlisted is not live.',
+      'Agents screens ship on the extension and web. Chrome Web Store Unlisted is not live — no store listing yet.',
     status: 'coming',
     statusLabel: 'Coming',
     cta: 'CWS Unlisted soon',
@@ -61,6 +62,8 @@ export const APP_SURFACES: readonly AppSurface[] = [
           href: APK_HREF,
           cta: 'Download APK',
           download: true,
+          secondaryHref: APK_RELEASE_HREF,
+          secondaryCta: 'Release page',
         } satisfies AppSurface,
       ]
     : [

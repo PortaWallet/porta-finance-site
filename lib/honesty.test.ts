@@ -21,6 +21,8 @@ import {
   TERMS_PATH,
 } from '@/content/legal'
 import {
+  APK_HREF,
+  APK_RELEASE_HREF,
   CONTACT_EMAIL,
   LINKEDIN_URL,
   OFFICIAL_LINKS,
@@ -53,11 +55,13 @@ const COPY_SOURCES = [
   'lib/flags.ts',
   'lib/brand.ts',
   'content/copy.ts',
+  'content/agents.ts',
   'content/legal.ts',
   'content/apps.ts',
   'content/roadmap.ts',
   'content/holds.ts',
   'components/apps.tsx',
+  'components/agents.tsx',
   'components/hero.tsx',
   'components/hero-graphic.tsx',
   'components/features.tsx',
@@ -85,10 +89,12 @@ const COPY_SOURCES = [
 const PUBLIC_UI = [
   'lib/seo.ts',
   'content/copy.ts',
+  'content/agents.ts',
   'content/legal.ts',
   'content/apps.ts',
   'content/roadmap.ts',
   'components/apps.tsx',
+  'components/agents.tsx',
   'components/hero.tsx',
   'components/hero-graphic.tsx',
   'components/features.tsx',
@@ -151,8 +157,10 @@ describe('soft tip honesty', () => {
       'lib/site.ts',
       'lib/seo.ts',
       'content/copy.ts',
+      'content/agents.ts',
       'content/apps.ts',
       'components/apps.tsx',
+      'components/agents.tsx',
       'components/hero.tsx',
       'components/hero-graphic.tsx',
       'components/site-footer.tsx',
@@ -259,6 +267,8 @@ describe('soft tip honesty', () => {
     expect(apps).toContain("title: 'Mobile'")
     expect(apps).toContain('CWS Unlisted soon')
     expect(apps).toContain("statusLabel: 'Coming'")
+    expect(apps).toContain('Agents screens ship on the extension and web')
+    expect(apps).toContain('Chrome Web Store Unlisted is not live')
     expect(apps).not.toMatch(/chrome\.google\.com|chromewebstore/i)
   })
 
@@ -331,6 +341,16 @@ describe('soft tip honesty', () => {
     expect(apps).toContain("title: 'Mobile'")
     expect(apps).not.toMatch(/Dogfood|dogfood/)
     expect(apps).not.toMatch(/id: 'mobile'[\s\S]{0,220}status: 'live'/)
+    expect(apps).toContain('APK_RELEASE_HREF')
+    expect(apps).toContain('Release page')
+    expect(APK_HREF).toBe(
+      'https://github.com/PortaWallet/Porta-Wallet-Mobile/releases/download/apk-dogfood-20260911-post202/porta_release_00057_82cf1b4.apk',
+    )
+    expect(APK_RELEASE_HREF).toBe(
+      'https://github.com/PortaWallet/Porta-Wallet-Mobile/releases/tag/apk-dogfood-20260911-post202',
+    )
+    expect(APK_HREF).toMatch(/\.apk$/)
+    expect(APK_HREF).not.toMatch(/\/downloads\//)
   })
 
   it('AA honesty + Security + Developers + feature cards are present', () => {
@@ -348,12 +368,19 @@ describe('soft tip honesty', () => {
     expect(copy).toContain("title: 'Send'")
     expect(copy).toContain("title: 'Receive'")
     expect(copy).toContain("title: 'Review'")
+    expect(copy).toContain("title: 'Agents'")
     expect(copy).toContain("title: 'Bridge'")
     expect(copy).toContain('Cross-chain bridge is not live')
+    expect(copy).toContain('You lend a small, controlled budget — not the wallet.')
+    expect(copy).not.toMatch(/valet keys|scoped agent sessions/i)
+    expect(copy).not.toMatch(/Agents are live on (Telegram|Mobile|every surface)/i)
     expect(copy).toContain('No public SDK yet')
     expect(copy).toContain('No fake audits or TVL')
+    const features = readFileSync(resolve(ROOT, 'components/features.tsx'), 'utf8')
+    expect(features).toContain('Agents: KeyRound')
     const page = readFileSync(resolve(ROOT, 'app/page.tsx'), 'utf8')
     expect(page).toContain('<Features')
+    expect(page).toContain('<Agents')
     expect(page).toContain('<AccountAbstraction')
     expect(page).toContain('<Security')
     expect(page).toContain('<Developers')
@@ -369,6 +396,40 @@ describe('soft tip honesty', () => {
     )
     expect(developers).toContain('GITHUB_URL')
     expect(developers).not.toMatch(/SDK is live|API is live/i)
+  })
+
+  it('Agents copy is Joshua EN SoT verbatim — English only, no Hebrew body', () => {
+    const HEBREW = /[\u0590-\u05FF]/
+    for (const rel of PUBLIC_UI) {
+      const text = readFileSync(resolve(ROOT, rel), 'utf8')
+      expect(text, rel).not.toMatch(HEBREW)
+    }
+    const agents = readFileSync(resolve(ROOT, 'content/agents.ts'), 'utf8')
+    expect(agents).toContain("title: 'What Agents mean in the wallet'")
+    expect(agents).toContain('You own the wallet.')
+    expect(agents).toContain('temporary key')
+    expect(agents).toContain('not your own key')
+    expect(agents).toContain('pay_api')
+    expect(agents).toContain('20 USDC, 7 days, ordinary transfers only')
+    expect(agents).toContain('swap_24h')
+    expect(agents).toContain('greyed — not active yet')
+    expect(agents).toContain('Revoke')
+    expect(agents).toContain('Panic')
+    expect(agents).toContain('still closed')
+    expect(agents).toContain('Do not store the agent')
+    expect(agents).toContain('intentionally absent')
+    expect(agents).toContain('You lend a small, controlled budget — not the wallet.')
+    expect(agents).not.toMatch(HEBREW)
+    expect(agents).not.toMatch(/valet keys|scoped agent sessions/i)
+    expect(agents).not.toContain('VerifyingPaymaster')
+    expect(agents).not.toMatch(/F6\.4/)
+    expect(agents).not.toMatch(/approve everything/i)
+    const ui = readFileSync(resolve(ROOT, 'components/agents.tsx'), 'utf8')
+    expect(ui).toContain('id="agents"')
+    expect(ui).toContain('AGENTS')
+    expect(ui).not.toMatch(HEBREW)
+    const layout = readFileSync(resolve(ROOT, 'app/layout.tsx'), 'utf8')
+    expect(layout).toContain('lang="en"')
   })
 
   it('public chrome never ships fake sponsored / paymaster UI', () => {

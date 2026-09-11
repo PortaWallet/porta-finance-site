@@ -36,6 +36,10 @@ export const FEATURES = {
       body: 'Review every swap before you confirm. Not auto-trade.',
     },
     {
+      title: 'Agents',
+      body: 'You lend a small, controlled budget — not the wallet.',
+    },
+    {
       title: 'Bridge',
       body: 'Cross-chain bridge is not live.',
     },

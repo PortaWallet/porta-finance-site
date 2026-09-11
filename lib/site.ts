@@ -32,8 +32,15 @@ export const X_LABEL = `X / Twitter ${X_HANDLE}`
 export const MINI_APP_URL =
   'https://production-wallet-telegram-omytp43vwa-ew.a.run.app'
 
-/** Dogfood APK — never labeled Live. Flip off / omit card when the file is absent. */
-export const APK_HREF = '/downloads/porta-wallet.apk'
+/**
+ * Android dogfood APK — never labeled Live, never a store release.
+ * Hosted on the Porta-Wallet-Mobile GitHub release asset (not this site).
+ * Update both URLs when a newer apk-dogfood-* tag ships.
+ */
+export const APK_HREF =
+  'https://github.com/PortaWallet/Porta-Wallet-Mobile/releases/download/apk-dogfood-20260911-post202/porta_release_00057_82cf1b4.apk'
+export const APK_RELEASE_HREF =
+  'https://github.com/PortaWallet/Porta-Wallet-Mobile/releases/tag/apk-dogfood-20260911-post202'
 export const APK_AVAILABLE = true
 
 /** Official surfaces once (footer). Includes X / Twitter — do not duplicate into Apps. */
