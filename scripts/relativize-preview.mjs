@@ -40,6 +40,14 @@ const replacements = [
   ["href='/#policy'", "href='./#policy'"],
   ['href="/#terms"', 'href="./#terms"'],
   ["href='/#terms'", "href='./#terms'"],
+  ['href="/privacy-policy"', 'href="./privacy-policy/"'],
+  ["href='/privacy-policy'", "href='./privacy-policy/'"],
+  ['href="/terms-of-service"', 'href="./terms-of-service/"'],
+  ["href='/terms-of-service'", "href='./terms-of-service/'"],
+  ['href="/privacy"', 'href="./privacy/"'],
+  ["href='/privacy'", "href='./privacy/'"],
+  ['href="/terms"', 'href="./terms/"'],
+  ["href='/terms'", "href='./terms/'"],
 ]
 
 function walk(dir) {

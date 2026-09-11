@@ -23,7 +23,7 @@ export function SiteNav() {
             {NAV_LINKS.map((link) => (
               <li key={link.label}>
                 <a
-                  href={link.href}
+                  href={`${HOME_HREF}${link.href}`}
                   className="inline-flex min-h-10 items-center rounded-full px-2.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {link.label}
@@ -51,7 +51,7 @@ export function SiteNav() {
         {NAV_LINKS.map((link) => (
           <a
             key={link.label}
-            href={link.href}
+            href={`${HOME_HREF}${link.href}`}
             className="inline-flex min-h-9 items-center justify-center rounded-lg border border-border bg-card px-1 text-center text-[11px] font-medium text-muted-foreground"
           >
             {link.label}

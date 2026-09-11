@@ -11,12 +11,17 @@ import {
   isRetailCtaAllowed,
 } from '@/lib/flags'
 import {
+  LEGAL_DRAFT_NOTE,
   LEGAL_UPDATED_ISO,
   LEGAL_UPDATED_LABEL,
   POLICY,
+  POLICY_ALIASES,
+  POLICY_HASH_PATH,
   POLICY_ID,
   POLICY_PATH,
   TERMS,
+  TERMS_ALIASES,
+  TERMS_HASH_PATH,
   TERMS_ID,
   TERMS_PATH,
 } from '@/content/legal'
@@ -77,6 +82,12 @@ const COPY_SOURCES = [
   'components/site-nav.tsx',
   'app/layout.tsx',
   'app/page.tsx',
+  'app/privacy/page.tsx',
+  'app/terms/page.tsx',
+  'app/privacy-policy/page.tsx',
+  'app/terms-of-service/page.tsx',
+  'app/sitemap.ts',
+  'app/not-found.tsx',
   'PLAN.md',
   'README.md',
   'DNS-CUTOVER.md',
@@ -84,6 +95,7 @@ const COPY_SOURCES = [
   '.github/workflows/preview.yml',
   'lib/preview.ts',
   'scripts/relativize-preview.mjs',
+  'next.config.ts',
 ] as const
 
 const PUBLIC_UI = [
@@ -110,6 +122,10 @@ const PUBLIC_UI = [
   'components/site-nav.tsx',
   'app/layout.tsx',
   'app/page.tsx',
+  'app/privacy/page.tsx',
+  'app/terms/page.tsx',
+  'app/privacy-policy/page.tsx',
+  'app/terms-of-service/page.tsx',
 ] as const
 
 const RETAIL_CTA = /Swap now|Bridge now|Confirm swap|Accept all|AcceptAll/i
@@ -487,18 +503,25 @@ describe('soft tip honesty', () => {
     expect(apps).not.toMatch(/run\.app|Cloud Run/)
   })
 
-  it('privacy and terms hashes exist for Google OAuth — #policy and #terms', () => {
+  it('privacy and terms are real EN pages; homepage keeps #policy and #terms', () => {
     expect(POLICY_ID).toBe('policy')
     expect(TERMS_ID).toBe('terms')
-    expect(POLICY_PATH).toBe('/#policy')
-    expect(TERMS_PATH).toBe('/#terms')
+    expect(POLICY_PATH).toBe('/privacy')
+    expect(TERMS_PATH).toBe('/terms')
+    expect(POLICY_ALIASES).toEqual(['/privacy-policy'])
+    expect(TERMS_ALIASES).toEqual(['/terms-of-service'])
+    expect(POLICY_HASH_PATH).toBe('/#policy')
+    expect(TERMS_HASH_PATH).toBe('/#terms')
     expect(POLICY.id).toBe('policy')
     expect(TERMS.id).toBe('terms')
-    expect(LEGAL_UPDATED_ISO).toBe('2026-09-10')
-    expect(LEGAL_UPDATED_LABEL).toBe('10 September 2026')
+    expect(LEGAL_UPDATED_ISO).toBe('2026-09-11')
+    expect(LEGAL_UPDATED_LABEL).toBe('11 September 2026')
+    expect(LEGAL_DRAFT_NOTE).toMatch(/draft product language/i)
     expect(POLICY.title).toBe('Privacy Policy')
     expect(TERMS.title).toBe('Terms of Service')
     expect(POLICY.lede).toMatch(/keys stay on your device/i)
+    expect(POLICY.draft).toBe(LEGAL_DRAFT_NOTE)
+    expect(TERMS.draft).toBe(LEGAL_DRAFT_NOTE)
     expect(POLICY.sections.some((s) => /Google sign-in/i.test(s.body))).toBe(
       true,
     )
@@ -523,10 +546,30 @@ describe('soft tip honesty', () => {
     expect(ui).toContain('id={doc.id}')
     expect(ui).toContain('LEGAL_UPDATED_ISO')
     expect(ui).toContain('CONTACT_EMAIL')
+    expect(ui).toContain('LegalPage')
+    expect(ui).toContain('asPage')
     expect(ui).not.toMatch(TELEGRAM_DENIAL)
     const page = readFileSync(resolve(ROOT, 'app/page.tsx'), 'utf8')
     expect(page).toContain('<Policy')
     expect(page).toContain('<Terms')
+    const privacy = readFileSync(resolve(ROOT, 'app/privacy/page.tsx'), 'utf8')
+    const terms = readFileSync(resolve(ROOT, 'app/terms/page.tsx'), 'utf8')
+    expect(privacy).toContain('LegalPage')
+    expect(privacy).toContain('POLICY')
+    expect(privacy).toContain('POLICY_PATH')
+    expect(terms).toContain('LegalPage')
+    expect(terms).toContain('TERMS')
+    expect(terms).toContain('TERMS_PATH')
+    const privacyAlias = readFileSync(
+      resolve(ROOT, 'app/privacy-policy/page.tsx'),
+      'utf8',
+    )
+    const termsAlias = readFileSync(
+      resolve(ROOT, 'app/terms-of-service/page.tsx'),
+      'utf8',
+    )
+    expect(privacyAlias).toContain('../privacy/page')
+    expect(termsAlias).toContain('../terms/page')
     const footer = readFileSync(
       resolve(ROOT, 'components/site-footer.tsx'),
       'utf8',
@@ -535,12 +578,26 @@ describe('soft tip honesty', () => {
     expect(footer).toContain('href={link.href}')
     expect(footer).not.toContain('#term"')
     expect(footer).not.toContain("href: '#term'")
+    const nav = readFileSync(resolve(ROOT, 'components/site-nav.tsx'), 'utf8')
+    expect(nav).toContain('`${HOME_HREF}${link.href}`')
+    const sitemap = readFileSync(resolve(ROOT, 'app/sitemap.ts'), 'utf8')
+    expect(sitemap).toContain('POLICY_PATH')
+    expect(sitemap).toContain('TERMS_PATH')
     const relativize = readFileSync(
       resolve(ROOT, 'scripts/relativize-preview.mjs'),
       'utf8',
     )
+    expect(relativize).toContain('href="/privacy"')
+    expect(relativize).toContain('href="/terms"')
+    expect(relativize).toContain('href="/privacy-policy"')
+    expect(relativize).toContain('href="/terms-of-service"')
     expect(relativize).toContain('href="/#policy"')
     expect(relativize).toContain('href="/#terms"')
+    const config = readFileSync(resolve(ROOT, 'next.config.ts'), 'utf8')
+    expect(config).toContain("source: '/privacy-policy'")
+    expect(config).toContain("destination: '/privacy'")
+    expect(config).toContain("source: '/terms-of-service'")
+    expect(config).toContain("destination: '/terms'")
   })
 })
 

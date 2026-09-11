@@ -12,8 +12,8 @@ export default function NotFound() {
         <p className="eyebrow">404</p>
         <h1 className="section-title">This page is not here</h1>
         <p className="max-w-md text-muted-foreground">
-          The Porta marketing site is a single page. Head back home — or open
-          the official Telegram bot.
+          That URL is not on this site. Head back home — or open the official
+          Telegram bot.
         </p>
         <div>
           <Button asChild>
