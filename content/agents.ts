@@ -1,4 +1,7 @@
-/** Joshua EN SoT — Product marketing draft rejected. Ship this copy verbatim. English only. */
+/**
+ * Joshua Agents SoT: Hebrew is meaning-source; porta.finance ships this EN twin only.
+ * HARD: no Hebrew body on www. Product marketing draft rejected. Verbatim EN.
+ */
 export const AGENTS = {
   eyebrow: 'Agents',
   title: 'What Agents mean in the wallet',
