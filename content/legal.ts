@@ -1,13 +1,22 @@
 import { CONTACT_EMAIL, SITE_HOST } from '@/lib/site'
 
-/** Public OAuth hash URLs on the live host. Use the plural #terms, not the singular. */
+/** Homepage hash ids stay for older Google OAuth URLs. Use the plural #terms, not the singular. */
 export const POLICY_ID = 'policy'
 export const TERMS_ID = 'terms'
-export const POLICY_PATH = '/#policy'
-export const TERMS_PATH = '/#terms'
 
-export const LEGAL_UPDATED_ISO = '2026-09-10'
-export const LEGAL_UPDATED_LABEL = '10 September 2026'
+/** Canonical pages. Mini App / older links also open the aliases. */
+export const POLICY_PATH = '/privacy'
+export const TERMS_PATH = '/terms'
+export const POLICY_ALIASES = ['/privacy-policy'] as const
+export const TERMS_ALIASES = ['/terms-of-service'] as const
+export const POLICY_HASH_PATH = `/#${POLICY_ID}`
+export const TERMS_HASH_PATH = `/#${TERMS_ID}`
+
+export const LEGAL_UPDATED_ISO = '2026-09-11'
+export const LEGAL_UPDATED_LABEL = '11 September 2026'
+
+export const LEGAL_DRAFT_NOTE =
+  'Draft product language. It describes how Porta works today and is not a counsel-reviewed contract.'
 
 export const LEGAL_LINKS = [
   { href: POLICY_PATH, hash: `#${POLICY_ID}`, id: POLICY_ID, label: 'Privacy' },
@@ -19,6 +28,7 @@ export const POLICY = {
   eyebrow: 'Privacy',
   title: 'Privacy Policy',
   lede: 'Porta is a non-custodial AA wallet. Keys stay on your device. This page says what we actually receive — not a generated legal wall.',
+  draft: LEGAL_DRAFT_NOTE,
   sections: [
     {
       title: 'Who we are',
@@ -52,6 +62,7 @@ export const TERMS = {
   eyebrow: 'Terms',
   title: 'Terms of Service',
   lede: 'Porta is software you run. We do not custody your assets. Read this before you sign anything.',
+  draft: LEGAL_DRAFT_NOTE,
   sections: [
     {
       title: 'The software',
