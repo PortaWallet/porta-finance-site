@@ -4,7 +4,7 @@ import { Button } from '@/components/ui/button'
 import { SiteLogo } from '@/components/site-logo'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { NAV_LINKS } from '@/content/copy'
-import { HOME_HREF } from '@/lib/preview'
+import { HOME_HREF, navHref } from '@/lib/preview'
 import { PRIMARY_CTA_LABEL } from '@/lib/site'
 import { TG_BOT_URL } from '@/lib/site'
 
@@ -23,7 +23,7 @@ export function SiteNav() {
             {NAV_LINKS.map((link) => (
               <li key={link.label}>
                 <a
-                  href={`${HOME_HREF}${link.href}`}
+                  href={navHref(link.href)}
                   className="inline-flex min-h-10 items-center rounded-full px-2.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {link.label}
@@ -51,7 +51,7 @@ export function SiteNav() {
         {NAV_LINKS.map((link) => (
           <a
             key={link.label}
-            href={`${HOME_HREF}${link.href}`}
+            href={navHref(link.href)}
             className="inline-flex min-h-9 items-center justify-center rounded-lg border border-border bg-card px-1 text-center text-[11px] font-medium text-muted-foreground"
           >
             {link.label}

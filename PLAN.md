@@ -29,7 +29,7 @@ Ultra-minimal Apple/Stripe: Inter, OKLCH surfaces, hairline borders, dark/light,
 6. **Apps** — Telegram Mini App / Extension (CWS Unlisted soon; Agents screens on Ext/web) / Mobile APK (GitHub release asset)
 7. **AA + Security** — Smart account / UserOps / self-funded gas; sponsorship + gasless + social recovery not live
 8. **Developers** — no public SDK claim
-9. **Roadmap** — Coming / not live
+9. **Roadmap** — `/roadmap` one-pager: HOLD / LIVE / Coming (honest SoT)
 10. **Contact / Footer** — hello@porta.finance · official links once (includes X / Twitter @PortaWallet)
 
 ### Apps (honest)
@@ -40,13 +40,15 @@ Ultra-minimal Apple/Stripe: Inter, OKLCH surfaces, hairline borders, dark/light,
 | Browser extension | Coming / CWS Unlisted soon — Agents screens ship on Ext/web; no store listing |
 | Mobile APK | GitHub release APK, not Live, not a store release |
 
-### Roadmap (not live)
+### Roadmap (`/roadmap` — honest SoT)
 
-- See every swap before you confirm
-- Alerts that open a review — not a trade
-- Optional protected swaps (never MEV-proof)
-- Recovery & session limits (AA building — sponsorship / gasless not live)
-- Advanced trading later
+**HOLD (not shipped):** F6.4 VerifyingPaymaster sponsorship NO-GO · Retail DeFi FF OFF · AcceptAll dead
+
+**LIVE:** AA Send (self-funded UserOps) · Canon EntryPoint + factory pins; Porta JWT RPC · Mandate Agents UI (TG/Ext/Mobile/web) · Sepolia Mandate V2 + FactoryV2 + sample proxy · F1/F2 Review quote / Confirm quote · Quotes TTL/slippage/minReceived; Search/Feed notify ≠ execute
+
+**Coming (not live):** Agents UserOp-65 · FactoryV2 default + V1→V2 · Linea-first curated chains / testnets · Social recovery · Smart Actions (alerts → Review only) · Retail FF after Joshua GO; Limit/TWAP later · ZK privacy lane · perps/restaking design-only
+
+Never invent Q1–Q4 hype (AI marketplace, $PORTA, insurance fund, UniV4) or mark HOLD items as shipped.
 
 ## Copy rules (do-not-claim)
 

@@ -10,6 +10,8 @@ const badgeVariants = cva(
         live: 'border-primary/30 bg-primary/10 text-primary',
         coming:
           'border-border bg-muted/40 text-muted-foreground',
+        hold:
+          'border-[oklch(0.72_0.08_70/0.45)] bg-[oklch(0.72_0.08_70/0.12)] text-[oklch(0.42_0.08_70)] dark:text-[oklch(0.86_0.06_80)]',
         dogfood:
           'border-accent/35 bg-accent/10 text-accent-foreground',
       },
