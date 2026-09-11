@@ -37,7 +37,7 @@ export const FEATURES = {
     },
     {
       title: 'Agents',
-      body: 'Mandate / Agents: scoped agent sessions — valet keys on your smart account. Extension and web screens are shipping; Telegram and Mobile are catching up. Not production-complete on every surface.',
+      body: 'You lend a small, controlled budget — not the wallet.',
     },
     {
       title: 'Bridge',
@@ -68,7 +68,7 @@ export const HOW = {
 export const AA = {
   eyebrow: 'Account abstraction',
   title: 'Smart account — self-funded, not sponsored',
-  body: 'Porta is an AA smart-contract wallet. UserOps and self-funded gas are the path we are building. Mandate / Agents are scoped sessions on that account — not sponsored gas. Gasless and social recovery are not live.',
+  body: 'Porta is an AA smart-contract wallet. UserOps and self-funded gas are the path we are building. Gasless and social recovery are not live.',
   items: [
     {
       title: 'Smart account',

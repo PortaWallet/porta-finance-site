@@ -1,4 +1,5 @@
 import { AccountAbstraction } from '@/components/aa'
+import { Agents } from '@/components/agents'
 import { Apps } from '@/components/apps'
 import { Contact } from '@/components/contact'
 import { Developers } from '@/components/developers'
@@ -22,6 +23,7 @@ export default function HomePage() {
       <main>
         <Hero />
         <Features />
+        <Agents />
         <How />
         <Apps />
         <AccountAbstraction />
