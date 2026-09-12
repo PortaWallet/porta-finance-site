@@ -1,10 +1,15 @@
 /**
- * Joshua Agents SoT: Hebrew is meaning-source; porta.finance ships this EN twin only.
- * HARD: no Hebrew body on www. Product marketing draft rejected. Verbatim EN.
+ * Joshua Agents SoT: EN only on www.
+ * Home shows teaser only. Full guide lives at /agents.
  */
 export const AGENTS = {
   eyebrow: 'Agents',
   title: 'What Agents mean in the wallet',
+  teaserTitle: 'Agents',
+  teaser:
+    'An agent gets a temporary key — not yours. Caps, addresses, and time live in the contract.',
+  teaserCta: 'How Agents work',
+  stuckCta: 'Can’t create one? Open the guide',
   intro: [
     'You own the wallet.',
     'An **agent** is a person or a program you give a **temporary key** — not your own key.',

@@ -1,5 +1,5 @@
 import { AccountAbstraction } from '@/components/aa'
-import { Agents } from '@/components/agents'
+import { AgentsTeaser } from '@/components/agents'
 import { Apps } from '@/components/apps'
 import { Contact } from '@/components/contact'
 import { Developers } from '@/components/developers'
@@ -13,7 +13,6 @@ import { Security } from '@/components/security'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteNav } from '@/components/site-nav'
 
-/** Marketing home is statically generated with daily ISR. */
 export const revalidate = 86400
 
 export default function HomePage() {
@@ -23,7 +22,7 @@ export default function HomePage() {
       <main>
         <Hero />
         <Features />
-        <Agents />
+        <AgentsTeaser />
         <How />
         <Apps />
         <AccountAbstraction />
