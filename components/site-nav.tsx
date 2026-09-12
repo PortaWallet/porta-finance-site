@@ -8,6 +8,11 @@ import { HOME_HREF } from '@/lib/preview'
 import { PRIMARY_CTA_LABEL } from '@/lib/site'
 import { TG_BOT_URL } from '@/lib/site'
 
+function navHref(href: string) {
+  if (href.startsWith('/')) return href
+  return `${HOME_HREF}${href}`
+}
+
 export function SiteNav() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/80 bg-background/80 backdrop-blur-xl">
@@ -23,7 +28,7 @@ export function SiteNav() {
             {NAV_LINKS.map((link) => (
               <li key={link.label}>
                 <a
-                  href={`${HOME_HREF}${link.href}`}
+                  href={navHref(link.href)}
                   className="inline-flex min-h-10 items-center rounded-full px-2.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {link.label}
@@ -33,11 +38,7 @@ export function SiteNav() {
           </ul>
           <ThemeToggle />
           <Button asChild size="sm">
-            <a
-              href={TG_BOT_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
+            <a href={TG_BOT_URL} target="_blank" rel="noopener noreferrer">
               {PRIMARY_CTA_LABEL}
               <ArrowUpRight className="size-3.5" aria-hidden />
             </a>
@@ -46,12 +47,12 @@ export function SiteNav() {
       </nav>
       <nav
         aria-label="Sections"
-        className="mx-auto grid max-w-6xl grid-cols-4 gap-1 px-4 pb-2 md:hidden sm:px-6"
+        className="mx-auto grid max-w-6xl grid-cols-5 gap-1 px-4 pb-2 md:hidden sm:px-6"
       >
         {NAV_LINKS.map((link) => (
           <a
             key={link.label}
-            href={`${HOME_HREF}${link.href}`}
+            href={navHref(link.href)}
             className="inline-flex min-h-9 items-center justify-center rounded-lg border border-border bg-card px-1 text-center text-[11px] font-medium text-muted-foreground"
           >
             {link.label}

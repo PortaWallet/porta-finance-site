@@ -2,6 +2,7 @@ import { PRIMARY_CTA_LABEL } from '@/lib/site'
 
 export const NAV_LINKS = [
   { href: '#apps', label: 'Apps' },
+  { href: '/guides', label: 'Guides' },
   { href: '#roadmap', label: 'Roadmap' },
   { href: '#official', label: 'Official' },
   { href: '#contact', label: 'Contact' },
@@ -26,22 +27,27 @@ export const FEATURES = {
     {
       title: 'Send',
       body: 'Send from your Porta wallet in the Mini App.',
+      href: undefined as string | undefined,
     },
     {
       title: 'Receive',
       body: 'Receive assets you already hold.',
+      href: undefined as string | undefined,
     },
     {
       title: 'Review',
       body: 'Review every swap before you confirm. Not auto-trade.',
+      href: undefined as string | undefined,
     },
     {
       title: 'Agents',
-      body: 'You lend a small, controlled budget — not the wallet.',
+      body: 'A temporary key with a cap — not your wallet. Guide if you cannot create one.',
+      href: '/agents',
     },
     {
       title: 'Bridge',
       body: 'Cross-chain bridge is not live.',
+      href: undefined as string | undefined,
     },
   ],
 } as const
