@@ -75,7 +75,7 @@ export const TERMS = {
     },
     {
       title: 'Network risk',
-      body: 'You pay gas. Transactions you confirm are typically irreversible. Smart contracts and networks can fail or be congested. Review every send and swap before you confirm. Review is not a guarantee against loss.',
+      body: 'You pay gas. Transactions you confirm are typically irreversible. Smart contracts and networks can fail or be congested. Review every send and swap before you confirm. Review is not execute — nothing trades without your confirmation. Review is not a guarantee against loss.',
     },
     {
       title: 'Not advice',
