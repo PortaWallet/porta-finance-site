@@ -41,7 +41,7 @@ export const FEATURES = {
     },
     {
       title: 'Agents',
-      body: 'A temporary key with a cap — not your wallet. Guide if you cannot create one.',
+      body: 'A temporary key with a cap — not your wallet. Coming — not Delivered. Guide if you cannot create one.',
       href: '/agents',
     },
     {

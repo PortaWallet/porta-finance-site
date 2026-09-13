@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { Fragment, type ReactNode } from 'react'
 import { MotionItem, MotionSection, MotionStagger } from '@/components/motion-section'
+import { Badge } from '@/components/ui/badge'
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { AGENTS } from '@/content/agents'
 
@@ -64,7 +65,10 @@ export function AgentsTeaser() {
   return (
     <MotionSection id="agents" className="section-y section-band">
       <div className="mx-auto max-w-6xl">
-        <p className="eyebrow mb-2">{AGENTS.eyebrow}</p>
+        <div className="mb-2 flex flex-wrap items-center gap-2">
+          <p className="eyebrow mb-0">{AGENTS.eyebrow}</p>
+          <Badge variant="coming">{AGENTS.statusLabel}</Badge>
+        </div>
         <h2 className="section-title max-w-2xl">{AGENTS.teaserTitle}</h2>
         <p className="mt-4 max-w-2xl text-base leading-relaxed text-muted-foreground">
           {AGENTS.teaser}
@@ -92,7 +96,10 @@ export function AgentsGuide() {
   return (
     <MotionSection className="section-y">
       <div className="mx-auto max-w-6xl">
-        <p className="eyebrow mb-2">{AGENTS.eyebrow}</p>
+        <div className="mb-2 flex flex-wrap items-center gap-2">
+          <p className="eyebrow mb-0">{AGENTS.eyebrow}</p>
+          <Badge variant="coming">{AGENTS.statusLabel}</Badge>
+        </div>
         <h1 className="section-title max-w-2xl">{AGENTS.title}</h1>
         <div className="mt-4 max-w-2xl space-y-3">
           <Paragraphs lines={AGENTS.intro} />

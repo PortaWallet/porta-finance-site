@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
 import { MotionItem, MotionSection, MotionStagger } from '@/components/motion-section'
+import { Badge } from '@/components/ui/badge'
 import { Card, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteNav } from '@/components/site-nav'
@@ -33,7 +34,12 @@ export default function GuidesPage() {
                   <Link href={item.href} className="block h-full">
                     <Card className="app-card h-full">
                       <CardHeader className="p-5">
-                        <CardTitle className="text-lg">{item.title}</CardTitle>
+                        <div className="flex flex-wrap items-center gap-2">
+                          <CardTitle className="text-lg">{item.title}</CardTitle>
+                          <Badge variant="coming" className="ml-auto">
+                            {item.statusLabel}
+                          </Badge>
+                        </div>
                         <CardDescription className="mt-1.5 leading-relaxed">
                           {item.body}
                         </CardDescription>
