@@ -465,6 +465,32 @@ describe('soft tip honesty', () => {
     expect(developers).not.toMatch(/SDK is live|API is live/i)
   })
 
+  it('Agents + Guides chrome is Coming — never Delivered', () => {
+    const agents = readFileSync(resolve(ROOT, 'content/agents.ts'), 'utf8')
+    expect(agents).toContain("statusLabel: 'Coming'")
+    expect(agents).not.toMatch(/statusLabel:\s*'Delivered'|statusLabel:\s*'LIVE'/)
+    expect(agents).not.toMatch(/F6\.4|VerifyingPaymaster/)
+    const agentsUi = readFileSync(resolve(ROOT, 'components/agents.tsx'), 'utf8')
+    expect(agentsUi).toContain('AGENTS.statusLabel')
+    expect(agentsUi).toContain('variant="coming"')
+    expect(agentsUi).not.toMatch(/Delivered<\/Badge>|variant="live"/)
+    const guides = readFileSync(resolve(ROOT, 'content/guides.ts'), 'utf8')
+    expect(guides).toContain("title: 'Agents'")
+    expect(guides).toContain("title: 'Subscriptions'")
+    expect(guides).toContain("statusLabel: 'Coming'")
+    expect(guides).toContain('Coming — not Delivered')
+    expect(guides).not.toMatch(/statusLabel:\s*'Delivered'/)
+    const guidesPage = readFileSync(resolve(ROOT, 'app/guides/page.tsx'), 'utf8')
+    expect(guidesPage).toContain('item.statusLabel')
+    expect(guidesPage).toContain('variant="coming"')
+    expect(guidesPage).not.toMatch(/Delivered<\/Badge>/)
+    const roadmap = readFileSync(resolve(ROOT, 'content/roadmap.ts'), 'utf8')
+    expect(roadmap).toContain("title: 'Subscriptions'")
+    expect(roadmap).toContain("title: 'Agents'")
+    expect(roadmap).toContain("statusLabel: 'Coming'")
+    expect(roadmap).not.toMatch(/statusLabel:\s*'Delivered'/)
+  })
+
   it('Agents copy is Joshua EN SoT verbatim — English only, no Hebrew body', () => {
     const HEBREW = /[\u0590-\u05FF]/
     for (const rel of PUBLIC_UI) {

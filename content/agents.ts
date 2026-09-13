@@ -1,11 +1,13 @@
 /**
  * Joshua Agents SoT: EN only on www.
  * Home shows teaser only. Full guide lives at /agents.
+ * Honest Coming only — never Delivered / LIVE on marketing chrome.
  */
 export const AGENTS = {
   eyebrow: 'Agents',
   title: 'What Agents mean in the wallet',
   teaserTitle: 'Agents',
+  statusLabel: 'Coming',
   teaser:
     'An agent gets a temporary key — not yours. Caps, addresses, and time live in the contract.',
   teaserCta: 'How Agents work',
