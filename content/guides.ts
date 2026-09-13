@@ -13,5 +13,10 @@ export const GUIDES = {
       title: 'Subscriptions',
       body: 'Caps, merchants, pause or cancel. Amount, days, payee. Trading bot Coming later.',
     },
+    {
+      href: '/clone-network',
+      title: 'Clone network',
+      body: 'Clone from Ethereum or current. name, chainId, RPC, bundler, factory, EP. Cannot save empty.',
+    },
   ],
 } as const
