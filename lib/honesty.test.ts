@@ -62,6 +62,7 @@ const COPY_SOURCES = [
   'content/copy.ts',
   'content/agents.ts',
   'content/subscriptions.ts',
+  'content/clone-network.ts',
   'content/guides.ts',
   'content/legal.ts',
   'content/apps.ts',
@@ -105,6 +106,7 @@ const PUBLIC_UI = [
   'content/copy.ts',
   'content/agents.ts',
   'content/subscriptions.ts',
+  'content/clone-network.ts',
   'content/guides.ts',
   'content/legal.ts',
   'content/apps.ts',
@@ -131,6 +133,7 @@ const PUBLIC_UI = [
   'app/privacy-policy/page.tsx',
   'app/terms-of-service/page.tsx',
   'app/subscriptions/page.tsx',
+  'app/clone-network/page.tsx',
 ] as const
 
 const RETAIL_CTA = /Swap now|Bridge now|Confirm swap|Accept all|AcceptAll/i
@@ -180,6 +183,7 @@ describe('soft tip honesty', () => {
       'content/copy.ts',
       'content/agents.ts',
       'content/subscriptions.ts',
+      'content/clone-network.ts',
       'content/guides.ts',
       'content/apps.ts',
       'content/roadmap.ts',
@@ -196,6 +200,7 @@ describe('soft tip honesty', () => {
       'components/features.tsx',
       'components/how.tsx',
       'app/subscriptions/page.tsx',
+      'app/clone-network/page.tsx',
     ] as const
     for (const rel of liveSources) {
       const text = readFileSync(resolve(ROOT, rel), 'utf8')
@@ -236,6 +241,47 @@ describe('soft tip honesty', () => {
     const roadmap = readFileSync(resolve(ROOT, 'content/roadmap.ts'), 'utf8')
     expect(roadmap).toContain('Trading bot Coming later')
     expect(roadmap).toContain('Coming — not Delivered')
+  })
+
+  it('Clone network guide — Ethereum/current, six fields, no empty save, no paymaster', () => {
+    const clone = readFileSync(resolve(ROOT, 'content/clone-network.ts'), 'utf8')
+    expect(clone).toContain("eyebrow: 'Clone network'")
+    expect(clone).toContain('Clone from Ethereum or the current network')
+    expect(clone).toContain("statusLabel: 'Coming'")
+    expect(clone).toContain('Ethereum')
+    expect(clone).toContain('Current')
+    expect(clone).toContain("title: 'name'")
+    expect(clone).toContain("title: 'chainId'")
+    expect(clone).toContain("title: 'RPC'")
+    expect(clone).toContain("title: 'bundler'")
+    expect(clone).toContain("title: 'factory'")
+    expect(clone).toContain("title: 'EP'")
+    expect(clone).toContain('EntryPoint')
+    expect(clone).toContain('You cannot save empty')
+    expect(clone).toContain('Empty fields stay invalid')
+    expect(clone).toContain('no empty saves')
+    expect(clone).toContain('no paymaster field')
+    expect(clone).toContain('Sponsorship is not live')
+    expect(clone).not.toMatch(/statusLabel:\s*'LIVE'|statusLabel:\s*'Delivered'/)
+    expect(clone).not.toMatch(/F6\.4|VerifyingPaymaster/)
+    expect(clone).not.toMatch(/AcceptAll|Accept all/i)
+    expect(clone).not.toMatch(/api[_-]?key|JWT|Bearer |sk-/i)
+    const page = readFileSync(resolve(ROOT, 'app/clone-network/page.tsx'), 'utf8')
+    expect(page).toContain('CLONE_NETWORK.sources')
+    expect(page).toContain('CLONE_NETWORK.fields')
+    expect(page).toContain('CLONE_NETWORK.statusLabel')
+    expect(page).toContain('variant="coming"')
+    const guides = readFileSync(resolve(ROOT, 'content/guides.ts'), 'utf8')
+    expect(guides).toContain("href: '/clone-network'")
+    expect(guides).toContain('Clone from Ethereum or current')
+    expect(guides).toContain('Cannot save empty')
+    const sitemap = readFileSync(resolve(ROOT, 'app/sitemap.ts'), 'utf8')
+    expect(sitemap).toContain('/clone-network')
+    const roadmap = readFileSync(resolve(ROOT, 'content/roadmap.ts'), 'utf8')
+    expect(roadmap).toContain("title: 'Subscriptions'")
+    expect(roadmap).toContain("statusLabel: 'Coming'")
+    expect(roadmap).toContain('Coming — not Delivered')
+    expect(roadmap).not.toMatch(/statusLabel:\s*'Delivered'/)
   })
 
   it('CWS HOLD: no live Chrome Web Store URL', () => {
