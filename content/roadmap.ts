@@ -1,25 +1,25 @@
 export const ROADMAP = {
   eyebrow: 'Coming · not live',
   title: 'What’s next',
-  lede: 'Nothing below is live. Subscriptions and Agents are Coming — not Delivered.',
+  lede: 'Nothing below is live. Subscriptions and Agents are Coming until Sepolia is live — not Delivered.',
   badge: 'Not live yet',
   items: [
     {
       n: '01',
       title: 'Subscriptions',
-      body: 'Recurring pay — one merchant, cap and expiry. Caps, merchants, pause or cancel. Trading bot Coming later — not LIVE. Guide on this site. Coming — not Delivered.',
+      body: 'Recurring pay — one merchant, cap and expiry. APK screens: Amount, Days, Pause. Caps, merchants, pause or cancel. Swap bot Coming later — not LIVE. Coming until Sepolia is live — not Delivered.',
       statusLabel: 'Coming',
     },
     {
       n: '02',
       title: 'Agents',
-      body: 'Scoped Mandate sessions with a budget you control. Guide on this site. Coming — not Delivered.',
+      body: 'Scoped Mandate sessions with a budget you control. Guide on this site. Coming until Sepolia is live — not Delivered.',
       statusLabel: 'Coming',
     },
     {
       n: '03',
       title: 'See every swap before you confirm',
-      body: 'Clearer quotes, fees, and review copy so nothing is a surprise. Swap means review — not auto-trade.',
+      body: 'Clearer quotes, fees, and review copy so nothing is a surprise. Swap means review — review is not execute, not auto-trade.',
       statusLabel: 'Coming',
     },
     {
@@ -43,7 +43,7 @@ export const ROADMAP = {
     {
       n: '07',
       title: 'Advanced trading later',
-      body: 'Strategies and copy-style flows come later. Wallet trust is the brand lead — not a trading slogan.',
+      body: 'Swap bot and copy-style flows come later. Review is not execute. Wallet trust is the brand lead — not a trading slogan.',
       statusLabel: 'Coming',
     },
   ],
