@@ -61,6 +61,8 @@ const COPY_SOURCES = [
   'lib/brand.ts',
   'content/copy.ts',
   'content/agents.ts',
+  'content/subscriptions.ts',
+  'content/guides.ts',
   'content/legal.ts',
   'content/apps.ts',
   'content/roadmap.ts',
@@ -102,6 +104,8 @@ const PUBLIC_UI = [
   'lib/seo.ts',
   'content/copy.ts',
   'content/agents.ts',
+  'content/subscriptions.ts',
+  'content/guides.ts',
   'content/legal.ts',
   'content/apps.ts',
   'content/roadmap.ts',
@@ -126,6 +130,7 @@ const PUBLIC_UI = [
   'app/terms/page.tsx',
   'app/privacy-policy/page.tsx',
   'app/terms-of-service/page.tsx',
+  'app/subscriptions/page.tsx',
 ] as const
 
 const RETAIL_CTA = /Swap now|Bridge now|Confirm swap|Accept all|AcceptAll/i
@@ -174,7 +179,10 @@ describe('soft tip honesty', () => {
       'lib/seo.ts',
       'content/copy.ts',
       'content/agents.ts',
+      'content/subscriptions.ts',
+      'content/guides.ts',
       'content/apps.ts',
+      'content/roadmap.ts',
       'components/apps.tsx',
       'components/agents.tsx',
       'components/hero.tsx',
@@ -187,6 +195,7 @@ describe('soft tip honesty', () => {
       'components/aa.tsx',
       'components/features.tsx',
       'components/how.tsx',
+      'app/subscriptions/page.tsx',
     ] as const
     for (const rel of liveSources) {
       const text = readFileSync(resolve(ROOT, rel), 'utf8')
@@ -195,6 +204,38 @@ describe('soft tip honesty', () => {
       expect(text, rel).not.toMatch(/F6\.4/)
       expect(text, rel).not.toMatch(/VerifyingPaymaster/)
     }
+  })
+
+  it('Subscriptions guide clones wallet chrome — Coming, not fake LIVE', () => {
+    const subs = readFileSync(resolve(ROOT, 'content/subscriptions.ts'), 'utf8')
+    expect(subs).toContain("eyebrow: 'Subscriptions'")
+    expect(subs).toContain('Caps, merchants, pause or cancel')
+    expect(subs).toContain('Approve a cap to one address. Pause or cancel any time.')
+    expect(subs).toContain('Recurring pay')
+    expect(subs).toContain('One merchant, cap and expiry')
+    expect(subs).toContain('Trading bot')
+    expect(subs).toContain('Coming later')
+    expect(subs).toContain("statusLabel: 'Coming'")
+    expect(subs).toContain('Amount (USDC)')
+    expect(subs).toContain('Payee address')
+    expect(subs).toContain('Stop all')
+    expect(subs).toContain('Can’t send yet')
+    expect(subs).toContain('Can’t pause yet')
+    expect(subs).not.toMatch(/Trading bot[^.]*\bis LIVE\b/i)
+    expect(subs).not.toMatch(/statusLabel:\s*'LIVE'|statusLabel:\s*'Delivered'/)
+    expect(subs).not.toMatch(/F6\.4|VerifyingPaymaster/)
+    expect(subs).not.toMatch(/AcceptAll|Accept all/i)
+    expect(subs).toContain('One merchant at a time')
+    const page = readFileSync(resolve(ROOT, 'app/subscriptions/page.tsx'), 'utf8')
+    expect(page).toContain('SUBSCRIPTIONS.types')
+    expect(page).toContain('SUBSCRIPTIONS.statusLabel')
+    expect(page).toContain('variant="coming"')
+    const guides = readFileSync(resolve(ROOT, 'content/guides.ts'), 'utf8')
+    expect(guides).toContain('Caps, merchants, pause or cancel')
+    expect(guides).toContain('Trading bot Coming later')
+    const roadmap = readFileSync(resolve(ROOT, 'content/roadmap.ts'), 'utf8')
+    expect(roadmap).toContain('Trading bot Coming later')
+    expect(roadmap).toContain('Coming — not Delivered')
   })
 
   it('CWS HOLD: no live Chrome Web Store URL', () => {
@@ -293,12 +334,21 @@ describe('soft tip honesty', () => {
     expect(roadmap).toContain('What’s next')
     expect(roadmap).toContain('Coming · not live')
     expect(roadmap).toContain('Not live yet')
+    expect(roadmap).toContain("title: 'Subscriptions'")
+    expect(roadmap).toContain("title: 'Agents'")
+    expect(roadmap).toContain("statusLabel: 'Coming'")
+    expect(roadmap).toContain('Coming — not Delivered')
     expect(roadmap).toContain('See every swap before you confirm')
     expect(roadmap).toContain('Alerts that open a review — not a trade')
     expect(roadmap).toContain('Optional protected swaps')
     expect(roadmap).toContain('Recovery & session limits')
     expect(roadmap).toContain('Advanced trading later')
+    expect(roadmap).not.toMatch(/statusLabel:\s*'Delivered'/)
+    expect(roadmap).not.toMatch(/\bIn apps\b/)
     expect(roadmap).not.toMatch(/F6\.|G1–G8|Phase 1/)
+    const ui = readFileSync(resolve(ROOT, 'components/roadmap.tsx'), 'utf8')
+    expect(ui).toContain('{item.statusLabel}')
+    expect(ui).not.toMatch(/statusLabel:\s*'Delivered'|Delivered<\/Badge>/)
   })
 
   it('R1/R2: locked H1 positions AA wallet + Telegram Mini App first', () => {
@@ -387,7 +437,8 @@ describe('soft tip honesty', () => {
     expect(copy).toContain("title: 'Agents'")
     expect(copy).toContain("title: 'Bridge'")
     expect(copy).toContain('Cross-chain bridge is not live')
-    expect(copy).toContain('You lend a small, controlled budget — not the wallet.')
+    const agentsCopy = readFileSync(resolve(ROOT, 'content/agents.ts'), 'utf8')
+    expect(agentsCopy).toContain('You lend a small, controlled budget — not the wallet.')
     expect(copy).not.toMatch(/valet keys|scoped agent sessions/i)
     expect(copy).not.toMatch(/Agents are live on (Telegram|Mobile|every surface)/i)
     expect(copy).toContain('No public SDK yet')
@@ -503,7 +554,7 @@ describe('soft tip honesty', () => {
     expect(apps).not.toMatch(/run\.app|Cloud Run/)
   })
 
-  it('privacy and terms are real EN pages; homepage keeps #policy and #terms', () => {
+  it('privacy and terms are real EN deep links; TOS is /terms not homepage', () => {
     expect(POLICY_ID).toBe('policy')
     expect(TERMS_ID).toBe('terms')
     expect(POLICY_PATH).toBe('/privacy')
@@ -537,6 +588,8 @@ describe('soft tip honesty', () => {
       true,
     )
     const legal = readFileSync(resolve(ROOT, 'content/legal.ts'), 'utf8')
+    expect(legal).toContain('TOS is /terms only')
+    expect(legal).toContain('Canonical legal deep links')
     expect(legal).not.toMatch(/#term(?!s)/)
     expect(legal).not.toMatch(TELEGRAM_DENIAL)
     expect(legal).not.toMatch(PUBLIC_DOGFOOD)
@@ -550,8 +603,17 @@ describe('soft tip honesty', () => {
     expect(ui).toContain('asPage')
     expect(ui).not.toMatch(TELEGRAM_DENIAL)
     const page = readFileSync(resolve(ROOT, 'app/page.tsx'), 'utf8')
-    expect(page).toContain('<Policy')
-    expect(page).toContain('<Terms')
+    expect(page).not.toContain('<Policy')
+    expect(page).not.toContain('<Terms')
+    expect(page).not.toContain("from '@/components/legal'")
+    expect(page).toContain('<LegalHashRedirect')
+    const hashRedirect = readFileSync(
+      resolve(ROOT, 'components/legal-hash-redirect.tsx'),
+      'utf8',
+    )
+    expect(hashRedirect).toContain('POLICY_PATH')
+    expect(hashRedirect).toContain('TERMS_PATH')
+    expect(hashRedirect).toContain('location.replace')
     const privacy = readFileSync(resolve(ROOT, 'app/privacy/page.tsx'), 'utf8')
     const terms = readFileSync(resolve(ROOT, 'app/terms/page.tsx'), 'utf8')
     expect(privacy).toContain('LegalPage')
@@ -579,7 +641,8 @@ describe('soft tip honesty', () => {
     expect(footer).not.toContain('#term"')
     expect(footer).not.toContain("href: '#term'")
     const nav = readFileSync(resolve(ROOT, 'components/site-nav.tsx'), 'utf8')
-    expect(nav).toContain('`${HOME_HREF}${link.href}`')
+    expect(nav).toContain('`${HOME_HREF}${href}`')
+    expect(nav).toContain('navHref(link.href)')
     const sitemap = readFileSync(resolve(ROOT, 'app/sitemap.ts'), 'utf8')
     expect(sitemap).toContain('POLICY_PATH')
     expect(sitemap).toContain('TERMS_PATH')
