@@ -13,8 +13,8 @@ export const TERMS_ALIASES = ['/terms-of-service'] as const
 export const POLICY_HASH_PATH = `/#${POLICY_ID}`
 export const TERMS_HASH_PATH = `/#${TERMS_ID}`
 
-export const LEGAL_UPDATED_ISO = '2026-09-11'
-export const LEGAL_UPDATED_LABEL = '11 September 2026'
+export const LEGAL_UPDATED_ISO = '2026-09-13'
+export const LEGAL_UPDATED_LABEL = '13 September 2026'
 
 export const LEGAL_DRAFT_NOTE =
   'Draft product language. It describes how Porta works today and is not a counsel-reviewed contract.'
@@ -76,6 +76,10 @@ export const TERMS = {
     {
       title: 'Network risk',
       body: 'You pay gas. Transactions you confirm are typically irreversible. Smart contracts and networks can fail or be congested. Review every send and swap before you confirm. Review is not execute — nothing trades without your confirmation. Review is not a guarantee against loss.',
+    },
+    {
+      title: 'Mandates',
+      body: 'A mandate is a scoped recurring-pay approval: one payee, an Amount cap for one period (not a lump for the whole Days window), and an expiry. Mandates are Coming until Sepolia is live — not Delivered. Approving a mandate is not execute; pause, revoke, and stop-all stay under your owner key. This site does not claim login or TG↔APK auth alignment.',
     },
     {
       title: 'Not advice',
