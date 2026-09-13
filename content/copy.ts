@@ -15,7 +15,7 @@ export const HERO = {
   primaryCta: PRIMARY_CTA_LABEL,
   secondaryCta: 'Open Mini App',
   keys: 'Non-custodial · keys stay on your device',
-  review: 'Review, not auto-trade',
+  review: 'Review is not execute — not auto-trade',
   aa: 'AA smart-contract wallet',
   gas: 'Self-funded — not sponsored',
 } as const
@@ -36,12 +36,12 @@ export const FEATURES = {
     },
     {
       title: 'Review',
-      body: 'Review every swap before you confirm. Not auto-trade.',
+      body: 'Review every swap before you confirm. Review is not execute — not auto-trade.',
       href: undefined as string | undefined,
     },
     {
       title: 'Agents',
-      body: 'A temporary key with a cap — not your wallet. Guide if you cannot create one.',
+      body: 'A temporary key with a cap — not your wallet. Coming — not Delivered. Guide if you cannot create one.',
       href: '/agents',
     },
     {
@@ -66,7 +66,7 @@ export const HOW = {
     },
     {
       title: 'Send and review swaps',
-      body: 'Send and review every swap before you confirm — not auto-trade. You pay gas; sponsorship is not live.',
+      body: 'Send and review every swap before you confirm. Review is not execute — not auto-trade. You pay gas; sponsorship is not live.',
     },
   ],
 } as const
@@ -94,7 +94,7 @@ export const AA = {
 export const SECURITY = {
   eyebrow: 'Security',
   title: 'Keys stay on your device',
-  body: 'Non-custodial. Review every swap — not auto-trade. No audit theater, TVL, or invented metrics.',
+  body: 'Non-custodial. Review every swap — review is not execute, not auto-trade. No audit theater, TVL, or invented metrics.',
   items: [
     'Keys never leave your device',
     'We will never ask for your seed phrase',

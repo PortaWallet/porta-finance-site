@@ -7,7 +7,7 @@ export const ROADMAP = {
     {
       n: '01',
       title: 'Subscriptions',
-      body: 'Recurring pay — one merchant, cap and expiry. Caps, merchants, pause or cancel. Trading bot Coming later — not LIVE. Guide on this site. Coming — not Delivered.',
+      body: 'Recurring pay — one merchant, cap and expiry. Retail swap and social bots Coming until retail flags ship — review is not execute. Trading bot Coming later — not LIVE. Guide on this site. Coming — not Delivered.',
       statusLabel: 'Coming',
     },
     {
@@ -19,7 +19,7 @@ export const ROADMAP = {
     {
       n: '03',
       title: 'See every swap before you confirm',
-      body: 'Clearer quotes, fees, and review copy so nothing is a surprise. Swap means review — not auto-trade.',
+      body: 'Clearer quotes, fees, and review copy so nothing is a surprise. Swap means review — review is not execute, not auto-trade.',
       statusLabel: 'Coming',
     },
     {
@@ -43,7 +43,7 @@ export const ROADMAP = {
     {
       n: '07',
       title: 'Advanced trading later',
-      body: 'Strategies and copy-style flows come later. Wallet trust is the brand lead — not a trading slogan.',
+      body: 'Social bots and copy-style flows Coming until retail flags ship. Review is not execute. Wallet trust is the brand lead — not a trading slogan.',
       statusLabel: 'Coming',
     },
   ],

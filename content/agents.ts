@@ -1,11 +1,13 @@
 /**
  * Joshua Agents SoT: EN only on www.
  * Home shows teaser only. Full guide lives at /agents.
+ * Honest Coming only — never Delivered / LIVE on marketing chrome.
  */
 export const AGENTS = {
   eyebrow: 'Agents',
   title: 'What Agents mean in the wallet',
   teaserTitle: 'Agents',
+  statusLabel: 'Coming',
   teaser:
     'An agent gets a temporary key — not yours. Caps, addresses, and time live in the contract.',
   teaserCta: 'How Agents work',
@@ -24,7 +26,7 @@ export const AGENTS = {
     },
     {
       title: '2. A helper that trades for you',
-      body: 'You wanted software to swap tokens. In the current version this is **still closed** (exchange swaps). When it opens — a capped limit for 24 hours, not the whole wallet.',
+      body: 'You wanted software to swap tokens. Retail and social bots are **still closed** — Coming until retail flags ship. Review is not execute. When it opens — a capped limit for 24 hours, not the whole wallet.',
     },
     {
       title: '3. Someone on the team who needs to pay vendors',

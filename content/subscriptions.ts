@@ -1,6 +1,7 @@
 /**
  * Subscriptions guide — cloned from Mini App wallet chrome (build 9a2f1ed).
- * Honest Coming only. Trading bot is Coming later — never fake LIVE.
+ * Honest Coming only. Retail + social bots stay Coming until retail flags ship.
+ * Trading bot is Coming later — never fake LIVE. Review is not execute.
  * Confirm / Stop all stay muted when the send path is not wired.
  */
 export const SUBSCRIPTIONS = {
@@ -22,7 +23,7 @@ export const SUBSCRIPTIONS = {
     },
     {
       title: 'Trading bot',
-      body: 'Coming later.',
+      body: 'Social and copy-style bots — Coming until retail flags ship. Review is not execute.',
       statusLabel: 'Coming' as const,
     },
   ],
@@ -30,7 +31,7 @@ export const SUBSCRIPTIONS = {
   how: [
     'Open **Subscriptions** in the Mini App or web wallet (menu: Caps, merchants, pause or cancel).',
     'Tap **New subscription** — Amount, days, payee.',
-    'Choose **Recurring pay**. **Trading bot** stays muted — Coming later, not LIVE.',
+    'Choose **Recurring pay**. **Trading bot** (social/copy bots) stays muted — Coming until retail flags ship. Review is not execute.',
     'Enter **Amount (USDC)**, **Days**, and **Payee address**. Continue.',
     'Confirm with **your** owner signature. Gas is self-funded — sponsorship is not live.',
     'If the path is not ready, the wallet stays honest: **Can’t send yet** / **Can’t pause yet**. It will not pretend the payment went through.',
@@ -38,7 +39,7 @@ export const SUBSCRIPTIONS = {
   ],
   dont: [
     'Do not expect gasless / sponsored charges (not live).',
-    'Do not treat **Trading bot** as live — it is Coming later.',
+    'Do not treat **Trading bot** or social bots as live — Coming until retail flags ship. Review is not execute.',
     'Do not put a wildcard address. One merchant at a time in this version.',
   ],
 } as const
