@@ -84,7 +84,7 @@ export function AgentsTeaser() {
             {AGENTS.stuckCta}
           </Link>
           <Link href="/subscriptions" className="underline-offset-4 hover:text-primary hover:underline">
-            Subscriptions guide
+            Mandates guide
           </Link>
         </p>
       </div>
@@ -158,7 +158,7 @@ export function AgentsGuide() {
             Back to Porta
           </Link>
           <Link href="/subscriptions" className="underline-offset-4 hover:text-primary hover:underline">
-            Subscriptions
+            Mandates
           </Link>
           <Link href="/guides" className="underline-offset-4 hover:text-primary hover:underline">
             All guides
