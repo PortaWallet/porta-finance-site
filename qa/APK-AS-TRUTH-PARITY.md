@@ -188,5 +188,6 @@ Chrome implementer: **#33** (merged). Prior baseline: **#22**. This US-2 PR lock
 | PR #22 | Merged Subs clone + What’s next Coming + TOS `/terms` |
 | PR #33 | Merged APK Amount/Days/Pause chrome + Sepolia Coming |
 | PR #34 | Prior draft of this parity list (closed pre-#33 land) |
+| PR #35 / #36 | Sibling US-2 SoT lock drafts (same deliverable; review either) |
 
 This PR adds **documentation + honesty pins only**. It does not merge wallet code, deploy, flip HOLDs, or ship login stories.
