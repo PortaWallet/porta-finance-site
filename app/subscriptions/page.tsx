@@ -58,6 +58,22 @@ export default function SubscriptionsPage() {
               ))}
             </ul>
             <h2 className="mt-10 text-lg font-semibold tracking-tight">
+              {SUBSCRIPTIONS.screensTitle}
+            </h2>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-3">
+              {SUBSCRIPTIONS.screens.map((item) => (
+                <li
+                  key={item.title}
+                  className="rounded-xl border border-border bg-card px-4 py-3"
+                >
+                  <h3 className="text-sm font-semibold tracking-tight">{item.title}</h3>
+                  <p className="mt-1 text-sm leading-snug text-muted-foreground">
+                    <Rich text={item.body} />
+                  </p>
+                </li>
+              ))}
+            </ul>
+            <h2 className="mt-10 text-lg font-semibold tracking-tight">
               {SUBSCRIPTIONS.howTitle}
             </h2>
             <ol className="mt-4 grid gap-3">
