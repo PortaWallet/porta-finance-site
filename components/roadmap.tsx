@@ -31,7 +31,7 @@ export function Roadmap() {
                   {item.title}
                 </h3>
                 <Badge variant="coming" className="ml-auto">
-                  Coming
+                  {item.statusLabel}
                 </Badge>
               </div>
               <p className="mt-1 text-sm leading-snug text-muted-foreground">

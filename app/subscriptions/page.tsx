@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import Link from 'next/link'
 import { Paragraphs, Rich } from '@/components/agents'
 import { MotionSection } from '@/components/motion-section'
+import { Badge } from '@/components/ui/badge'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteNav } from '@/components/site-nav'
 import { SUBSCRIPTIONS } from '@/content/subscriptions'
@@ -22,11 +23,40 @@ export default function SubscriptionsPage() {
       <main>
         <MotionSection className="section-y">
           <div className="mx-auto max-w-6xl">
-            <p className="eyebrow mb-2">{SUBSCRIPTIONS.eyebrow}</p>
+            <div className="mb-2 flex flex-wrap items-center gap-2">
+              <p className="eyebrow mb-0">{SUBSCRIPTIONS.eyebrow}</p>
+              <Badge variant="coming">{SUBSCRIPTIONS.statusLabel}</Badge>
+            </div>
             <h1 className="section-title max-w-2xl">{SUBSCRIPTIONS.title}</h1>
+            <p className="mt-2 max-w-2xl text-base text-muted-foreground">
+              {SUBSCRIPTIONS.teaser}
+            </p>
             <div className="mt-4 max-w-2xl space-y-3">
               <Paragraphs lines={SUBSCRIPTIONS.intro} />
             </div>
+            <h2 className="mt-10 text-lg font-semibold tracking-tight">
+              {SUBSCRIPTIONS.typesTitle}
+            </h2>
+            <ul className="mt-4 grid gap-3 sm:grid-cols-2">
+              {SUBSCRIPTIONS.types.map((item) => (
+                <li
+                  key={item.title}
+                  className="rounded-xl border border-border bg-card px-4 py-3"
+                >
+                  <div className="flex flex-wrap items-center gap-2">
+                    <h3 className="text-sm font-semibold tracking-tight">
+                      {item.title}
+                    </h3>
+                    <Badge variant="coming" className="ml-auto">
+                      {item.statusLabel}
+                    </Badge>
+                  </div>
+                  <p className="mt-1 text-sm leading-snug text-muted-foreground">
+                    {item.body}
+                  </p>
+                </li>
+              ))}
+            </ul>
             <h2 className="mt-10 text-lg font-semibold tracking-tight">
               {SUBSCRIPTIONS.howTitle}
             </h2>

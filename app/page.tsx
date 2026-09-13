@@ -4,9 +4,9 @@ import { Apps } from '@/components/apps'
 import { Contact } from '@/components/contact'
 import { Developers } from '@/components/developers'
 import { Features } from '@/components/features'
-import { Policy, Terms } from '@/components/legal'
 import { Hero } from '@/components/hero'
 import { How } from '@/components/how'
+import { LegalHashRedirect } from '@/components/legal-hash-redirect'
 import { MotionSection } from '@/components/motion-section'
 import { Roadmap } from '@/components/roadmap'
 import { Security } from '@/components/security'
@@ -18,6 +18,7 @@ export const revalidate = 86400
 export default function HomePage() {
   return (
     <div className="min-h-dvh">
+      <LegalHashRedirect />
       <SiteNav />
       <main>
         <Hero />
@@ -34,8 +35,6 @@ export default function HomePage() {
         </MotionSection>
         <Roadmap />
         <Contact />
-        <Policy />
-        <Terms />
       </main>
       <SiteFooter />
     </div>

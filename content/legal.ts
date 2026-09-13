@@ -1,14 +1,15 @@
 import { CONTACT_EMAIL, SITE_HOST } from '@/lib/site'
 
-/** Homepage hash ids stay for older Google OAuth URLs. Use the plural #terms, not the singular. */
+/** Section ids on dedicated legal pages. Prefer /privacy and /terms deep links. */
 export const POLICY_ID = 'policy'
 export const TERMS_ID = 'terms'
 
-/** Canonical pages. Mini App / older links also open the aliases. */
+/** Canonical legal deep links. Mini App / older links also open the aliases. TOS is /terms only. */
 export const POLICY_PATH = '/privacy'
 export const TERMS_PATH = '/terms'
 export const POLICY_ALIASES = ['/privacy-policy'] as const
 export const TERMS_ALIASES = ['/terms-of-service'] as const
+/** Legacy OAuth hashes — homepage redirects these to POLICY_PATH / TERMS_PATH. */
 export const POLICY_HASH_PATH = `/#${POLICY_ID}`
 export const TERMS_HASH_PATH = `/#${TERMS_ID}`
 

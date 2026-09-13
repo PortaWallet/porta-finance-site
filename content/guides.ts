@@ -11,7 +11,7 @@ export const GUIDES = {
     {
       href: '/subscriptions',
       title: 'Subscriptions',
-      body: 'Amount, days, vendor address. Pause and revoke. Not a card on file.',
+      body: 'Caps, merchants, pause or cancel. Amount, days, payee. Trading bot Coming later.',
     },
   ],
 } as const
