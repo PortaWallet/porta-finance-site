@@ -1,16 +1,18 @@
 /**
- * Subscriptions guide — cloned from APK wallet chrome (amount / days / pause).
+ * Mandates guide (SPRINT-MONTHLY SoT) — APK chrome Amount / Days / Pause.
+ * Product name: **Mandates** (not Subscriptions). Cap = one period, not a lump.
  * Honest Coming until Sepolia is live. Swap bot / Trading bot Coming later — never fake LIVE.
- * Confirm / Stop all stay muted when the send path is not wired.
+ * Confirm / Stop all stay muted when the send path is not wired. No login stories.
  */
 export const SUBSCRIPTIONS = {
-  eyebrow: 'Subscriptions',
-  title: 'Recurring pay — one merchant, cap and expiry',
+  eyebrow: 'Mandates',
+  title: 'Recurring pay — one merchant, period cap and expiry',
   teaser: 'Caps, merchants, pause or cancel',
   statusLabel: 'Coming',
   intro: [
-    'Approve a cap to one address. Pause or cancel any time.',
-    'A Porta subscription is a **mandate**: amount (USDC), days, and one **payee address**.',
+    'Approve a **period cap** to one address. Pause or cancel any time.',
+    'A Porta **mandate** is amount (USDC) **per period**, days, and one **payee address**.',
+    'The Amount cap is for **one period**, not a lump sum for the whole Days window.',
     'It is not a credit card on file. Your owner key does not change.',
     'Product status: **Coming until Sepolia is live** — not Delivered. Review is not execute.',
   ],
@@ -18,7 +20,7 @@ export const SUBSCRIPTIONS = {
   types: [
     {
       title: 'Recurring pay',
-      body: 'One merchant, cap and expiry.',
+      body: 'One merchant, period cap and expiry.',
       statusLabel: 'Coming' as const,
     },
     {
@@ -31,11 +33,11 @@ export const SUBSCRIPTIONS = {
   screens: [
     {
       title: 'Amount',
-      body: 'Amount (USDC) — the cap for this mandate. One number, not unlimited auto-debit.',
+      body: 'Amount (USDC) — the cap for **one period**, not a lump across all days. One number per period, not unlimited auto-debit.',
     },
     {
       title: 'Days',
-      body: 'Days — how long the mandate lasts. Expiry is part of the contract, not a card on file.',
+      body: 'Days — how long the mandate lasts. Periods renew inside that window until expiry; Amount is per period, not a total lump.',
     },
     {
       title: 'Pause',
@@ -44,18 +46,20 @@ export const SUBSCRIPTIONS = {
   ],
   howTitle: 'How to set one',
   how: [
-    'Open **Subscriptions** in the **APK**, Mini App, or web wallet (menu: Caps, merchants, pause or cancel).',
-    'Tap **New subscription** — Amount, days, payee.',
+    'Open **Mandates** in the **APK**, Mini App, or web wallet (menu: Caps, merchants, pause or cancel).',
+    'Tap **New mandate** — Amount, days, payee.',
     'Choose **Recurring pay**. **Trading bot** / Swap bot stays muted — Coming later, not LIVE.',
-    'Enter **Amount (USDC)**, **Days**, and **Payee address**. Continue.',
+    'Enter **Amount (USDC)** (cap for **one period**, not a lump), **Days**, and **Payee address**. Continue.',
     'Confirm with **your** owner signature. Gas is self-funded — sponsorship is not live.',
     'If the path is not ready, the wallet stays honest: **Can’t send yet** / **Can’t pause yet**. It will not pretend the payment went through.',
-    '**Stop all** stops every subscription. Revoke stops one.',
+    '**Stop all** stops every mandate. Revoke stops one.',
   ],
   dont: [
+    'Do not treat Amount as a lump for the full Days window — the cap is **one period**.',
     'Do not expect gasless / sponsored charges (not live).',
     'Do not treat **Trading bot** / Swap bot as live — Coming later.',
     'Do not put a wildcard address. One merchant at a time in this version.',
     'Do not call this Delivered until Sepolia is live.',
+    'Do not invent login / TG↔APK auth stories here — out of scope.',
   ],
 } as const

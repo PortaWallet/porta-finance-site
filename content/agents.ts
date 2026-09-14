@@ -22,8 +22,8 @@ export const AGENTS = {
   whyTitle: 'Why this helps in real life',
   why: [
     {
-      title: '1. Subscription / API that pays itself',
-      body: 'A bot that pays a vendor ($20/week, only that vendor). You do not approve every charge by hand.',
+      title: '1. Mandate / API that pays itself',
+      body: 'A bot that pays a vendor ($20 per period, only that vendor). Cap is one period, not a lump. You do not approve every charge by hand.',
     },
     {
       title: '2. A helper that trades for you',
@@ -35,8 +35,9 @@ export const AGENTS = {
     },
     {
       title: '4. Try without fear',
-      body: 'Want to try a new tool? Give it $20/week. Not a fit — tap **Revoke** or **Panic**. Your owner key does not change.',
+      body: 'Want to try a new tool? Give it $20 per period. Not a fit — tap **Revoke** or **Panic**. Your owner key does not change.',
     },
+
   ],
   howTitle: 'How to use it (screen by screen)',
   how: [

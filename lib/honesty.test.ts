@@ -206,14 +206,17 @@ describe('soft tip honesty', () => {
     }
   })
 
-  it('Subscriptions guide clones APK chrome — Coming until Sepolia, not fake LIVE', () => {
+  it('Mandates guide (SPRINT-MONTHLY): period cap not lump; Coming until Sepolia', () => {
     const subs = readFileSync(resolve(ROOT, 'content/subscriptions.ts'), 'utf8')
-    expect(subs).toContain("eyebrow: 'Subscriptions'")
-    expect(subs).toContain('APK wallet chrome')
+    expect(subs).toContain("eyebrow: 'Mandates'")
+    expect(subs).toContain('SPRINT-MONTHLY')
+    expect(subs).toContain('APK chrome')
     expect(subs).toContain('Caps, merchants, pause or cancel')
-    expect(subs).toContain('Approve a cap to one address. Pause or cancel any time.')
+    expect(subs).toContain('Approve a **period cap** to one address')
+    expect(subs).toContain('one period')
+    expect(subs).toContain('not a lump')
     expect(subs).toContain('Recurring pay')
-    expect(subs).toContain('One merchant, cap and expiry')
+    expect(subs).toContain('One merchant, period cap and expiry')
     expect(subs).toContain('Trading bot')
     expect(subs).toContain('Swap bot Coming later')
     expect(subs).toContain('Coming until Sepolia is live')
@@ -228,24 +231,59 @@ describe('soft tip honesty', () => {
     expect(subs).toContain('Can’t send yet')
     expect(subs).toContain('Can’t pause yet')
     expect(subs).toContain('**APK**')
+    expect(subs).toContain('New mandate')
+    expect(subs).not.toMatch(/eyebrow:\s*'Subscriptions'/)
     expect(subs).not.toMatch(/Trading bot[^.]*\bis LIVE\b/i)
     expect(subs).not.toMatch(/statusLabel:\s*'LIVE'|statusLabel:\s*'Delivered'/)
     expect(subs).not.toMatch(/F6\.4|VerifyingPaymaster/)
     expect(subs).not.toMatch(/AcceptAll|Accept all/i)
     expect(subs).toContain('One merchant at a time')
+    expect(subs).toContain('login')
+    expect(subs).toMatch(/login[^.]*out of scope/i)
     const page = readFileSync(resolve(ROOT, 'app/subscriptions/page.tsx'), 'utf8')
     expect(page).toContain('SUBSCRIPTIONS.types')
     expect(page).toContain('SUBSCRIPTIONS.screens')
     expect(page).toContain('SUBSCRIPTIONS.statusLabel')
     expect(page).toContain('variant="coming"')
     const guides = readFileSync(resolve(ROOT, 'content/guides.ts'), 'utf8')
+    expect(guides).toContain("title: 'Mandates'")
     expect(guides).toContain('Amount, Days, Pause')
+    expect(guides).toContain('Period cap (not a lump)')
     expect(guides).toContain('Swap bot Coming later')
     expect(guides).toContain('Coming until Sepolia is live')
     const roadmap = readFileSync(resolve(ROOT, 'content/roadmap.ts'), 'utf8')
+    expect(roadmap).toContain("title: 'Mandates'")
+    expect(roadmap).toContain('period cap (not a lump)')
     expect(roadmap).toContain('Amount, Days, Pause')
     expect(roadmap).toContain('Swap bot Coming later')
     expect(roadmap).toContain('Coming until Sepolia is live — not Delivered')
+    expect(roadmap).not.toMatch(/statusLabel:\s*'Delivered'/)
+  })
+
+  it('SPRINT-MONTHLY SoT locks Mandates + period cap; no login stories', () => {
+    const sot = readFileSync(resolve(ROOT, 'qa/SPRINT-MONTHLY-SOT.md'), 'utf8')
+    expect(sot).toContain('Mandates')
+    expect(sot).toContain('one period')
+    expect(sot).toContain('not a lump')
+    expect(sot).toContain('No login stories')
+    expect(sot).toContain('/terms')
+    expect(sot).toContain('not Delivered')
+    expect(sot).toContain('No merge wallet')
+    expect(sot).toContain("Never `statusLabel: 'Delivered'`")
+    const marketing = [
+      'content/subscriptions.ts',
+      'content/roadmap.ts',
+      'content/guides.ts',
+      'content/agents.ts',
+      'content/legal.ts',
+    ]
+    for (const rel of marketing) {
+      const text = readFileSync(resolve(ROOT, rel), 'utf8')
+      expect(text, rel).not.toMatch(/statusLabel:\s*'Delivered'/)
+      expect(text, rel).not.toMatch(
+        /login (works|aligned|sync|unified)|TG\s*↔\s*APK login (live|ready)/i,
+      )
+    }
   })
 
   it('CWS HOLD: no live Chrome Web Store URL', () => {
@@ -345,10 +383,11 @@ describe('soft tip honesty', () => {
     expect(roadmap).toContain('What’s next')
     expect(roadmap).toContain('Coming · not live')
     expect(roadmap).toContain('Not live yet')
-    expect(roadmap).toContain("title: 'Subscriptions'")
+    expect(roadmap).toContain("title: 'Mandates'")
     expect(roadmap).toContain("title: 'Agents'")
     expect(roadmap).toContain("statusLabel: 'Coming'")
     expect(roadmap).toContain('Coming until Sepolia is live — not Delivered')
+    expect(roadmap).toContain('period cap (not a lump)')
     expect(roadmap).toContain('See every swap before you confirm')
     expect(roadmap).toContain('Alerts that open a review — not a trade')
     expect(roadmap).toContain('Optional protected swaps')
@@ -358,6 +397,7 @@ describe('soft tip honesty', () => {
     expect(roadmap).not.toMatch(/statusLabel:\s*'Delivered'/)
     expect(roadmap).not.toMatch(/\bIn apps\b/)
     expect(roadmap).not.toMatch(/F6\.|G1–G8|Phase 1/)
+    expect(roadmap).not.toMatch(/title:\s*'Subscriptions'/)
     const ui = readFileSync(resolve(ROOT, 'components/roadmap.tsx'), 'utf8')
     expect(ui).toContain('{item.statusLabel}')
     expect(ui).not.toMatch(/statusLabel:\s*'Delivered'|Delivered<\/Badge>/)
@@ -369,24 +409,29 @@ describe('soft tip honesty', () => {
     expect(agents).toContain('Coming until Sepolia is live')
     expect(agents).toContain('Review is not execute')
     expect(agents).toContain('Swap bot is **Coming later**')
+    expect(agents).toContain('Mandate / API that pays itself')
+    expect(agents).toContain('Cap is one period, not a lump')
     expect(agents).not.toMatch(/statusLabel:\s*'Delivered'|statusLabel:\s*'LIVE'/)
     expect(agents).not.toMatch(/F6\.4|VerifyingPaymaster/)
     const agentsUi = readFileSync(resolve(ROOT, 'components/agents.tsx'), 'utf8')
     expect(agentsUi).toContain('AGENTS.statusLabel')
     expect(agentsUi).toContain('variant="coming"')
+    expect(agentsUi).toContain('Mandates guide')
     expect(agentsUi).not.toMatch(/Delivered<\/Badge>|variant="live"/)
+    expect(agentsUi).not.toMatch(/>\s*Subscriptions\s*</)
     const guides = readFileSync(resolve(ROOT, 'content/guides.ts'), 'utf8')
     expect(guides).toContain("title: 'Agents'")
-    expect(guides).toContain("title: 'Subscriptions'")
+    expect(guides).toContain("title: 'Mandates'")
     expect(guides).toContain("statusLabel: 'Coming'")
     expect(guides).toContain('Coming until Sepolia is live — not Delivered')
     expect(guides).not.toMatch(/statusLabel:\s*'Delivered'/)
+    expect(guides).not.toMatch(/title:\s*'Subscriptions'/)
     const guidesPage = readFileSync(resolve(ROOT, 'app/guides/page.tsx'), 'utf8')
     expect(guidesPage).toContain('item.statusLabel')
     expect(guidesPage).toContain('variant="coming"')
     expect(guidesPage).not.toMatch(/Delivered<\/Badge>/)
     const roadmap = readFileSync(resolve(ROOT, 'content/roadmap.ts'), 'utf8')
-    expect(roadmap).toContain("title: 'Subscriptions'")
+    expect(roadmap).toContain("title: 'Mandates'")
     expect(roadmap).toContain("title: 'Agents'")
     expect(roadmap).toContain("statusLabel: 'Coming'")
     expect(roadmap).not.toMatch(/statusLabel:\s*'Delivered'/)
@@ -606,8 +651,8 @@ describe('soft tip honesty', () => {
     expect(TERMS_HASH_PATH).toBe('/#terms')
     expect(POLICY.id).toBe('policy')
     expect(TERMS.id).toBe('terms')
-    expect(LEGAL_UPDATED_ISO).toBe('2026-09-11')
-    expect(LEGAL_UPDATED_LABEL).toBe('11 September 2026')
+    expect(LEGAL_UPDATED_ISO).toBe('2026-09-14')
+    expect(LEGAL_UPDATED_LABEL).toBe('14 September 2026')
     expect(LEGAL_DRAFT_NOTE).toMatch(/draft product language/i)
     expect(POLICY.title).toBe('Privacy Policy')
     expect(TERMS.title).toBe('Terms of Service')
@@ -628,6 +673,16 @@ describe('soft tip honesty', () => {
     expect(TERMS.sections.some((s) => /Review is not execute/i.test(s.body))).toBe(
       true,
     )
+    expect(
+      TERMS.sections.some(
+        (s) =>
+          s.title === 'Mandates' &&
+          /one period/i.test(s.body) &&
+          /not a lump/i.test(s.body) &&
+          /Coming until Sepolia/i.test(s.body) &&
+          /login/i.test(s.body),
+      ),
+    ).toBe(true)
     expect(TERMS.sections.some((s) => s.body.includes(CONTACT_EMAIL))).toBe(
       true,
     )
