@@ -27,6 +27,11 @@ const items = [
     title: 'Advanced trading later',
     body: 'Strategies and copy-style flows come later. Wallet trust is the brand lead — not a trading slogan.',
   },
+  {
+    n: '06',
+    title: 'Mandates for scheduled spending',
+    body: 'Coming until a successful dogfood UserOp is confirmed in Porta. Not live on this site.',
+  },
 ] as const
 
 export default function Roadmap() {

@@ -120,6 +120,8 @@ describe('soft tip honesty', () => {
     expect(roadmap).toContain('Optional protected swaps')
     expect(roadmap).toContain('Recovery & session limits')
     expect(roadmap).toContain('Advanced trading later')
+    expect(roadmap).toContain('Mandates for scheduled spending')
+    expect(roadmap).toContain('successful dogfood UserOp')
     expect(roadmap).not.toMatch(/F6\.|G1–G8|Phase 1/)
   })
 
