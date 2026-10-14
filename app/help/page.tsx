@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import Link from 'next/link'
+import { HelpHashRedirect } from '@/components/help/help-hash-redirect'
 import { HelpSearch } from '@/components/help/help-search'
 import { HelpShell } from '@/components/help/help-shell'
 import { MotionSection } from '@/components/motion-section'
@@ -29,6 +30,7 @@ export default function HelpPage() {
 
   return (
     <HelpShell>
+      <HelpHashRedirect />
       <MotionSection className="section-y">
         <div className="mx-auto max-w-6xl">
           <p className="eyebrow mb-2">Help</p>
