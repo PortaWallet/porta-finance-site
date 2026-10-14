@@ -48,7 +48,10 @@ function installDarkDocument() {
     dispatchEvent: () => false,
   })) as typeof window.matchMedia
 
-  Object.assign(globalThis, {
+  // Node 22+ defines globalThis.navigator as a getter with no setter.
+  // Object.assign throws "Cannot set property navigator ... which has only a getter".
+  // vi.stubGlobal replaces that configurable getter via Object.defineProperty.
+  for (const [key, value] of Object.entries({
     window,
     self: window,
     document: window.document,
@@ -59,7 +62,9 @@ function installDarkDocument() {
     Node: window.Node,
     localStorage: window.localStorage,
     IS_REACT_ACT_ENVIRONMENT: true,
-  })
+  })) {
+    vi.stubGlobal(key, value)
+  }
   return dom
 }
 
