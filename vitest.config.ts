@@ -5,6 +5,11 @@ import { defineConfig } from 'vitest/config'
 const root = dirname(fileURLToPath(import.meta.url))
 
 export default defineConfig({
+  oxc: {
+    jsx: {
+      runtime: 'automatic',
+    },
+  },
   test: {
     environment: 'node',
     include: ['lib/**/*.test.ts'],
