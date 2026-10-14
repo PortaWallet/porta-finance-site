@@ -5,7 +5,6 @@ import { HelpBody } from '@/components/help/help-body'
 import { HelpShell } from '@/components/help/help-shell'
 import { MotionSection } from '@/components/motion-section'
 import { getHelpTopic, helpStaticParams } from '@/content-help/help'
-import { HOME_HREF } from '@/lib/preview'
 import { SITE_URL } from '@/lib/site'
 
 export const dynamic = 'force-static'
@@ -70,7 +69,7 @@ export default async function HelpTopicPage({ params }: Props) {
             <Link href="/help" className="underline-offset-4 hover:text-primary hover:underline">
               All help topics
             </Link>
-            <Link href={HOME_HREF} className="underline-offset-4 hover:text-primary hover:underline">
+            <Link href="/" className="underline-offset-4 hover:text-primary hover:underline">
               Back to Porta
             </Link>
           </p>

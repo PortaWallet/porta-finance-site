@@ -2,7 +2,6 @@ import Link from 'next/link'
 import { Button } from '@/components/ui/button'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteNav } from '@/components/site-nav'
-import { HOME_HREF } from '@/lib/preview'
 
 export default function NotFound() {
   return (
@@ -17,7 +16,7 @@ export default function NotFound() {
         </p>
         <div>
           <Button asChild>
-            <Link href={HOME_HREF}>Back to Porta</Link>
+            <Link href="/">Back to Porta</Link>
           </Button>
         </div>
       </main>

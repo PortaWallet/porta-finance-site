@@ -1,19 +1,19 @@
 export const ROADMAP = {
   eyebrow: 'Coming · not live',
   title: 'What’s next',
-  lede: 'Nothing below is live. Subscriptions and Agents are Coming until Sepolia is live — not Delivered.',
+  lede: 'Nothing below is live. Subscriptions and Agents are Coming — not Delivered.',
   badge: 'Not live yet',
   items: [
     {
       n: '01',
       title: 'Subscriptions',
-      body: 'Recurring pay — one merchant, cap and expiry. APK screens: Amount, Days, Pause. Caps, merchants, pause or cancel. Swap bot Coming later — not LIVE. Coming until Sepolia is live — not Delivered.',
+      body: 'Recurring pay — one merchant, cap and expiry. APK screens: Amount, Days, Pause. Caps, merchants, pause or cancel. Swap bot Coming later — not LIVE. Coming — not Delivered.',
       statusLabel: 'Coming',
     },
     {
       n: '02',
       title: 'Agents',
-      body: 'Scoped Mandate sessions with a budget you control. Guide on this site. Coming until Sepolia is live — not Delivered.',
+      body: 'Scoped Mandate sessions with a budget you control. Guide on this site. Coming — not Delivered.',
       statusLabel: 'Coming',
     },
     {

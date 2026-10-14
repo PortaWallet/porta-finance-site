@@ -1,7 +1,7 @@
 /**
  * Joshua Agents SoT: EN only on www.
  * Home shows teaser only. Full guide lives at /agents.
- * Honest Coming until Sepolia is live — never Delivered / LIVE on marketing chrome.
+ * Honest Coming — not Delivered. Never Delivered / LIVE on marketing chrome.
  */
 export const AGENTS = {
   eyebrow: 'Agents',
@@ -17,7 +17,7 @@ export const AGENTS = {
     'An **agent** is a person or a program you give a **temporary key** — not your own key.',
     'They can pay **only** within what you approved: how much, to which addresses, and for how long.',
     'Anything beyond that — the account blocks it. Even if the agent key is stolen, the wallet stays yours.',
-    'Product status: **Coming until Sepolia is live** — not Delivered. Review is not execute.',
+    'Product status: **Coming — not Delivered**. Review is not execute.',
   ],
   whyTitle: 'Why this helps in real life',
   why: [

@@ -4,7 +4,6 @@ import { HelpSearch } from '@/components/help/help-search'
 import { HelpShell } from '@/components/help/help-shell'
 import { MotionSection } from '@/components/motion-section'
 import { getHelpTopics } from '@/content-help/help'
-import { HOME_HREF } from '@/lib/preview'
 import { SITE_URL } from '@/lib/site'
 
 export const dynamic = 'force-static'
@@ -39,7 +38,7 @@ export default function HelpPage() {
           </p>
           <HelpSearch topics={topics} />
           <p className="mt-8 text-sm font-medium">
-            <Link href={HOME_HREF} className="underline-offset-4 hover:text-primary hover:underline">
+            <Link href="/" className="underline-offset-4 hover:text-primary hover:underline">
               Back to Porta
             </Link>
           </p>
