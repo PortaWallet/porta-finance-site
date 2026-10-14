@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { OfficialLinks } from '@/components/official-links'
 import { Separator } from '@/components/ui/separator'
 import { FOOTER } from '@/content/copy'
@@ -26,17 +27,25 @@ export function SiteFooter() {
               {CONTACT_EMAIL}
             </a>
             <p className="mt-1 text-sm text-muted-foreground">{FOOTER.legal}</p>
-            <nav aria-label="Legal" className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
-              {LEGAL_LINKS.map((link) => (
-                <a
-                  key={link.id}
-                  href={link.href}
-                  className="text-sm font-medium text-foreground transition-colors hover:text-primary"
-                >
-                  {link.label}
-                </a>
-              ))}
-            </nav>
+            <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1">
+              <Link
+                href="/help"
+                className="text-sm font-medium text-foreground transition-colors hover:text-primary"
+              >
+                Help
+              </Link>
+              <nav aria-label="Legal" className="flex flex-wrap gap-x-4 gap-y-1">
+                {LEGAL_LINKS.map((link) => (
+                  <a
+                    key={link.id}
+                    href={link.href}
+                    className="text-sm font-medium text-foreground transition-colors hover:text-primary"
+                  >
+                    {link.label}
+                  </a>
+                ))}
+              </nav>
+            </div>
           </div>
           <p className="max-w-md text-xs leading-snug text-muted-foreground sm:text-right">
             {FOOTER.honesty}

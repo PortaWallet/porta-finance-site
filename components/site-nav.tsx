@@ -29,7 +29,7 @@ export function SiteNav() {
               <li key={link.label}>
                 <a
                   href={navHref(link.href)}
-                  className="inline-flex min-h-10 items-center rounded-full px-2.5 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
+                  className="inline-flex min-h-10 items-center rounded-full px-2 text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
                 >
                   {link.label}
                 </a>
@@ -47,7 +47,7 @@ export function SiteNav() {
       </nav>
       <nav
         aria-label="Sections"
-        className="mx-auto grid max-w-6xl grid-cols-5 gap-1 px-4 pb-2 md:hidden sm:px-6"
+        className="mx-auto grid max-w-6xl grid-cols-3 gap-1 px-4 pb-2 md:hidden sm:px-6"
       >
         {NAV_LINKS.map((link) => (
           <a
