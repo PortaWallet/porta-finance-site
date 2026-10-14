@@ -3,6 +3,7 @@ import { PRIMARY_CTA_LABEL } from '@/lib/site'
 export const NAV_LINKS = [
   { href: '#apps', label: 'Apps' },
   { href: '/guides', label: 'Guides' },
+  { href: '/help', label: 'Help' },
   { href: '#roadmap', label: 'Roadmap' },
   { href: '#official', label: 'Official' },
   { href: '#contact', label: 'Contact' },

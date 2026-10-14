@@ -1,0 +1,828 @@
+<a id="platforms"></a>
+## 1. Platforms & getting the app
+
+PortaWallet is one wallet across five platforms. Your **secret phrase** works on all of them, so you can import the same wallet anywhere. Your **unlock password**, on the other hand, is set separately on each device.
+
+| Platform | How to get it | How you sign in |
+|---|---|---|
+| **Telegram Mini App** | Open [@PortaWallet_bot](https://t.me/PortaWallet_bot) in Telegram and start the Mini App. | Your Telegram account. No separate sign-in is needed. |
+| **Android** | `[LINK TBD]` | Email |
+| **iOS** (iPhone) | `[LINK TBD]` | Email |
+| **Web app** (desktop or mobile browser) | `[LINK TBD]` | Email |
+| **Browser extension** (Chrome) | `[LINK TBD]` | Email |
+
+<a id="platform-differences"></a>
+### What's different on each platform
+
+Most screens and labels are the same everywhere. The table below lists only the places where the code differs.
+
+| | Telegram | Android | iOS | Web | Extension |
+|---|---|---|---|---|---|
+| Biometric unlock | Telegram biometrics, where available | Fingerprint or face ("or use biometric authorization") | Face ID / Touch ID | — | — |
+| Unlock password rule | At least 8 characters | At least 8 characters | See [Your unlock password](#password-setup) | At least 8 characters | 12–63 characters, with upper case, lower case, a number and a symbol |
+| Mandates | Full | Full, including **Collect** on the detail screen | *Coming soon* | Same as Telegram | Basic: create, revoke, **Stop all** |
+| Merchant requests and the notifications bell | Yes | Yes | *Coming soon* | Same as Telegram | Not available |
+| Advanced strategies | Yes | Yes (Grid preview only) | Not available | Same as Telegram | Not available |
+| Log out | Locks this device | Removes wallets from this device | Asks "Are you sure you want to Logout?" | Locks this device | **Log out** in the menu |
+
+<a id="web-app"></a>
+### Using the web app
+
+In a browser, PortaWallet keeps your wallet data **on this device only**.
+
+- You'll see: "You're using Porta in a browser. Create, import, and unlock work here — this session is stored on this device only (not Telegram CloudStorage) and may be temporary."
+- Sign in with **Continue with email**. "Google sign-in isn't available in the browser yet. Use email."
+- When you create a new account, check your email to activate it, then sign in.
+- Clearing your browser data removes the wallet from that browser. Keep your secret phrase so you can import it again.
+
+<a id="browser-extension"></a>
+### Using the browser extension
+
+The extension (**Porta Wallet** for Chrome) opens from your browser toolbar. Create or import a wallet the same way as on the other platforms.
+
+The extension's unlock password is stricter. It must be 12–63 characters and include an upper-case letter, a lower-case letter, a number and a special symbol. If it doesn't, you'll see: "Password must be 12–63 chars with upper, lower, number, and special symbol".
+
+---
+
+<a id="getting-started"></a>
+## 2. Getting started
+
+<a id="what-is-portawallet"></a>
+### What is PortaWallet?
+
+PortaWallet is a self-custody smart-account wallet. Your keys are protected by your unlock password and stored on your device. Porta can't see your secret phrase and can't reset your password.
+
+PortaWallet runs on seven networks: Ethereum, Polygon, Arbitrum, Base, Avalanche, Optimism and BNB Chain (see [Networks](#networks)). You can use it on Telegram, Android, iOS, the web, or as a browser extension (see [Platforms & getting the app](#platforms)).
+
+<a id="create-wallet"></a>
+### Create a new wallet
+
+1. On the welcome screen, tap **Create a new wallet**.
+   - Telegram and web show the title **Porta awaits!** and "Start fresh with a new wallet or bring your existing wallet with you."
+   - *Platform note:* The Android and iOS welcome screen says **Welcome to Porta** with **Get started**. Its options screen says **Almost there!** and the button is **Create new wallet**.
+2. **Create your unlock password.** See [Your unlock password](#password-setup).
+3. **Read the secret phrase tips.** The **Secret phrase info** screen explains why the phrase matters. Tap **Confirm and continue**.
+   - On Telegram and web, **I'll do this later** is shown but disabled, so you can't skip backing up.
+   - *Platform note:* Android has **I'll do it later** and supports a "set up secret phrase later" path. See [Open questions](#open-questions).
+4. **Write down your secret phrase.** The **Secret phrase** screen shows your 12 words. Write them down somewhere offline and make sure nobody can see your screen. **Copy to clipboard** is available, but writing the words on paper is safer. When you're done, tap **I've saved my secret phrase**.
+5. **Confirm your secret phrase.** On **Confirm secret phrase**, tap the 4 missing words in the right order. Then tap **Continue**. While your wallet is set up, the button reads **Creating wallet…**.
+   - If you pick the wrong words, you'll see **Words don't match**: "The words you chose don't match your secret phrase. Clear and try again."
+   - If you already have a phrase, tap **Import instead**.
+
+<a id="import-wallet"></a>
+### Import an existing wallet
+
+1. On the welcome screen, tap **Import my wallet**.
+2. **Create an unlock password** for this device. The screen title is **Import wallet — create unlock password** and it says "You'll enter your secret phrase next."
+3. On **Your secret phrase**, paste or type your phrase into the **Secret phrase** field. Then tap **Import my wallet**. While it works, the button reads **Importing wallet…**. On Android, a **Paste** button is also available.
+
+**What counts as a valid phrase:**
+- It must be **12 or 24 English words** from the standard BIP-39 list.
+- PortaWallet cleans up pasted text for you: numbering, commas, curly quotes and capital letters are all fine.
+- If the word count is wrong, you'll see **Enter a valid 12 or 24-word secret phrase**.
+- If the words don't form a valid phrase, you'll see **Those words aren't a valid secret phrase. Check the spelling and try again.**
+
+<a id="password-setup"></a>
+### Your unlock password
+
+Your unlock password encrypts your wallet on this device. You enter it each time you unlock.
+
+- **Rule:** at least **8 characters**. If it's shorter, you'll see **Use at least 8 characters.** (Android: "Master password must be at least 8 characters").
+- **Strength meter:** the screen shows **Password status: strong / medium / too weak**, along with a checklist: 1 UPPERCASE letter, 1 lowercase letter, 1 number, 1 special symbol. A longer password with all four is stronger. The checklist's length line currently reads "Min 12 characters", but only 8 are required. See [Open questions](#open-questions).
+- **Fields:** **Create password** and **Confirm password:**. The errors are **Password is required.**, **Please confirm your password.** and **Passwords do not match.**
+- **Saving:** **Save password and continue** stays disabled until both fields are valid.
+- **Important notice! You can't recover this password if you lose it!** Write it down and keep it offline. Don't reuse a password from another site.
+- *Platform note:* Android and iOS call this a *master password*. On the browser extension, the password must be 12–63 characters with upper case, lower case, a number and a symbol.
+- *Platform note (Android):* Its title is **Create a master password** and the confirm field is **Confirm Master Password**. Android may let you continue with a weak password after a **Password Alert**.
+- *Platform note (iOS):* iOS shows the same strength checklist. Use at least 8 characters, as on the other platforms.
+
+<a id="unlock"></a>
+### Unlock your wallet
+
+On the **Unlock** screen, enter your **Unlock password** and tap **Unlock**. While it works, the button reads **Unlocking…**.
+
+- **Telegram:** if your device supports Telegram's biometric unlock, PortaWallet can unlock you automatically.
+- **Android:** you can also unlock with "or use biometric authorization".
+- **iOS:** you can unlock with Face ID or Touch ID.
+- **Android and iOS:** the unlock screen also has **Log out of this device**.
+- If you entered the wrong password, you'll see **Incorrect unlock password. Try again, or import with your secret phrase.**
+- If opening takes too long, you'll see **Couldn't open your wallet**: "Opening took too long. Check your connection and try again." Tap **Try again**, or **Create or import instead**.
+
+<a id="forgot-unlock-password"></a>
+### Forgot your unlock password?
+
+Tap **Forgot unlock password?**.
+
+> Porta can't reset your unlock password. If you have your secret phrase, you can import your wallet again.
+
+Tap **Import with secret phrase**, set a new unlock password, and enter your 12 or 24 words. If you've lost both your password and your secret phrase, nobody can recover the wallet, Porta included.
+
+<a id="browser-session"></a>
+### Using PortaWallet in a browser
+
+In the web app, or if you open the Mini App's page outside Telegram, you'll see this:
+
+> You're using Porta in a browser. Create, import, and unlock work here — this session is stored on this device only (not Telegram CloudStorage) and may be temporary. Open the Mini App in Telegram to keep a Telegram session.
+
+- Sign in with **Continue with email**.
+- "Google sign-in isn't available in the browser yet. Use email."
+- When you create a new account, PortaWallet asks you to check your email to activate it, then sign in again.
+
+---
+
+<a id="home-and-balances"></a>
+## 3. Home & balances
+
+Your portfolio shows your total **Assets value**, plus two tabs: **Your Tokens** and **Transactions history**.
+
+- Use **View all** to see your full list.
+- **Empty states:**
+  - **No tokens yet**
+  - **No activity yet**: "Sends, receives, and swaps will show up here."
+- **Loading problems:** you'll see **Loading balances**. If loading fails, you'll see **Couldn't load balances**. Tap **Retry**.
+- **Transaction details:** tap any transaction to see Direction, Date, Transaction ID, Sender, Receiver, Network, Transaction Fee and Gas Price. **View transaction in blockchain** opens the block explorer for that network (see [Networks](#networks)).
+
+<a id="wallets-and-accounts"></a>
+### Wallets and accounts
+
+- **Switch wallets:** tap the wallet name to open **My wallets**. From there, **Manage wallets** lets you add, remove or edit wallets. After switching you'll see "Wallet changed to *name*".
+- **Accounts:** each wallet can hold several accounts. Under **My accounts** you can **Rename account** or **Add new account**.
+
+---
+
+<a id="networks"></a>
+## 4. Networks
+
+PortaWallet supports seven production networks. You can send and receive on all of them.
+
+| Network | Shown in the app as | Chain ID | Network fee paid in | Tokens listed by default | Block explorer |
+|---|---|---|---|---|---|
+| Ethereum | Ethereum | 1 | ETH | ETH, USDT | etherscan.io |
+| Polygon | Polygon | 137 | MATIC | MATIC, USDC | polygonscan.com |
+| Arbitrum | Arbitrum | 42161 | ETH | ETH, USDT | arbiscan.io |
+| Base | Base | 8453 | ETH | ETH, USDC | basescan.org |
+| Avalanche | Avalanche | 43114 | AVAX | AVAX, USDC | subnets.avax.network |
+| Optimism | Optimism | 10 | ETH | ETH, USDC | optimistic.etherscan.io |
+| BNB Chain | Binance | 56 | BNB | BNB, USDC | bscscan.com |
+
+<a id="switch-network"></a>
+### Switch network
+
+1. Tap the network name at the top of the screen to open **Choose network**.
+2. Pick a network. Your balances, Send, Receive and history switch to that network.
+
+To change which networks appear in the list, go to **Menu → Manage networks** ("Select your networks"). It shows your **Active networks:** and **Disabled networks:**. Open a network and tap **Disable network** to hide it ("Turn off the network in your wallet, reactivate it at any time.").
+
+- **Coming soon:** **Clone network**.
+- *Platform note:* the extension and the Telegram app remember the last network you used.
+
+<a id="networks-good-to-know"></a>
+### Good to know
+
+- **Networks are separate.** Assets on one network don't appear on another. Always send on the network the recipient expects, and check the network shown on **Receive** before you share your address.
+- **One-time setup per network.** The first time you use your smart account on a network, it has to be deployed. See ["Smart contract wallet account needs to be deployed"](#smart-account-deploy).
+- **Network fees** are paid in that network's own token: ETH, MATIC, AVAX or BNB.
+
+---
+
+<a id="send"></a>
+## 5. Send
+
+1. Tap **Send**, then choose the **Asset to send** (**Select token**). Enter an amount. **Max** fills in your full balance.
+2. Enter the **Receiving address**, or pick one from your **Address book**.
+3. PortaWallet checks the address (**Analyzing the address...**) and shows a risk label:
+   - "This address is low risk and should be safe to transact with."
+   - "This wallet has been identified as medium risk. Continuing may result a loss of funds. Please proceed with caution."
+   - **High risk address**. Stop and double-check before you continue.
+4. Tap **Review transfer**.
+
+**Possible errors:**
+- **Invalid recipient address.** The address isn't a valid 0x address.
+- Insufficient balance. Lower the amount or add funds.
+
+<a id="smart-account-deploy"></a>
+### "Smart contract wallet account needs to be deployed"
+
+PortaWallet uses a smart account. On a new network, it has to be set up once before its first use. Tap **Deploy** and follow the steps. The setup needs a small amount of that network's fee token (for example ETH on Ethereum, Arbitrum, Base or Optimism, MATIC on Polygon, AVAX on Avalanche, or BNB on BNB Chain) on your wallet address.
+
+<a id="send-confirm"></a>
+### Review and confirm a transfer
+
+The review screen shows:
+
+- **Sending *token*** with the amount and its approximate USD value (≈ $)
+- **To**: the recipient
+- ***Network* network fee**: the estimated gas cost. If the fee can't be estimated, it shows "—" and you can't confirm yet. Wait a moment or go back and try again.
+- **Total send amount**
+
+Tap **Confirm transfer**. You'll first see **Transaction in progress** ("Please wait until the transaction is registered"). Then a **Transfer summary** appears with **Completed** and the **Transaction ID**. Tap **Go to portfolio** to finish.
+
+> Transfers on a blockchain can't be undone. Check the address and network before you confirm.
+
+---
+
+<a id="receive"></a>
+## 6. Receive
+
+Tap **Receive** to see your wallet address as a QR code and as text. Tap **Copy** to copy it (you'll see "Copied to clipboard").
+
+- Check the network shown at the top before you share your address. Only send assets on that network.
+- If you see **Address unavailable** ("Couldn't load a receive address. Go back and try again."), tap **Go back** and open Receive again.
+
+---
+
+<a id="address-book"></a>
+## 7. Address book
+
+Save addresses you send to often. Open it from **Menu → Address book** or from the **Address book** link on the Send screen.
+
+- **Add a contact:** enter a **Contact name** and a **Contact address**, then tap **Save**. If the address isn't valid, you'll see **Invalid recipient address.**
+- **Edit or remove:** open a contact to change or delete it.
+- **Empty or no results:** "There are no records in your address book." If a search finds nothing, you'll see "We didn't find anything :(".
+
+---
+
+<a id="swap"></a>
+## 8. Swap & advanced strategies
+
+<a id="swap-quotes"></a>
+### Swap (quotes only)
+
+**Swaps currently show quotes only. PortaWallet won't execute a swap yet.** You can compare prices, but nothing is signed or sent. The main button reads **Quotes only**. If you tap it, you'll see "Quotes only. Swap execution is not enabled." This applies on Telegram, web, Android and iOS.
+
+- **Fields:** **YOU PAY** and **YOU GET**, plus **Balance:**, **Max** and **Switch direction**.
+- **Quote lifetime:** a quote is valid for 30 seconds (**Expires in 30s**). After that, tap **Refresh quote**.
+- **Messages you might see:**
+  - "No route for this pair right now."
+  - "This pool has no liquidity right now."
+  - "Quote unavailable for this pair. Try a different amount or token."
+  - "Couldn't get a quote. Try again."
+  - "Insufficient balance. Your account does not have enough funds."
+
+<a id="slippage"></a>
+### Slippage tolerance
+
+Open **Max Slippage** and pick 0.1%, 0.5%, 1.0% or 2.5%, then tap **Save**. "A higher slippage tolerance can help transactions succeed, but it might lower the minimum received amount."
+
+<a id="advanced-swap"></a>
+### Advanced (strategies)
+
+Switch from **Simple** to **Advanced** to see order types and **Strategies**. Each strategy is labelled **Live**, **Paused**, **Coming soon** or **Unavailable**, and some carry a risk label (Low risk, Medium, High risk).
+
+| Item | Status today |
+|---|---|
+| Market order | **Paused**: "Market swaps are paused. Quotes are live, but PortaWallet won't send this swap yet." |
+| Limit, Stop, TP/SL orders | **Coming soon**: "Nothing is signed or sent from this screen." |
+| DCA ("Spend a set amount every hour, day or week.") | **Live**, early access (see below) |
+| Recurring (weekly preset on the DCA engine) | **Live**, early access |
+| TWAP, Trailing stop, OCO bracket, Scale orders | **Coming soon** |
+| Grid | **Coming soon**. **Preview Grid plan** shows a plan only: "Grid is a preview. Nothing is signed or sent from this screen." |
+
+*Platform note:* Telegram and web also offer **Preview TWAP split**, a preview only. Android offers only **Preview Grid plan (execute off)**.
+
+<a id="dca"></a>
+### DCA schedule (early access)
+
+DCA lets you collect a fixed amount on a schedule from a mandate that's already signed: "Collect a fixed amount on a schedule against a signed mandate."
+
+- **Settings:**
+  - Currency: USDC
+  - **Amount per slice**
+  - Interval: Hourly, Daily, Weekly, or custom seconds
+  - **Max slices** (default 30)
+- **Run mode:** collection is **manual**. "Automatic is not live. You collect each slice."
+- **Buttons:** **Save schedule**, **Send slice**, **Pause**, **Resume**, **Cancel**.
+
+> DCA availability is still being finalized (see Open questions). Don't present it as automatic investing.
+
+---
+
+<a id="bridge"></a>
+## 9. Bridge
+
+**Bridge quotes** let you "Compare quoted routes between networks". Pick **From** and **To** networks, check your **Current balance**, and tap **Review quote**. The review shows **Slippage**, **Min received** and **Provider**.
+
+**Bridging currently shows quotes only.** **Confirm quote** doesn't move funds, and nothing is signed or sent. This applies on Telegram, web and Android.
+
+---
+
+<a id="mandates"></a>
+## 10. Mandates
+
+<a id="mandates-overview"></a>
+### What is a mandate?
+
+A **mandate** is a capped permission you sign on-chain. It lets one merchant collect USDC from your wallet, up to a set amount per month, for a set number of months. You stay in control: you can pause or revoke it at any time, and the merchant can never collect more than the cap.
+
+- The menu entry is **Mandates** ("Caps, merchants, pause or cancel").
+- Mandates are paid in **USDC**.
+- *Platform note:* on iOS, Mandates are *coming soon*. On the extension, you can create a mandate, revoke one by ID, or **Stop all**.
+
+<a id="mandate-directions"></a>
+### "I pay" and "I get paid" (direction icons)
+
+At the top of Mandates, switch between **I pay** and **I get paid**.
+
+| Icon | Meaning |
+|---|---|
+| ↗ arrow up-right (grey) | **Outgoing, you pay.** You approved a merchant to collect from you. |
+| ↙ arrow down-left (green) | **Incoming, you get paid.** Someone approved you to collect from them. A mandate counts as incoming when the payee is one of your own addresses. |
+
+The detail sheet also says **You pay** or **You get paid**.
+
+<a id="mandate-tabs"></a>
+### Tabs, search and filters
+
+- **Tabs:**
+  - **Requests**: waiting for your review
+  - **Active**
+  - **Paused**
+  - **History**: revoked and expired items
+- **Badges and pills:** tab badges show the exact count up to 99, then **99+**. Status pills are **Review**, **Active**, **Paused**, **Revoked** and **Expired**. New requests that are under 10 minutes old get a **New** pill.
+- **Rows:** each row reads like "1 USDC / month · 3 months", followed by the merchant name and a short ID, for example "Acme Coffee · #1fa7…47d9".
+- **Search:** "Search merchant, address or ID".
+- **Filter and sort:**
+  - Sort by Newest, Oldest, Amount: high to low, or Amount: low to high
+  - **Any time** or **Custom dates**
+  - Minimum and maximum **Amount per month**
+  - Rows per page
+  - **Group by merchant**
+  - Then tap **Show results**. **Clear filters** resets everything.
+- **Live updates:** with **Live updates on**, new items appear as "↑ N new · tap to show".
+
+**Empty states:**
+
+| Tab | What you'll see |
+|---|---|
+| Requests | **No requests waiting**: "When a merchant asks you to approve a spending cap, it appears here." |
+| Active | **No active mandates**: "Approved spending caps show up here." |
+| Paused | **Nothing paused**: "Paused mandates can't be charged until you resume them." |
+| History | **No history yet**: "Revoked and expired mandates and requests end up here." |
+
+<a id="mandate-review"></a>
+### Review and approve a merchant's request
+
+A merchant usually sends you a link (`t.me/PortaWallet_bot?startapp=mr_…`) or shows a QR code. Opening it takes you straight to **Review request**.
+
+If the request doesn't open automatically, open it yourself:
+
+1. Go to **Mandates**, tap **⋯** (More actions), then **Paste request link or ID** ("Open a merchant's request").
+2. Paste the link or the request ID into **Request link or ID**.
+3. Tap **Review request**.
+
+**The review shows:**
+- **Amount** (*X* USDC / month)
+- **Duration**
+- **On-chain cap** (*X* USDC per month)
+- **Payee**
+
+"Terms are set by the request and can't be changed."
+
+**Your choices:**
+- **Approve**: "Then Confirm with your wallet". You'll sign on the **Confirm** screen.
+- **Reject**: "Nothing is signed".
+
+**On Confirm:**
+- For a request that came from a link, enter your wallet password. You'll be asked: "Enter your wallet password to confirm this request."
+- After you confirm, you'll see "Submitted. Statuses update once the network confirms." The merchant is notified when the mandate is approved on-chain.
+
+**If a request won't open:**
+- **Can't open · expired or already used.** Requests expire **24 hours** after the merchant creates them. Ask for a new link.
+- **Can't open · request not found**
+- **Can't open · sign in again**
+- **Too many tries · wait a minute**
+- **Can't open right now · try again**
+
+<a id="mandate-create"></a>
+### Create a mandate yourself
+
+Go to **⋯ → New mandate** and choose **Recurring pay** (one merchant, a cap and an expiry). **Trading bot** is marked *Coming later*.
+
+- **Period:** **Hourly**, **Daily** or **Monthly**. The amount label changes to match (**Amount / hour**, **Amount / day** or **Amount / month (USDC)**). See [Open questions](#open-questions).
+- **Amount / month (USDC):** a number greater than 0, up to 10,000, with no more than 6 decimals.
+- **Months:** 1–12. The error is "Months must be 1 to 12".
+- **Payee:** a 0x address. It can't be the zero address or the USDC token address.
+- The summary ends with "on-chain cap = one month". Tap **Continue**, then sign on **Confirm**.
+
+**Validation messages:**
+- "Amount must be greater than 0"
+- "Amount too large"
+- "Amount must be a plain number with at most 6 decimals"
+- "Payee is required"
+- "Payee must be 0x + 40 hex"
+- "Payee cannot be zero"
+- "Payee cannot be the cap token"
+
+**Before you can confirm:**
+- If your wallet doesn't have mandates switched on yet, you'll see **Enable mandates**. Tap it first, because Confirm stays disabled until you do ("Enable mandates first.").
+- If you're asked to switch network first, switch to the network the mandate is on.
+
+<a id="mandate-pause-revoke"></a>
+### Pause or revoke a mandate
+
+Open a mandate from **I pay**, then tap **Pause or revoke**.
+
+- **Pause:** the merchant can't charge you while the mandate is paused. It moves to the **Paused** tab.
+- **Revoke:** permanently ends the mandate. "Revoking stops future pulls right away." It moves to **History**.
+- **Proof:** **View approval on Etherscan ↗** (Android: **View on explorer ↗**) opens the on-chain record.
+
+<a id="stop-all"></a>
+### Stop all mandates at once
+
+Go to **⋯ → Stop all…** ("Pause every mandate on this wallet at once"). This pauses every mandate on the wallet in one on-chain transaction. "No merchant can charge you until you resume." The network fee is shown before you sign.
+
+- To confirm, press and hold **Stop all**. If you prefer, type **STOP** instead.
+- If there's nothing to pause, the menu says "Nothing to stop right now".
+- To stop just one merchant, open it and choose **Pause or revoke** instead.
+
+<a id="mandate-bulk"></a>
+### Approve or pause several at once
+
+- **Approve in bulk:** on **I pay › Requests**, select up to **5** requests and tap **Approve N · sign once**. "One signature approves all N. Each merchant can pull at most its own cap per month."
+- **Pause in bulk:** on **I pay › Active**, select up to **20** mandates and tap **Pause N · sign once**.
+
+<a id="mandate-collect"></a>
+### Collect (when you get paid)
+
+If you're the payee on an **incoming** mandate, you can collect what's due.
+
+- **Android:** the incoming mandate detail (**You get paid**) shows **Collect *amount* · Due now**, or **Next pull in *N*d**. When nothing is due, the button is disabled and gives a reason:
+  - "Nothing is due yet"
+  - "Paused. Nothing is due until this resumes."
+  - "Nothing is due. This term has ended."
+- *Platform note:* in the Telegram and web apps, collect from the **Incoming mandate** screen using **Fulfill → Collect**. The list's detail sheet doesn't have a Collect button yet.
+- **Limits:** you can collect up to the remaining amount ("Amount (USDC)" is capped to what's left).
+- **Payee address:** the payee must be a regular wallet address (EOA). Contract payees can't collect yet.
+- **Who controls the mandate:** only the payer can pause or revoke it.
+
+<a id="metered-grant"></a>
+### Usage-based (metered) mandates
+
+Some merchants bill by usage. On review, you'll see "Usage-based billing · Porta settles to this payee." The **Confirm** screen then shows:
+
+- **Billing**: Usage-based · you pay only for what you use
+- **Monthly cap**: the most you can be charged per month, and for how many months
+- **Settles**: when your usage reaches a threshold, or every 24 h
+- **Credit limit**: the most unsettled usage allowed. After that, usage pauses until it settles.
+- **Collected by**: Porta billing 0x…· verified
+
+PortaWallet checks that the billing address in the request matches Porta's own settlement address. If it doesn't, you'll see:
+
+> This request's billing address doesn't match Porta's. Don't approve it — ask the merchant for a new link.
+
+**Other messages:**
+- "Usage billing isn't available on this network right now. Try again later."
+- "This request uses a token Porta can't bill. Ask the merchant for a new link."
+- "Couldn't verify the billing address. Check your connection and try again."
+
+---
+
+<a id="notifications"></a>
+## 11. Notifications
+
+The bell at the top shows how many merchant requests are waiting: 1–9, then **9+**.
+
+- **What's inside:** tap the bell to open **Notifications**. The **Mandate requests** section shows up to 5 requests, for example "Acme Coffee · 1 USDC per month · 3 months · 2m ago". **View all** opens **Mandates › Requests**.
+- **Coming soon:** the **Activity** and **Security** sections.
+- **How it updates:** the app checks for new requests every 10 seconds while the app is open. There are no background push alerts yet. Which requests you've already seen is remembered on this device only.
+- **If a request won't load:** you'll see **Couldn't load a merchant request**: "The terms didn't load." Tap **Try again**.
+
+---
+
+<a id="settings-and-security"></a>
+## 12. Settings & security
+
+Open the menu (☰) to find:
+
+- **Manage wallets**
+- **Mandates**
+- **Manage networks**
+- **Address book**
+- **Security**
+- **Support**
+- **Privacy Policy**
+- **Terms of Service**
+- **Log out**
+
+<a id="change-password"></a>
+### Change your unlock password
+
+Go to **Security → Change password** ("Re-encrypt your wallets with a new master password") and fill in your current password, a new password, and the new password again.
+
+- The new password needs at least 8 characters and must be different from the current one.
+- **Success:** **Password changed.**
+- **Errors:**
+  - "Current password is incorrect."
+  - "New passwords do not match."
+  - "Couldn't save the new password. Nothing changed. Try again."
+
+<a id="safe-trading"></a>
+### Safe trading
+
+"When Safe trading mode is ON, scam token is blocked and Trade button is inactive."
+
+<a id="backup-secret-phrase"></a>
+### Back up or view your secret phrase
+
+Go to **Manage wallets**, pick a wallet, and tap **Back up / Secret phrase**. Enter your unlock password to see the phrase.
+
+> Porta never asks for your secret phrase in chat or support.
+
+<a id="manage-wallets"></a>
+### Add or remove wallets
+
+**Manage wallets** offers **Create new wallet** and **Import wallet** ("Import your wallet by entering the secret phrase"). To remove a wallet, open it and tap **Remove**. "You can always import it again using your secret phrase." This only works if you've saved the phrase.
+
+<a id="log-out"></a>
+### Log out
+
+- **Telegram and web:** "Locks this device. Unlock again with your master password."
+- *Platform note:* on Android, "Logging out removes wallets from this device. You'll need your secret phrase to recover them." Android also offers **Clear all data**. Before you log out on Android, make sure your secret phrase is backed up.
+
+<a id="support"></a>
+### Get help
+
+Go to **Support** for:
+
+- **Help** and **Ask in telegram**: [t.me/PortaSupport](https://t.me/PortaSupport)
+- **Community**: [t.me/PortaWallet](https://t.me/PortaWallet)
+- **Website**: [porta.finance](https://www.porta.finance/)
+- **X**: [x.com/PortaWallet](https://x.com/PortaWallet)
+
+---
+
+<a id="faq"></a>
+## 13. FAQ & troubleshooting
+
+<a id="faq-reset-password"></a>
+**Can Porta reset my password or recover my wallet?**
+No. Porta can't reset your unlock password, and it never has your secret phrase. Your secret phrase is the only way to recover your wallet.
+
+<a id="faq-which-networks"></a>
+**Which networks does PortaWallet support?**
+Ethereum, Polygon, Arbitrum, Base, Avalanche, Optimism and BNB Chain. See [Networks](#networks).
+
+<a id="faq-wrong-network"></a>
+**I sent tokens but they don't show up.**
+Check that you're looking at the same network they were sent on. Switch networks with **Choose network**. Assets on one network don't appear on another.
+
+<a id="faq-same-wallet-everywhere"></a>
+**Can I use the same wallet on my phone and in my browser?**
+Yes. Import it on each platform with your secret phrase, and set an unlock password on each device.
+
+<a id="faq-swap-not-working"></a>
+**Why can't I complete a swap or bridge?**
+Swap and Bridge currently show quotes only. Execution is coming soon.
+
+<a id="faq-merchant-charge-more"></a>
+**Can a merchant charge more than I approved?**
+No. Each mandate has an on-chain cap, and a pull that goes over it is refused. You can pause, revoke or **Stop all** at any time.
+
+<a id="faq-request-link"></a>
+**A merchant's link opened PortaWallet but no request appeared.**
+Some Telegram clients don't pass the request through. Copy the request ID from the merchant, then go to **Mandates → ⋯ → Paste request link or ID** and paste it in.
+
+<a id="troubleshooting"></a>
+### Troubleshooting messages
+
+| Message | What to do |
+|---|---|
+| Incorrect unlock password. Try again, or import with your secret phrase. | Check your password (it's case-sensitive). If you can't remember it, re-import with your secret phrase. |
+| Couldn't find your vault. Import with your secret phrase. | This device has no saved wallet. Import it. |
+| Session expired. Sign in again. / Telegram session expired. Tap Try again, or reopen Porta from @PortaWallet_bot. | Reopen PortaWallet from @PortaWallet_bot. |
+| Telegram session missing. Tap Try again on the banner, or reopen Porta from @PortaWallet_bot. | Same as above. |
+| Wallet network not ready. Try again. (Android: "Network isn't ready. Try again in a moment.") | Wait a few seconds and retry. |
+| Couldn't reach Porta. Check your connection and try again. (Android: "Can't reach Porta. …") | Check your internet connection. |
+| Unlock password missing. Go back and create an unlock password first. | Go back one step and set your password. |
+| Could not create wallet. Try again. / Could not import wallet. Try again. | Retry. If it keeps failing, contact support. |
+| Wallet locked: "Unlock Porta Wallet to continue." | Unlock first. |
+| Your wallet address needs gas | Send a small amount of the network's fee token (ETH, MATIC, AVAX or BNB) to your PortaWallet address, the one shown on **Receive**. |
+| Asked to switch network first | Switch to the network shown, using **Choose network**. |
+| You're offline / Mandates didn't load | Reconnect and tap **Try again**. |
+
+---
+
+<a id="developers"></a>
+## 14. Developers
+
+This section is for merchants who want to ask PortaWallet users for a mandate and get paid.
+
+> **Status:** USDC is the only token accepted for mandates. The SDK hasn't been published to a package registry yet. Ask Porta for access, a merchant key, and the list of chain IDs enabled for your account.
+
+<a id="dev-overview"></a>
+### How it works
+
+1. Your **backend** creates a mandate request with your merchant key.
+2. You show the user the request link or QR code, plus the request ID: `https://t.me/PortaWallet_bot?startapp=mr_<requestId>`.
+3. The user reviews it and approves it in PortaWallet. The approval is signed on-chain by the user's own wallet.
+4. You learn about the approval from a **webhook** and/or by **polling** the status. **The API is the source of truth.** Use webhooks as a hint and confirm with `GET` status before you unlock anything.
+
+**What you get from Porta:**
+- a merchant key
+- your webhook URL registered (HTTPS, port 443, public DNS name)
+- a webhook secret (≥ 32 characters)
+
+<a id="dev-auth"></a>
+### Authentication
+
+Send your key server-side in the header `X-Porta-Merchant-Key` (32–256 characters).
+
+- Never put it in a browser, an app or logs.
+- Porta stores only a SHA-256 hash of your key.
+- A missing or wrong key returns `401 {"error":"unauthorized"}`.
+
+**Base URL:** `https://api.porta.finance/api`. All paths below are relative to it.
+
+<a id="dev-create-request"></a>
+### Create a mandate request
+
+`POST /v1/mandates/request` · `Content-Type: application/json` · body ≤ 4096 bytes
+
+| Field | Type | Rules |
+|---|---|---|
+| `payee` | string | 0x address that receives payments. It can't be the token address or a blocked address. |
+| `cap` | string | USDC per month. Must be > 0 and ≤ 10000, with at most 6 decimals. |
+| `months` | integer | 1–36 |
+| `token` | string | The USDC contract address on `chainId`. Other tokens return `bad_token`. |
+| `chainId` | integer | The chain ID of the network (see [Networks](#networks)) |
+| `metered` | boolean, optional | `true` creates a usage-billed grant (see [Metered billing](#dev-usage)) |
+
+- Unknown fields are rejected.
+- Anything that looks like key material is refused. Never send private keys or seeds.
+
+**`201` response**
+```json
+{ "requestId": "92e0cf10a35d49dba000319c835570aa", "deepLink": "porta://mandate/request?payee=…&token=…&amount=…&months=…&chainId=<chainId>&rid=…", "payee": "0x…", "cap": "1", "months": 1 }
+```
+
+- The request ID is 32 hex characters.
+- A request expires **24 hours** after it's created if nobody approves it.
+
+**Errors** (`{"error":"<code>"}`):
+
+| Status | Code |
+|---|---|
+| 400 | `not_object`, `unknown_field`, `key_material`, `bad_metered`, `missing_payee`, `bad_payee`, `payee_blocked`, `payee_is_token`, `missing_chain`, `bad_chain`, `missing_token`, `bad_token`, `missing_cap`, `bad_cap`, `missing_months`, `bad_months`, `metering_unavailable`, `payee_is_session_signer` |
+| 401 | `unauthorized` |
+| 413 | `payload_too_large` |
+| 415 | `unsupported_media_type` |
+| 503 | `not_configured` |
+| 500 | `internal` |
+
+<a id="dev-request-status"></a>
+### Request status
+
+`GET /v1/mandates/request/:requestId` returns `{ requestId, status }`.
+
+- `status` is one of `pending`, `approved`, `revoked` or `expired`.
+- Once approved, the response also includes `mandateId`, `txHash`, `grantor`, `paused` and `kind`.
+- An unknown request, or one that belongs to another merchant, returns `404 not_found`.
+
+<a id="dev-onchain-status"></a>
+### Live on-chain status
+
+`GET /v1/mandates/request/:requestId/onchain` works for approved requests only.
+
+**Response fields:**
+- `status`: one of `active`, `paused`, `depleted`, `expired` or `revoked`
+- `capUnits`, `spentUnits` and `remainingUnits`: base units (USDC has 6 decimals)
+- `chainId`
+- `validUntil`
+
+**Errors:**
+- `409 not_approved`
+- `502 chain_unavailable`
+- `503 rpc_not_configured`
+
+<a id="dev-cancel-request"></a>
+### Cancel a pending request
+
+`POST /v1/mandates/request/:requestId/revoke` returns `200 {"requestId","status":"revoked"}`.
+
+- If the user has already approved, you get `409 approved_onchain_revoke_by_wallet_owner`. Only the wallet owner can revoke an approved mandate, on-chain.
+
+<a id="dev-terms"></a>
+### Public request terms
+
+`GET /v1/mandates/request/:requestId/terms` needs no authentication. It returns only the non-secret terms of a pending request. This is what PortaWallet uses to show the review screen.
+
+- Rate limit: 60 requests per minute per IP. Over the limit you get `429 rate_limited`.
+
+<a id="dev-usage"></a>
+### Metered billing: report usage
+
+For requests created with `"metered": true`, Porta's settlement address signs the collections, and you report usage to Porta. Porta settles on-chain to your `payee` once the threshold is reached, and otherwise 24 hours after the last charge.
+
+`POST /v1/usage` (merchant key)
+
+| Field | Rules |
+|---|---|
+| `mandateId` | bytes32 hex |
+| `amount` | Token base units, as a string matching `^[1-9]\d{0,40}$` |
+| `idempotencyKey` | 8–128 characters from `[A-Za-z0-9._:-]` |
+| `chainId` | Optional. Needed only if the server answers `ambiguous_mandate`. |
+
+**Responses:**
+- `201 { accepted, accrued, state, sessionExpiresAt?, renewSoon? }`
+- `200` for a duplicate request with the same idempotency key
+- `402 limit_exceeded { accrued, limit, cap }`
+- `409 mandate_not_active` (for example `session_expired`), `mandate_suspended`, `idempotency_key_reused`, `metering_disabled`, `contention` or `ambiguous_mandate` (with `chainIds`)
+- `404 mandate_not_found`
+- `400 bad_*`
+- `503 chain_unavailable` or `not_configured`
+
+`GET /v1/metering/config?chainId=<chainId>` returns the public metering settings for the chain: `version`, `sessionSigner`, `decimals`, `thresholdBase`, `creditCapBase`, `settleIntervalSeconds` and more. If metering isn't available, you get `404 metering_unavailable`.
+
+<a id="dev-sdk"></a>
+### SDK (TypeScript)
+
+The SDK is a thin client for the API.
+
+- **It never holds or accepts private keys.** Passing anything that looks like key material throws `key_material_refused`.
+- It only talks to `https://` base URLs.
+
+```ts
+import { createPortaMandates } from "src/sdk/portaMandates"; // package not yet published
+
+const porta = createPortaMandates({
+  baseUrl: "https://api.porta.finance/api",
+  chainId: CHAIN_ID, // a supported network's chain ID
+  getAuthHeaders: () => ({ "X-Porta-Merchant-Key": process.env.PORTA_MERCHANT_KEY! }),
+});
+
+// Set the terms on your server. Never take payee or cap from the browser.
+const r = await porta.createRequest({ payee, cap: "1", months: 1, token: USDC_ADDRESS, chainId: CHAIN_ID });
+r.requestId;     // show it to the user
+r.telegramLink;  // https://t.me/PortaWallet_bot?startapp=mr_<rid> — QR code / button
+r.deepLink;      // porta://mandate/request?...
+
+await porta.getStatus(r.requestId);        // pending | approved | revoked | expired
+await porta.getOnchainStatus(r.requestId); // active | paused | depleted | expired | revoked (approved only)
+await porta.waitApproved(r.requestId, { timeoutMs: 600_000 }); // approved | revoked | expired | timeout
+```
+
+**Other methods:**
+- `createMandate({ …, onLink, wait })` creates a request and, if you ask it to, waits for approval.
+- `listDeliveries({ limit, requestId })` and `redeliver(eventId)` manage webhook deliveries.
+- `reportUsage({ mandateId, amount, idempotencyKey, chainId? })` reports metered usage.
+
+**`waitApproved` polling:** every 3 s by default (clamped to 1–30 s), with a 10-minute default timeout.
+
+**Errors:** all errors throw `PortaMandatesError` with a `.code`, such as `rejected`, `http_error` (with `.status`), `network`, `response_mismatch`, `bad_response`, `on_link_failed`, `unsupported_chain`, `key_material_refused`, or one of the usage codes (`limit_exceeded`, `mandate_not_active`, …).
+
+**Request link tip:** some Telegram clients don't pass `startapp` to the Mini App. Always display the raw request ID as well. The user can paste it under **Mandates → ⋯ → Paste request link or ID**.
+
+<a id="dev-webhooks"></a>
+### Webhooks
+
+Porta sends a `POST` with a JSON body to your registered HTTPS URL.
+
+**Event types:**
+
+| Event | When |
+|---|---|
+| `mandate.approved` | The user's approval is confirmed on-chain. Fields: `id`, `type`, `chainId`, `requestId`, `mandateId`, `txHash`, `grantor`?, `createdAt`. |
+| `mandate.revoked` | The request or mandate was revoked. `source` is `merchant` or `chain`. |
+| `payment.succeeded` | A pull settled. Includes `token`, `amountUnits`, `remainingUnits`, `txHash` and `blockNumber`. |
+| `payment.failed` | A pull failed. Includes `userOpHash` and `reason`. |
+| `mandate.approaching_limit` | 20% or less of the cap is left, or the cap is used up. |
+| `metering.threshold_reached` | Metered usage reached the settlement threshold or is near the cap. |
+| `settlement.succeeded`, `settlement.failed` | Metered settlement result |
+| `session.expiring` | A metered session is about to expire |
+
+<a id="dev-webhook-signature"></a>
+#### Verify the signature
+
+**Headers:**
+- `Porta-Signature: t=<unix seconds>,v1=<hex HMAC-SHA256(secret, "<t>.<raw body>")>`
+- `Porta-Webhook-Id: evt_<32 hex>`. This matches the body's `id`.
+
+Verify against the **raw** body, and reject anything more than **300 seconds** old.
+
+```js
+const crypto = require("crypto");
+app.post("/porta/webhook", express.raw({ type: "application/json" }), (req, res) => {
+  const m = /^t=(\d+),v1=([0-9a-f]{64})$/.exec(req.get("Porta-Signature") || "");
+  if (!m || Math.abs(Date.now() / 1000 - Number(m[1])) > 300) return res.sendStatus(400);
+  const mac = crypto.createHmac("sha256", process.env.PORTA_WEBHOOK_SECRET)
+    .update(m[1] + ".").update(req.body).digest();
+  const got = Buffer.from(m[2], "hex");
+  if (got.length !== mac.length || !crypto.timingSafeEqual(got, mac)) return res.sendStatus(400);
+  const evt = JSON.parse(req.body.toString("utf8"));
+  if (evt.id !== req.get("Porta-Webhook-Id")) return res.sendStatus(400);
+  // skip if evt.id already processed; then re-check state with GET /v1/mandates/request/:id
+  res.sendStatus(204);
+});
+```
+
+**With the SDK:** call `verifyPortaWebhook({ secret, signature, webhookId, body })`. It returns `{ ok, event }` or `{ ok: false, reason }`, where `reason` is `bad_secret`, `bad_header`, `stale`, `bad_signature`, `bad_body` or `no_webcrypto`. The current SDK version accepts only `mandate.approved` events. Use the plain verification above for the other event types. `createWebhookDeduper` helps you skip repeated event IDs: it keeps them for 7 days, and while one is still being processed you should answer `409`.
+
+<a id="dev-webhook-delivery"></a>
+#### Delivery semantics
+
+- **Don't rely on webhooks alone.** The API is the source of truth, so always reconcile with `GET /v1/mandates/request/:id`.
+- **What counts as delivered:** any `2xx` response. Porta waits up to 5 s and doesn't follow redirects.
+- **Retries:** failed deliveries are retried at about +1 min, +5 min, +30 min, +2 h and +12 h. After 6 attempts the delivery is marked dead, and no further automatic delivery happens. Because of this, you may get the same event more than once. Deduplicate by `id`.
+- **Replays:**
+  - `GET /v1/mandates/webhooks/deliveries?limit=1–200 (default 50)&requestId=&chainId=` lists deliveries.
+  - `POST /v1/mandates/webhooks/deliveries/:id/redeliver` returns `202`. Possible errors: `404`, `409 in_flight|cancelled`, `429 cooldown|rate_limited` (60 s cooldown per event, 30 per minute per merchant).
