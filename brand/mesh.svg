@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 720" fill="none" aria-hidden="true">
+  <defs>
+    <linearGradient id="meshStroke" x1="40" y1="40" x2="820" y2="680" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#00EAFF" stop-opacity="0.85"/>
+      <stop offset="0.55" stop-color="#6A7BFF" stop-opacity="0.45"/>
+      <stop offset="1" stop-color="#BC29FF" stop-opacity="0.28"/>
+    </linearGradient>
+    <radialGradient id="meshFade" cx="30%" cy="40%" r="70%">
+      <stop offset="0" stop-color="white" stop-opacity="1"/>
+      <stop offset="1" stop-color="white" stop-opacity="0"/>
+    </radialGradient>
+    <mask id="meshMask">
+      <rect width="900" height="720" fill="url(#meshFade)"/>
+    </mask>
+  </defs>
+  <g mask="url(#meshMask)" stroke="url(#meshStroke)" stroke-width="1.1" stroke-linecap="round">
+    <path d="M-20 80 C 120 40, 260 160, 400 120 S 680 40, 940 110"/>
+    <path d="M-20 150 C 140 110, 280 230, 430 190 S 700 110, 940 180"/>
+    <path d="M-20 220 C 150 180, 300 300, 450 260 S 720 180, 940 250"/>
+    <path d="M-20 290 C 160 250, 310 370, 470 330 S 740 250, 940 320"/>
+    <path d="M-20 360 C 170 320, 330 440, 500 400 S 760 320, 940 390"/>
+    <path d="M-20 430 C 180 390, 350 510, 520 470 S 780 390, 940 460"/>
+    <path d="M-20 500 C 190 460, 370 580, 540 540 S 800 460, 940 530"/>
+    <path d="M-20 570 C 200 530, 390 650, 560 610 S 820 530, 940 600"/>
+    <path d="M80 -20 C 60 140, 180 280, 120 420 S 40 620, 160 760"/>
+    <path d="M180 -20 C 160 150, 280 290, 220 430 S 140 630, 260 760"/>
+    <path d="M280 -20 C 260 160, 380 300, 320 440 S 240 640, 360 760"/>
+    <path d="M380 -20 C 360 170, 480 310, 420 450 S 340 650, 460 760"/>
+    <path d="M480 -20 C 460 180, 580 320, 520 460 S 440 660, 560 760"/>
+    <path d="M580 -20 C 560 190, 680 330, 620 470 S 540 670, 660 760"/>
+    <path d="M680 -20 C 660 200, 780 340, 720 480 S 640 680, 760 760"/>
+    <path d="M780 -20 C 760 210, 880 350, 820 490 S 740 690, 860 760"/>
+  </g>
+</svg>
