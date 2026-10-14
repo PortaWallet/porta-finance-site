@@ -4,7 +4,7 @@ import { HelpHashRedirect } from '@/components/help/help-hash-redirect'
 import { HelpSearch } from '@/components/help/help-search'
 import { HelpShell } from '@/components/help/help-shell'
 import { MotionSection } from '@/components/motion-section'
-import { getHelpTopics } from '@/content-help/help'
+import { getHelpTopics, IN_APP_HELP_ANCHORS } from '@/content-help/help'
 import { SITE_URL } from '@/lib/site'
 
 export const dynamic = 'force-static'
@@ -30,7 +30,7 @@ export default function HelpPage() {
 
   return (
     <HelpShell>
-      <HelpHashRedirect />
+      <HelpHashRedirect anchors={IN_APP_HELP_ANCHORS} />
       <MotionSection className="section-y">
         <div className="mx-auto max-w-6xl">
           <p className="eyebrow mb-2">Help</p>
