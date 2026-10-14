@@ -1,6 +1,11 @@
 import { readFileSync } from 'node:fs'
 import { join } from 'node:path'
 import {
+  IN_APP_HELP_SLUGS,
+  type InAppHelpSlug,
+  type InAppHelpTarget,
+} from '@/content-help/in-app-anchors'
+import {
   blockAnchorIds,
   blocksToPlain,
   inlineToText,
@@ -125,3 +130,29 @@ export function helpAnchorHref(id: string): string | undefined {
   }
   return undefined
 }
+
+/**
+ * Topic page and section id for a help anchor.
+ * A topic slug uses that page's heading. A section id uses the topic that contains it.
+ */
+export function resolveHelpAnchor(id: string): InAppHelpTarget | undefined {
+  const href = helpAnchorHref(id)
+  if (!href) return undefined
+  const match = /^\/help\/([a-z0-9-]+)(?:#([a-z0-9-]+))?$/.exec(href)
+  const topic = match?.[1]
+  if (!topic) return undefined
+  return { topic, section: match?.[2] ?? topic }
+}
+
+function inAppHelpAnchors(): Record<InAppHelpSlug, InAppHelpTarget> {
+  const anchors = {} as Record<InAppHelpSlug, InAppHelpTarget>
+  for (const slug of IN_APP_HELP_SLUGS) {
+    const target = resolveHelpAnchor(slug)
+    if (!target) throw new Error(`In-app help slug has no topic or section: ${slug}`)
+    anchors[slug] = target
+  }
+  return anchors
+}
+
+/** Learn more hashes, each resolved through `resolveHelpAnchor`. */
+export const IN_APP_HELP_ANCHORS = inAppHelpAnchors()
