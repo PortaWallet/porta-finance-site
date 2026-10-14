@@ -27,15 +27,15 @@ export function MotionSection({ children, className, id }: Props) {
   }, [])
 
   return (
-    <motion.section
-      id={id}
-      className={className}
-      initial={false}
-      animate={{ y: reduced || ready ? 0 : OFFSET }}
-      transition={reduced ? { duration: 0 } : spring}
-    >
-      {children}
-    </motion.section>
+    <section id={id} className={className}>
+      <motion.div
+        initial={false}
+        animate={{ y: reduced || ready ? 0 : OFFSET }}
+        transition={reduced ? { duration: 0 } : spring}
+      >
+        {children}
+      </motion.div>
+    </section>
   )
 }
 

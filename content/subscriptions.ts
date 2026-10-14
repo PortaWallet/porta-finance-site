@@ -1,6 +1,6 @@
 /**
  * Subscriptions guide — cloned from APK wallet chrome (amount / days / pause).
- * Honest Coming until Sepolia is live. Swap bot / Trading bot Coming later — never fake LIVE.
+ * Honest Coming — not Delivered. Swap bot / Trading bot Coming later — never fake LIVE.
  * Confirm / Stop all stay muted when the send path is not wired.
  */
 export const SUBSCRIPTIONS = {
@@ -12,7 +12,7 @@ export const SUBSCRIPTIONS = {
     'Approve a cap to one address. Pause or cancel any time.',
     'A Porta subscription is a **mandate**: amount (USDC), days, and one **payee address**.',
     'It is not a credit card on file. Your owner key does not change.',
-    'Product status: **Coming until Sepolia is live** — not Delivered. Review is not execute.',
+    'Product status: **Coming — not Delivered**. Review is not execute.',
   ],
   typesTitle: 'Type',
   types: [
@@ -56,6 +56,6 @@ export const SUBSCRIPTIONS = {
     'Do not expect gasless / sponsored charges (not live).',
     'Do not treat **Trading bot** / Swap bot as live — Coming later.',
     'Do not put a wildcard address. One merchant at a time in this version.',
-    'Do not call this Delivered until Sepolia is live.',
+    'Do not call this Delivered.',
   ],
 } as const

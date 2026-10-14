@@ -206,7 +206,7 @@ describe('soft tip honesty', () => {
     }
   })
 
-  it('Subscriptions guide clones APK chrome — Coming until Sepolia, not fake LIVE', () => {
+  it('Subscriptions guide clones APK chrome — Coming, not fake LIVE', () => {
     const subs = readFileSync(resolve(ROOT, 'content/subscriptions.ts'), 'utf8')
     expect(subs).toContain("eyebrow: 'Subscriptions'")
     expect(subs).toContain('APK wallet chrome')
@@ -216,7 +216,7 @@ describe('soft tip honesty', () => {
     expect(subs).toContain('One merchant, cap and expiry')
     expect(subs).toContain('Trading bot')
     expect(subs).toContain('Swap bot Coming later')
-    expect(subs).toContain('Coming until Sepolia is live')
+    expect(subs).toContain('Coming — not Delivered')
     expect(subs).toContain('Review is not execute')
     expect(subs).toContain("statusLabel: 'Coming'")
     expect(subs).toContain("title: 'Amount'")
@@ -241,11 +241,11 @@ describe('soft tip honesty', () => {
     const guides = readFileSync(resolve(ROOT, 'content/guides.ts'), 'utf8')
     expect(guides).toContain('Amount, Days, Pause')
     expect(guides).toContain('Swap bot Coming later')
-    expect(guides).toContain('Coming until Sepolia is live')
+    expect(guides).toContain('Coming — not Delivered')
     const roadmap = readFileSync(resolve(ROOT, 'content/roadmap.ts'), 'utf8')
     expect(roadmap).toContain('Amount, Days, Pause')
     expect(roadmap).toContain('Swap bot Coming later')
-    expect(roadmap).toContain('Coming until Sepolia is live — not Delivered')
+    expect(roadmap).toContain('Coming — not Delivered')
   })
 
   it('CWS HOLD: no live Chrome Web Store URL', () => {
@@ -348,7 +348,7 @@ describe('soft tip honesty', () => {
     expect(roadmap).toContain("title: 'Subscriptions'")
     expect(roadmap).toContain("title: 'Agents'")
     expect(roadmap).toContain("statusLabel: 'Coming'")
-    expect(roadmap).toContain('Coming until Sepolia is live — not Delivered')
+    expect(roadmap).toContain('Coming — not Delivered')
     expect(roadmap).toContain('See every swap before you confirm')
     expect(roadmap).toContain('Alerts that open a review — not a trade')
     expect(roadmap).toContain('Optional protected swaps')
@@ -363,10 +363,10 @@ describe('soft tip honesty', () => {
     expect(ui).not.toMatch(/statusLabel:\s*'Delivered'|Delivered<\/Badge>/)
   })
 
-  it('Agents + Guides chrome is Coming until Sepolia — never Delivered', () => {
+  it('Agents + Guides chrome is Coming — never Delivered', () => {
     const agents = readFileSync(resolve(ROOT, 'content/agents.ts'), 'utf8')
     expect(agents).toContain("statusLabel: 'Coming'")
-    expect(agents).toContain('Coming until Sepolia is live')
+    expect(agents).toContain('Coming — not Delivered')
     expect(agents).toContain('Review is not execute')
     expect(agents).toContain('Swap bot is **Coming later**')
     expect(agents).not.toMatch(/statusLabel:\s*'Delivered'|statusLabel:\s*'LIVE'/)
@@ -379,7 +379,7 @@ describe('soft tip honesty', () => {
     expect(guides).toContain("title: 'Agents'")
     expect(guides).toContain("title: 'Subscriptions'")
     expect(guides).toContain("statusLabel: 'Coming'")
-    expect(guides).toContain('Coming until Sepolia is live — not Delivered')
+    expect(guides).toContain('Coming — not Delivered')
     expect(guides).not.toMatch(/statusLabel:\s*'Delivered'/)
     const guidesPage = readFileSync(resolve(ROOT, 'app/guides/page.tsx'), 'utf8')
     expect(guidesPage).toContain('item.statusLabel')
@@ -685,8 +685,11 @@ describe('soft tip honesty', () => {
     expect(footer).not.toContain('#term"')
     expect(footer).not.toContain("href: '#term'")
     const nav = readFileSync(resolve(ROOT, 'components/site-nav.tsx'), 'utf8')
-    expect(nav).toContain('`${HOME_HREF}${href}`')
     expect(nav).toContain('navHref(link.href)')
+    expect(nav).not.toContain('`${HOME_HREF}${href}`')
+    expect(nav).not.toContain('./#')
+    const navLib = readFileSync(resolve(ROOT, 'lib/nav.ts'), 'utf8')
+    expect(navLib).toContain('return `/${href}`')
     const sitemap = readFileSync(resolve(ROOT, 'app/sitemap.ts'), 'utf8')
     expect(sitemap).toContain('POLICY_PATH')
     expect(sitemap).toContain('TERMS_PATH')

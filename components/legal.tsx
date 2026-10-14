@@ -1,3 +1,4 @@
+import Link from 'next/link'
 import { MotionSection } from '@/components/motion-section'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteNav } from '@/components/site-nav'
@@ -9,7 +10,6 @@ import {
   TERMS,
   TERMS_PATH,
 } from '@/content/legal'
-import { HOME_HREF } from '@/lib/preview'
 import { CONTACT_EMAIL, CONTACT_MAILTO } from '@/lib/site'
 import { cn } from '@/lib/utils'
 
@@ -57,18 +57,18 @@ function LegalArticle({
         </div>
         {asPage ? (
           <p className="mt-10 flex flex-wrap gap-x-4 gap-y-1 text-sm font-medium">
-            <a
-              href={HOME_HREF}
+            <Link
+              href="/"
               className="text-foreground underline-offset-4 hover:text-primary hover:underline"
             >
               Back to Porta
-            </a>
-            <a
+            </Link>
+            <Link
               href={otherHref}
               className="text-foreground underline-offset-4 hover:text-primary hover:underline"
             >
               {other.title}
-            </a>
+            </Link>
           </p>
         ) : null}
       </article>
