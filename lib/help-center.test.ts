@@ -171,6 +171,14 @@ describe('help center', () => {
     expect(networks?.searchText).toContain('42161')
     expect(networks?.searchText).toContain('8453')
     expect(networks?.searchText).toContain('43114')
+    expect(networks?.searchText).not.toMatch(/mainnet is off/i)
+
+    const home = getHelpTopic('home-and-balances')
+    expect(home?.searchText).toMatch(/shortened real address/i)
+    expect(home?.searchText).toContain('0x1234…abcd')
+    expect(home?.searchText).toMatch(/address field is hidden/i)
+    expect(home?.searchText).not.toMatch(/mainnet is off/i)
+    expect(home?.searchText).not.toMatch(/shows "—"/)
   })
 
   it('fails if help content contains sepolia or testnet', () => {

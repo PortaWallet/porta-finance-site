@@ -135,12 +135,13 @@ In the web app, or if you open the Mini App's page outside Telegram, you'll see 
 
 Your portfolio shows your total **Assets value**, plus two tabs: **Your Tokens** and **Transactions history**.
 
+- **Address:** Home shows your wallet address as a shortened real address, for example `0x1234…abcd`. On the activity feed, a row with a counterparty shows that address the same way. If there is no address, the address field is hidden.
 - Use **View all** to see your full list.
 - **Empty states:**
   - **No tokens yet**
   - **No activity yet**: "Sends, receives, and swaps will show up here."
 - **Loading problems:** you'll see **Loading balances**. If loading fails, you'll see **Couldn't load balances**. Tap **Retry**.
-- **Transaction details:** tap any transaction to see Direction, Date, Transaction ID, Sender, Receiver, Network, Transaction Fee and Gas Price. **View transaction in blockchain** opens the block explorer for that network (see [Networks](#networks)).
+- **Transaction details:** tap any transaction to see Direction, Date, Transaction ID, Sender, Receiver, Network, Transaction Fee and Gas Price. Sender and Receiver are shortened real addresses when known, for example `0x1234…abcd`. If an address is missing, that field is hidden. **View transaction in blockchain** opens the block explorer for that network (see [Networks](#networks)).
 
 <a id="wallets-and-accounts"></a>
 ### Wallets and accounts
@@ -153,7 +154,7 @@ Your portfolio shows your total **Assets value**, plus two tabs: **Your Tokens**
 <a id="networks"></a>
 ## 4. Networks
 
-PortaWallet supports seven production networks. You can send and receive on all of them.
+PortaWallet supports seven production networks. You can send and receive on all of them. Home and the activity feed follow the network you have open.
 
 | Network | Shown in the app as | Chain ID | Network fee paid in | Tokens listed by default | Block explorer |
 |---|---|---|---|---|---|

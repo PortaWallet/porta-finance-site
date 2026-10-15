@@ -40,9 +40,6 @@ function LegalArticle({
         <p className="mt-5 text-base leading-relaxed text-muted-foreground">
           {doc.lede}
         </p>
-        <p className="mt-3 text-xs leading-relaxed text-muted-foreground">
-          {doc.draft}
-        </p>
         <div className="mt-8 grid gap-6">
           {doc.sections.map((section) => (
             <section key={section.title}>

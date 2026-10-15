@@ -32,7 +32,7 @@ export const FEATURES = {
     },
     {
       title: 'Receive',
-      body: 'Receive assets you already hold.',
+      body: 'Receive assets you already hold on seven production networks.',
       href: undefined as string | undefined,
     },
     {
@@ -63,7 +63,7 @@ export const HOW = {
     },
     {
       title: 'Receive assets',
-      body: 'Receive assets you already hold.',
+      body: 'Receive assets you already hold on seven production networks.',
     },
     {
       title: 'Send and review swaps',
