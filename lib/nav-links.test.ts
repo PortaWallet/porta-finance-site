@@ -172,7 +172,7 @@ describe('nav and footer hrefs', () => {
   })
 
   it('has no Sepolia or testnet wording outside the help-center ban', () => {
-    const banned = /sepolia|testnet/i
+    const banned = /sepolia|testnet|mainnet is off/i
     function walk(dir: string) {
       for (const name of readdirSync(dir)) {
         if (SKIP_DIR.has(name)) continue

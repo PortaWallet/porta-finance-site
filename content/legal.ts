@@ -13,11 +13,8 @@ export const TERMS_ALIASES = ['/terms-of-service'] as const
 export const POLICY_HASH_PATH = `/#${POLICY_ID}`
 export const TERMS_HASH_PATH = `/#${TERMS_ID}`
 
-export const LEGAL_UPDATED_ISO = '2026-09-11'
-export const LEGAL_UPDATED_LABEL = '11 September 2026'
-
-export const LEGAL_DRAFT_NOTE =
-  'Draft product language. It describes how Porta works today and is not a counsel-reviewed contract.'
+export const LEGAL_UPDATED_ISO = '2026-10-15'
+export const LEGAL_UPDATED_LABEL = '15 October 2026'
 
 export const LEGAL_LINKS = [
   { href: POLICY_PATH, hash: `#${POLICY_ID}`, id: POLICY_ID, label: 'Privacy' },
@@ -28,8 +25,7 @@ export const POLICY = {
   id: POLICY_ID,
   eyebrow: 'Privacy',
   title: 'Privacy Policy',
-  lede: 'Porta is a non-custodial AA wallet. Keys stay on your device. This page says what we actually receive — not a generated legal wall.',
-  draft: LEGAL_DRAFT_NOTE,
+  lede: 'Porta is a non-custodial account-abstraction wallet. Keys stay on your device. This policy explains what Porta and porta.finance receive when you use the product and this site.',
   sections: [
     {
       title: 'Who we are',
@@ -49,7 +45,7 @@ export const POLICY = {
     },
     {
       title: 'On-chain data',
-      body: 'Transfers you make on public networks are public. That is how the chains work, not a Porta database of your holdings.',
+      body: 'Transfers you make on public production networks are public. PortaWallet supports seven production networks. That record lives on those networks, not in a Porta database of your holdings.',
     },
     {
       title: 'Changes',
@@ -62,8 +58,7 @@ export const TERMS = {
   id: TERMS_ID,
   eyebrow: 'Terms',
   title: 'Terms of Service',
-  lede: 'Porta is software you run. We do not custody your assets. Read this before you sign anything.',
-  draft: LEGAL_DRAFT_NOTE,
+  lede: 'These terms govern your use of Porta. Porta is software you run. We do not custody your assets.',
   sections: [
     {
       title: 'The software',

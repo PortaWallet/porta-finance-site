@@ -11,7 +11,6 @@ import {
   isRetailCtaAllowed,
 } from '@/lib/flags'
 import {
-  LEGAL_DRAFT_NOTE,
   LEGAL_UPDATED_ISO,
   LEGAL_UPDATED_LABEL,
   POLICY,
@@ -551,8 +550,12 @@ describe('soft tip honesty', () => {
     }
     const seo = readFileSync(resolve(ROOT, 'lib/seo.ts'), 'utf8')
     expect(seo).toContain('sponsorship is not live')
+    expect(seo).toContain('seven production networks')
+    expect(seo).not.toMatch(/mainnet is off|sepolia|testnet/i)
     const footer = readFileSync(resolve(ROOT, 'content/copy.ts'), 'utf8')
     expect(footer).toContain('sponsorship is not live')
+    expect(footer).toContain('seven production networks')
+    expect(footer).not.toMatch(/mainnet is off|sepolia|testnet/i)
     expect(footer).not.toContain('No official X')
   })
 
@@ -606,14 +609,18 @@ describe('soft tip honesty', () => {
     expect(TERMS_HASH_PATH).toBe('/#terms')
     expect(POLICY.id).toBe('policy')
     expect(TERMS.id).toBe('terms')
-    expect(LEGAL_UPDATED_ISO).toBe('2026-09-11')
-    expect(LEGAL_UPDATED_LABEL).toBe('11 September 2026')
-    expect(LEGAL_DRAFT_NOTE).toMatch(/draft product language/i)
+    expect(LEGAL_UPDATED_ISO).toBe('2026-10-15')
+    expect(LEGAL_UPDATED_LABEL).toBe('15 October 2026')
     expect(POLICY.title).toBe('Privacy Policy')
     expect(TERMS.title).toBe('Terms of Service')
     expect(POLICY.lede).toMatch(/keys stay on your device/i)
-    expect(POLICY.draft).toBe(LEGAL_DRAFT_NOTE)
-    expect(TERMS.draft).toBe(LEGAL_DRAFT_NOTE)
+    expect(POLICY.lede).toMatch(/seven production networks|this policy explains/i)
+    expect(TERMS.lede).toMatch(/these terms govern/i)
+    expect(POLICY).not.toHaveProperty('draft')
+    expect(TERMS).not.toHaveProperty('draft')
+    expect(POLICY.sections.some((s) => /seven production networks/i.test(s.body))).toBe(
+      true,
+    )
     expect(POLICY.sections.some((s) => /Google sign-in/i.test(s.body))).toBe(
       true,
     )
@@ -634,6 +641,7 @@ describe('soft tip honesty', () => {
     const legal = readFileSync(resolve(ROOT, 'content/legal.ts'), 'utf8')
     expect(legal).toContain('TOS is /terms only')
     expect(legal).toContain('Canonical legal deep links')
+    expect(legal).not.toMatch(/draft/i)
     expect(legal).not.toMatch(/#term(?!s)/)
     expect(legal).not.toMatch(TELEGRAM_DENIAL)
     expect(legal).not.toMatch(PUBLIC_DOGFOOD)
@@ -646,6 +654,8 @@ describe('soft tip honesty', () => {
     expect(ui).toContain('LegalPage')
     expect(ui).toContain('asPage')
     expect(ui).not.toMatch(TELEGRAM_DENIAL)
+    expect(ui).not.toMatch(/draft/i)
+    expect(ui).not.toContain('doc.draft')
     const page = readFileSync(resolve(ROOT, 'app/page.tsx'), 'utf8')
     expect(page).not.toContain('<Policy')
     expect(page).not.toContain('<Terms')
