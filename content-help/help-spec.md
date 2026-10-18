@@ -339,7 +339,7 @@ The detail sheet also says **You pay** or **You get paid**.
   - **Active**
   - **Paused**
   - **History**: revoked and expired items
-- **Badges and pills:** tab badges show the exact count up to 99, then **99+**. Status pills are **Review**, **Active**, **Paused**, **Revoked** and **Expired**. New requests that are under 10 minutes old get a **New** pill.
+- **Counts and status labels:** each tab shows a count of its mandates, up to 99 and then **99+**. Each mandate row has a status label: **Review**, **Active**, **Paused**, **Revoked** or **Expired**. Requests that are under 10 minutes old also get a **New** label.
 - **Rows:** each row reads like "1 USDC / month · 3 months", followed by the merchant name and a short ID, for example "Acme Coffee · #1fa7…47d9".
 - **Search:** "Search merchant, address or ID".
 - **Filter and sort:**
